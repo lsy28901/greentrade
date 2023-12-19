@@ -10,10 +10,10 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<link href="/greentradetest/style.css" rel="stylesheet">
+<link href="/myWorkSpace/style.css" rel="stylesheet">
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/greentradetest/manager_script.js"></script>
+<script src="/myWorkSpace/manager_script.js"></script>
 <style>
 .container {
 	margin: 0;

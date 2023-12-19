@@ -26,7 +26,8 @@ public class ReportFormCotroller extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String uploadPath = "C:\\Users\\USER\\git\\greentrade\\myWorkSpace\\WebContent\\uploads";
+        String uploadPath = "C:\\Users\\tndus\\git\\GreenTrade\\myWorkSpace\\WebContent\\uploads";
+       
         int maxFileSize = 10 * 1024 * 1024; // 업로드 파일의 최대 크기를 10MB로 설정
         String encoding = "UTF-8"; // 인코딩 방식을 UTF-8로 설정
 
