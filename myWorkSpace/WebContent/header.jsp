@@ -11,6 +11,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <link href="/myWorkSpace/style.css" rel="stylesheet">
+<link href="/myWorkSpace/additem.css" rel="stylesheet" >
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/myWorkSpace/manager_script.js"></script>
@@ -30,15 +31,16 @@
 .bg-black {
 	background-color: black;
 }
-main{
-	max-width:960px;
+
+main {
+	max-width: 960px;
 }
 
 #board-table thead th {
-    background-color: #D5F4DF; /* 배경색 지정 */
+	background-color: #D5F4DF; /* 배경색 지정 */
 }
 
-a {  
+a {
 	text-decoration: none;
 	color: inherit;
 }
@@ -47,7 +49,8 @@ a {
 	<header>
 		<nav class="navbar navbar-expand-sm bg-green navbar-dark">
 			<div class="container-fluid ">
-				<a class="navbar-brand col-md-4 text-black" href="#">Green Trade</a>
+				<a class="navbar-brand col-md-4 text-black" href="../main/index.jsp">Green
+					Trade</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
 					<span class="navbar-toggler-icon"></span>
@@ -62,9 +65,9 @@ a {
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
 							href="#">채팅하기</a></li>
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="#">판매하기</a></li>
+							href="../additem/additem.jsp">판매하기</a></li>
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="#">마이페이지</a></li>
+							href="../mypage/mypage_main.jsp">마이페이지</a></li>
 					</ul>
 				</div>
 
@@ -75,10 +78,12 @@ a {
 		<nav class="navbar navbar-expand-sm bg-green navbar-dark">
 			<div class="container-fluid">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link text-black" href="#">상품목록</a>
-					</li>
-					<li class="nav-item"><a class="nav-link text-black" href="#">인기상품</a></li>
-					<li class="nav-item"><a class="nav-link text-black" href="#">나눔</a></li>
+					<li class="nav-item"><a class="nav-link text-black"
+						href="../login/product_list.jsp">상품목록</a></li>
+					<li class="nav-item"><a class="nav-link text-black"
+						href="../login/product_best.jsp">인기상품</a></li>
+					<li class="nav-item"><a class="nav-link text-black"
+						href="../login/product_share.jsp">나눔</a></li>
 				</ul>
 			</div>
 		</nav>
