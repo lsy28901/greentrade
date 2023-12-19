@@ -4,7 +4,7 @@
 <div class="mb-4">
     <div class="d-flex align-items-center mb-4">
         <div class="bg-secondary rounded-circle h-12 w-12"></div>
-        <span class="font-weight-bold" style="font-size: 24px;">회원 정보 관리</span>
+        <span class="font-weight-bold" style="font-size: 24px;">신고 내역</span>
     </div>
     <hr>
     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -23,7 +23,7 @@
 	                            <tr>
 	                                <td>${loop.index + 1}</td>
 	                                <td>${report.reporterNickname}</td>
-	                                <td><a href="reportContent.do?reportid=${report.reportid}" class="text-decoration-none">${report.reporttitle}</a></td>
+	                                <td><a href="/greentradetest/reportContent.do?reportid=${report.reportid}" class="text-decoration-none">${report.reporttitle}</a></td>
 	                                <td>${report.reportdate }</td>
 	                                <td>${report.targetNickname}</td>
 	                            </tr>
@@ -40,10 +40,6 @@
         $('#manager_Home').click(function(e) {
             e.preventDefault(); // 링크 클릭 동작 취소
             window.location.href = 'manager_main.jsp'; // 페이지 이동
-        });
-        $('.report-button').click(function(e) {
-            e.preventDefault(); // 링크 클릭 동작 취소
-            window.location.href = 'reportContent.do?reportid=2'; // 페이지 이동
         });
     });
 </script>

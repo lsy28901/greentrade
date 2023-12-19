@@ -1,6 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<script>
+//링크를 클릭할 때 페이지를 로드하도록 이벤트 핸들러 추가
+$(function() {
+	var parameter = getParameterByName("parameter");
+	if (parameter === "backReportList") {
+        loadPage('/myWorkSpace/reportList.do','main-content');
+    }
+	
+	
+    $('#manager_memberList').click(function(e) {
+        e.preventDefault(); // 링크 클릭 동작 취소
+        loadPage('manager_memberList.jsp','main-content');
+    });
+    
+    $('#manager_memberListMenu').click(function(e) {
+        e.preventDefault(); // 링크 클릭 동작 취소
+        loadPage('manager_memberList.jsp','main-content');
+    });
+
+    $('#manager_reportList').click(function(e) {
+        e.preventDefault(); // 링크 클릭 동작 취소
+        $.ajax({
+            url: '/myWorkSpace/reportList.do', // 컨트롤러 경로
+            success: function(data) {
+                // 컨트롤러로부터 받은 데이터를 메인 영역에 표시
+                $('#main-content').html(data);
+            }
+        });
+    });
+
+    $('#manager_reportListMenu').click(function(e) {
+        e.preventDefault(); // 링크 클릭 동작 취소
+        $.ajax({
+            url: '/greentradetest/reportList.do', // 컨트롤러 경로
+            success: function(data) {
+                // 컨트롤러로부터 받은 데이터를 메인 영역에 표시
+                $('#main-content').html(data);
+            }
+        });
+    });
+    
+    $('#manager_editMenu').click(function(e) {
+        e.preventDefault(); // 링크 클릭 동작 취소
+        loadPage('manager_edit.jsp','main-content');
+    });
+    
+    $('#manager_productMenu').click(function(e) {
+        e.preventDefault(); // 링크 클릭 동작 취소
+        loadPage('manager_product.jsp','main');
+    });
+    
+    
+});
+</script>
 	<div class="container-fluid">
         <main class="container-fluid mt-4">
             <div class="row" id="main">
@@ -14,14 +68,14 @@
                             <hr>
                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                 <div class="col">
-                                    <a href="#" class="p-4 border rounded text-center bg-light d-block text-decoration-none" id="manager_memberList">
+                                    <div id="manager_memberList" class="p-4 border rounded text-center bg-light d-block text-decoration-none">
                                         	회원정보 관리
-                                    </a>
+                                    </div>
                                 </div>
                                 <div class="col">
-                                    <a href="#" class="p-4 border rounded text-center bg-light d-block text-decoration-none" id="manager_reportList">
+                                    <div id="manager_reportList" class="p-4 border rounded text-center bg-light d-block text-decoration-none" >
                                         	신고 내역
-                                    </a>
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <a href="<%= request.getContextPath() %>/faqList.do" class="p-4 border rounded text-center bg-light d-block text-decoration-none">
@@ -36,11 +90,11 @@
                     <div class="border p-4 rounded bg-white text-center" style="min-height: 600px; height:100%;'">
                         <nav>
                             <ul class="nav flex-column">
-                                <li class="nav-item mb-2"><a href="#" class="nav-link text-success border rounded p-2" id="manager_memberListMenu">회원정보 관리</a></li>
-                                <li class="nav-item mb-2"><a href="#" class="nav-link text-success border rounded p-2" id="manager_reportListMenu">신고 내역</a></li>
-                                <li class="nav-item mb-2"><a href="#" class="nav-link text-success border rounded p-2" id="manager_editMenu" >정보 수정</a></li>
+                                <li class="nav-item mb-2"><div id="manager_memberListMenu" class="nav-link text-success border rounded p-2" >회원정보 관리</div></li>
+                                <li class="nav-item mb-2"><div id="manager_reportListMenu" class="nav-link text-success border rounded p-2" >신고 내역</div></li>
+                                <li class="nav-item mb-2"><div id="manager_editMenu" class="nav-link text-success border rounded p-2">정보 수정</div></li>
                                 <li class="nav-item mb-2"><a href="<%= request.getContextPath() %>/faqList.do" class="nav-link text-success border rounded p-2" >FAQ</a></li>
-                                <li class="nav-item mb-2"><a href="#" class="nav-link text-success border rounded p-2" id="manager_productMenu">상품 관리</a></li>
+                                <li class="nav-item mb-2"><div id="manager_productMenu" class="nav-link text-success border rounded p-2" >상품 관리</div></li>
                             </ul>
                         </nav>
                     </div>

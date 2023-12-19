@@ -1,0 +1,99 @@
+package com.mega.report;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mega.faq.FaqDTO;
+
+import common.DBConnPool;
+
+public class ReportDAO extends DBConnPool{
+	public ReportDTO getReportContent(int reportid) {
+		ReportDTO content = null;
+		String query = "SELECT r.*, u1.nickname AS reporter_nickname, u2.nickname AS target_nickname " +
+	               "FROM report r " +
+	               "JOIN user_table u1 ON r.reporterid = u1.userno " +
+	               "JOIN user_table u2 ON r.targetid = u2.userno " +
+	               "WHERE r.reportid = ?"; 
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1, reportid);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				content = new ReportDTO();
+				content.setReportid(rs.getInt("reportid"));
+		        content.setReporterid(rs.getInt("reporterid"));
+		        content.setReporterNickname(rs.getString("reporter_nickname"));
+		        content.setTargetid(rs.getInt("targetid"));
+		        content.setTargetNickname(rs.getString("target_nickname"));
+		        content.setReportdate(rs.getDate("reportdate"));
+		        content.setReportimgurl(rs.getString("reportimgurl")); 
+		        content.setReportcontent(rs.getString("reportcontent"));
+		        content.setReporttitle(rs.getString("reporttitle"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return content;
+	}
+
+	public List<ReportDTO> getReportList() {
+		List<ReportDTO> list = new ArrayList<>();
+		
+		String query = "SELECT r.*, u1.nickname AS reporter_nickname, u2.nickname AS target_nickname " +
+	               "FROM report r " +
+	               "JOIN user_table u1 ON r.reporterid = u1.userno " +
+	               "JOIN user_table u2 ON r.targetid = u2.userno";
+
+		try {
+		    psmt = con.prepareStatement(query);
+		    rs = psmt.executeQuery();
+	
+		    while (rs.next()) {
+		        ReportDTO dto = new ReportDTO();
+	
+		        dto.setReportid(rs.getInt("reportid"));
+		        dto.setReporterid(rs.getInt("reporterid"));
+		        dto.setReporterNickname(rs.getString("reporter_nickname"));
+		        dto.setTargetid(rs.getInt("targetid"));
+		        dto.setTargetNickname(rs.getString("target_nickname"));
+		        dto.setReportdate(rs.getDate("reportdate"));
+		        dto.setReportimgurl(rs.getString("reportimgurl")); 
+		        dto.setReportcontent(rs.getString("reportcontent"));
+		        dto.setReporttitle(rs.getString("reporttitle"));
+	
+		        list.add(dto);
+		    }
+		} catch (SQLException e) {		
+			e.printStackTrace();
+		}
+
+			
+			
+		
+		
+		return list;
+	}
+	
+	public void saveReport(ReportDTO dto) {
+	    String query = "INSERT INTO report (reportid, reporterid, targetid, reportdate, reportimgurl, reportcontent, reporttitle) " +
+	                   "VALUES (report_seq.NEXTVAL, (SELECT userno FROM user_table WHERE nickname = '테스터1'), (SELECT userno FROM user_table WHERE nickname = ?),sysdate, ?, ?, ?)";
+	    
+	    try {
+	        psmt = con.prepareStatement(query);
+//	        psmt.setInt(1, dto.getReporterid());
+	        psmt.setString(1, dto.getTargetNickname());
+	        psmt.setString(2, dto.getReportimgurl());
+	        psmt.setString(3, dto.getReportcontent());
+	        psmt.setString(4, dto.getReporttitle());
+	        psmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+}
