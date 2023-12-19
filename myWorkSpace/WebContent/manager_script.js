@@ -8,39 +8,16 @@ function loadPage(pageUrl,pageid) {
     });
 }
 
+//파라미터의 이름을 받아와서 저장
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 
-// 링크를 클릭할 때 페이지를 로드하도록 이벤트 핸들러 추가
-$(document).ready(function() {
 
-    $('#manager_memberList').click(function(e) {
-        e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('manager_memberList.jsp','main-content');
-    });
-    
-    $('#manager_memberListMenu').click(function(e) {
-        e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('manager_memberList.jsp','main-content');
-    });
 
-    $('#manager_reportList').click(function(e) {
-        e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('manager_reportList.jsp','main-content');
-    });
-
-    $('#manager_reportListMenu').click(function(e) {
-        e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('manager_reportList.jsp','main-content');
-    });
-    
-    $('#manager_editMenu').click(function(e) {
-        e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('manager_edit.jsp','main-content');
-    });
-    
-    $('#manager_productMenu').click(function(e) {
-        e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('manager_product.jsp','main');
-    });
-    
-    
-});

@@ -34,7 +34,7 @@
 	            </div>
 	            <div class="float-end mt-4">
 	                <button type="submit" class="btn btn-success report_conetent">
-	                    	 <a href="manager/report_form.jsp" class="text-decoration-none text-light">신고하기</a>
+	                    	 신고하기
 	                </button>
 	            </div>
 	        </section>
@@ -42,7 +42,7 @@
 	</main>
 
 <%@ include file="../footer.jsp"%>
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.report_conetent').click(function(e) {
@@ -50,4 +50,4 @@
             window.location.href = 'reportForm.do';
         });
     });
-</script> -->
+</script>
