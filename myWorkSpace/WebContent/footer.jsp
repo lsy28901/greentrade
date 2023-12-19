@@ -22,10 +22,10 @@
 						<!-- Links -->
 						<h6 class="text-uppercase fw-bold mb-4 mt-3">고객센터</h6>
 						<p>
-							<a href="/GreenTrade/chatting/FAQ_list.jsp" class="text-reset">자주 묻는 질문</a>
+							<a href="/myWorkSpace/faqList.do" class="text-reset">자주 묻는 질문</a>
 						</p>
 						<p>
-							<a href="/GreenTrade/chatting/report_form.jsp" class="text-reset">신고하기</a>
+							<a href="/myWorkSpace/reportForm.do" class="text-reset">신고하기</a>
 						</p>
 					</div>
 					<!-- Grid column -->

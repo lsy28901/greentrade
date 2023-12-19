@@ -26,7 +26,7 @@
 											<!-- 왼쪽에는 사진 -->
 											<div class="col-md-6">
 												<img src="../imgfolder/clothes1.png" alt="상품 사진 1"
-													class="card-img" style="max-height: 250px;">
+													class="card-img" style="max-height: 250px; height: 100%">
 												<!-- 이미지 최대 높이 설정 -->
 											</div>
 											<!-- 오른쪽에는 상품 정보 -->
@@ -42,7 +42,7 @@
 														<strong>가격:</strong> 200000원
 													</p>
 													<p class="card-text">
-														<strong>연락처: 010-1234-1234</strong>
+														<strong></strong>
 													</p>
 												</div>
 											</div>
@@ -59,7 +59,7 @@
 											<!-- 왼쪽에는 사진 -->
 											<div class="col-md-6">
 												<img src="../imgfolder/clothes1.png" alt="상품 사진 1"
-													class="card-img" style="max-height: 250px;">
+													class="card-img" style="max-height: 250px; height: 100%">
 												<!-- 이미지 최대 높이 설정 -->
 											</div>
 											<!-- 오른쪽에는 상품 정보 -->
@@ -75,7 +75,7 @@
 														<strong>가격:</strong> 200000원
 													</p>
 													<p class="card-text">
-														<strong>연락처</strong>
+														<strong></strong>
 													</p>
 												</div>
 											</div>
@@ -95,7 +95,7 @@
 											<!-- 왼쪽에는 사진 -->
 											<div class="col-md-6">
 												<img src="../imgfolder/clothes1.png" alt="상품 사진 1"
-													class="card-img" style="max-height: 250px;">
+													class="card-img" style="max-height: 250px; height: 100%">
 												<!-- 이미지 최대 높이 설정 -->
 											</div>
 											<!-- 오른쪽에는 상품 정보 -->
@@ -111,7 +111,7 @@
 														<strong>가격:</strong> 200000원
 													</p>
 													<p class="card-text">
-														<strong>연락처</strong>
+														<strong></strong>
 													</p>
 												</div>
 											</div>
@@ -128,7 +128,7 @@
 											<!-- 왼쪽에는 사진 -->
 											<div class="col-md-6">
 												<img src="../imgfolder/clothes1.png" alt="상품 사진 1"
-													class="card-img" style="max-height: 250px;">
+													class="card-img" style="max-height: 250px; height: 100%">
 												<!-- 이미지 최대 높이 설정 -->
 											</div>
 											<!-- 오른쪽에는 상품 정보 -->
@@ -144,7 +144,7 @@
 														<strong>가격:</strong> 200000원
 													</p>
 													<p class="card-text">
-														<strong>연락처</strong>
+														<strong></strong>
 													</p>
 												</div>
 											</div>
@@ -161,28 +161,28 @@
 					</div>
 				</div>
 			</section>
-			<aside class="col-md-3">
-				<div class="border p-4 rounded bg-white text-center "
+				<aside class="col-md-3">
+				<div class="border p-4 rounded bg-white text-center"
 					style="min-height: 600px; height: 100%">
 					<nav>
 						<ul class="nav flex-column">
-							<li class="nav-item mb-2"><a href="#"
+							<li class="nav-item mb-2"><a href="../mypage/mypage_edit.jsp"
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
-							<li class="nav-item mb-2"><a href="#"
+							<li class="nav-item mb-2"><a href="../mypage/mypage_like.jsp"
 								class="nav-link text-success border rounded p-2"
 								id="manager_reportListMenu">찜 목록</a></li>
-							<li class="nav-item mb-2"><a href="#"
+							<li class="nav-item mb-2"><a href="../mypage/mypage_buylog.jsp"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
-							<li class="nav-item mb-2"><a href="FAQ_list.jsp"
+							<li class="nav-item mb-2"><a href="../mypage/mypage_selllog.jsp"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
-							<li class="nav-item mb-2"><a href="#"
+							<li class="nav-item mb-2"><a href="../mypage/mypage_buylist.jsp"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>
-							<li class="nav-item mb-2"><a href="#"
+							<li class="nav-item mb-2"><a href="../mypage/mypage_selllist.jsp"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>
-							<li class="nav-item mb-2"><a href="#"
+							<li class="nav-item mb-2"><a href="../manager/manager_main.jsp"
 								class="nav-link text-success border rounded p-2">고객 센터</a></li>
 						</ul>
 					</nav>
