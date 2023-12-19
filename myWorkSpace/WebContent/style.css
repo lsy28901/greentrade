@@ -1,0 +1,7 @@
+@charset "UTF-8";
+#board-table thead th {
+    background-color: #D5F4DF; /* 배경색 지정 */
+}
+textarea {
+  resize: none;
+}

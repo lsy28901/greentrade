@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+#additem_main{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+#additemForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 1000px;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+
+.additem_input, .add_td {
+	display: flex; width : 1000px;
+	margin-bottom: 10px;
+	padding: 8px;
+	box-sizing: border-box;
+	width: 1000px;
+}
+
+#item_info {
+	width: 1000px;
+	height: 200px; margin-bottom : 10px;
+	padding: 8px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+.add_submit {
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.additem_input_location {
+	width: 80%;
+	height: 50px;
+	margin-right: 10px;
+}
+
+.add_image {
+	cursor: pointer; /* 이미지에 커서를 포인터로 변경하여 클릭 가능하게 함 */
+}
+
+.itemtype_btn {
+	margin-right: 10px;
+}
+
+.add_image {
+	cursor: pointer; /* 이미지에 커서를 포인터로 변경하여 클릭 가능하게 함 */
+	max-width: 100px; /* 이미지 최대 너비 지정 (예시로 100px로 지정) */
+	max-height: 100px; /* 이미지 최대 높이 지정 (예시로 100px로 지정) */
+}
+
+.added_images {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.added_images img {
+	max-width: 50px; /* 추가된 이미지의 최대 너비 지정 (예시로 50px로 지정) */
+	max-height: 50px; /* 추가된 이미지의 최대 높이 지정 (예시로 50px로 지정) */
+}
+#item_info::placeholder {
+    text-align: left;
+}
