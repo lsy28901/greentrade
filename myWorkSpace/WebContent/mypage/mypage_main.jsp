@@ -38,9 +38,9 @@
 								</div>
 								<div class="col-md-3 d-flex align-items-center ">
 									<div class="row d-flex justify-content-center">
-										<button class="btn btn-success row-md-6 mb-4 w-75">내 정보
-											수정</button>
-										<button class="btn btn-success row-md-6  w-75">로그 아웃</button>
+										<a href="/myWorkSpace/mypage/mypage_edit.jsp" class="btn btn-success row-md-6 mb-4 w-75">내 정보
+											수정</a>
+										<a href="#" class="btn btn-success row-md-6  w-75">로그 아웃</a>
 									</div>
 								</div>
 						</div>

@@ -11,5 +11,9 @@ public class MyPageServiceImpl implements MyPageService{
 		MyPageDTO mydto = dao.getMyPageInfo();
 		return mydto;
 	}
+	@Override
+	public void updateMypage(MyPageDTO dto) {
+		dao.updateMypage(dto);
+	}
 
 }

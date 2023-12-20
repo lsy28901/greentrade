@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import common.DBConnPool;
 
 public class MyPageDAO extends DBConnPool{
+	
+	//마이페이지 메인 정보가져오기
 	public MyPageDTO getMyPageInfo(){
 		MyPageDTO mydto = new MyPageDTO();
 		
@@ -38,9 +40,34 @@ public class MyPageDAO extends DBConnPool{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			close();
 		}
 		
 		
 		return mydto;
+	}
+	
+	//마이페이지 정보수정
+	public void updateMypage(MyPageDTO dto) {
+		String query = "update user_table "
+						+ " set email=?, user_call=?, address1=?, address2=? "
+						+ " where userno=?";
+		
+		try {
+			psmt= con.prepareStatement(query);
+			psmt.setString(1, dto.getEmail());
+			psmt.setString(2, dto.getUser_call());
+			psmt.setString(3, dto.getAddress1());
+			psmt.setString(4, dto.getAddress2());
+			psmt.setInt(5, dto.getUserno());
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
 	}
 }

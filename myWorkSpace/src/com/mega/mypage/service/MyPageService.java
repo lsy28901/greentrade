@@ -4,4 +4,5 @@ import com.mega.mypage.MyPageDTO;
 
 public interface MyPageService {
 	MyPageDTO getMyPageInfo();
+	void updateMypage(MyPageDTO dto);
 }

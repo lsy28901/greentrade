@@ -42,18 +42,18 @@
 									<div class="form-outline col-md-3 " data-mdb-input-init
 										style="width: 450px;">
 										<input type="text" id="form12" class="form-control"
-											placeholder="아이디" />
+											placeholder="아이디" readonly disabled />
 									</div>
 								</div>
 								<div class="row d-flex align-items-center mt-3"
 									style="text-align: center;" style="width:200px;">
 									<div class="col-md-3">
-										<h5>비밀번호</h5>
-									</div>
-									<div class="form-outline col-md-3" data-mdb-input-init
-										style="width: 450px;">
-										<input type="text" id="form12" class="form-control"
-											placeholder="비밀번호" />
+<!-- 										<h5>닉네임</h5> -->
+<!-- 									</div> -->
+<!-- 									<div class="form-outline col-md-3" data-mdb-input-init -->
+<!-- 										style="width: 450px;"> -->
+<!-- 										<input type="text" id="form12" class="form-control" -->
+<!-- 											placeholder="닉네임" /> -->
 									</div>
 								</div>
 								<div class="row d-flex align-items-center mt-3"
@@ -63,7 +63,7 @@
 									</div>
 									<div class="form-outline col-md-6" data-mdb-input-init
 										style="width: 450px;">
-										<input type="text" id="form12" class="form-control"
+										<input type="text" id="form12" class="form-control" name="email"
 											placeholder="이메일" />
 									</div>
 								</div>
@@ -74,7 +74,7 @@
 									</div>
 									<div class="form-outline col-md-3" data-mdb-input-init
 										style="width: 450px;">
-										<input type="text" id="form12" class="form-control"
+										<input type="text" id="form12" class="form-control" name="user_call"
 											placeholder="전화번호" />
 									</div>
 
@@ -87,8 +87,20 @@
 									</div>
 									<div class="form-outline col-md-3" data-mdb-input-init
 										style="width: 450px;">
-										<input type="text" id="form12" class="form-control"
-											placeholder="주소" />
+										<input type="text" id="form12" class="form-control" name="address1"
+											placeholder="주소1" />
+									</div>
+								</div>
+								
+								<div class="row d-flex align-items-center mt-3"
+									style="text-align: center;" style="width:200px;">
+									<div class="col-md-3">
+										<h5></h5>
+									</div>
+									<div class="form-outline col-md-3" data-mdb-input-init
+										style="width: 450px;">
+										<input type="text" id="form12" class="form-control" name="address2"
+											placeholder="주소2" />
 									</div>
 								</div>
 								<hr class="mt-3 mb-3">
