@@ -42,7 +42,7 @@
 	</div>
 	 <div class="m-3" style="font-weight: bold; font-family: 'Arial', sans-serif;">최근 등록된 상품</div>
 
-    <div class="row m-3 justify-content-center" style="display: flex; text-align: center;">
+    <div class="row m-3 justify-content-start" style="display: flex; text-align: center;">
         <c:forEach var="product" items="${recentProduct}">
             <div class="card col-md-4 mb-5" style="width: 16rem; margin-right: 50px; padding: 10px;">
                 <img src="${product.image}" class="card-img-top" alt="Product Image" />
@@ -60,57 +60,6 @@
             </div>
         </c:forEach>
     </div>
-<!-- 	<div class="m-3">최근 등록된 상품</div> -->
-<!-- 		<div class="row m-3 justify-content-center" style="display: flex; text-align: center;"> -->
-<!-- 			<div class="card col-md-4 mb-5" -->
-<!-- 				style="width: 16rem; margin-right: 50px;  padding:10px;"> -->
-<!-- 				<img src="https://mdbcdn.b-cdn.net/img/new/standard/city/062.webp" -->
-<!-- 					class="card-img-top" alt="Chicago Skyscrapers" /> -->
-<!-- 				<div class="card-body"> -->
-<!-- 					<h5 class="card-title">상품명</h5> -->
-<!-- 				</div> -->
-<!-- 				<ul class="list-group list-group-light list-group-small"> -->
-<!-- 					<li class="list-group-item px-4">판매자</li> -->
-<!-- 					<li class="list-group-item px-4">가격</li> -->
-<!-- 					<li class="list-group-item px-4">주소</li> -->
-<!-- 				</ul> -->
-<!-- 				<div class="card-body"> -->
-<!-- 					<a href="#" class="card-link">상세보기</a> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="card col-md-4 mb-5" -->
-<!-- 				style="width: 16rem; margin-right: 50px;  padding:10px;"> -->
-<!-- 				<img src="https://mdbcdn.b-cdn.net/img/new/standard/city/062.webp" -->
-<!-- 					class="card-img-top" alt="Chicago Skyscrapers" /> -->
-<!-- 				<div class="card-body"> -->
-<!-- 					<h5 class="card-title">상품명</h5> -->
-<!-- 				</div> -->
-<!-- 				<ul class="list-group list-group-light list-group-small"> -->
-<!-- 					<li class="list-group-item px-4">판매자</li> -->
-<!-- 					<li class="list-group-item px-4">가격</li> -->
-<!-- 					<li class="list-group-item px-4">주소</li> -->
-<!-- 				</ul> -->
-<!-- 				<div class="card-body"> -->
-<!-- 					<a href="#" class="card-link">상세보기</a> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="card card col-md-4 mb-5" -->
-<!-- 				style="width: 16rem; margin-right: 50px; padding:10px;"> -->
-<!-- 				<img src="https://mdbcdn.b-cdn.net/img/new/standard/city/062.webp" -->
-<!-- 					class="card-img-top" alt="Chicago Skyscrapers" /> -->
-<!-- 				<div class="card-body"> -->
-<!-- 					<h5 class="card-title">상품명</h5> -->
-<!-- 				</div> -->
-<!-- 				<ul class="list-group list-group-light list-group-small"> -->
-<!-- 					<li class="list-group-item px-4">판매자</li> -->
-<!-- 					<li class="list-group-item px-4">가격</li> -->
-<!-- 					<li class="list-group-item px-4">주소</li> -->
-<!-- 				</ul> -->
-<!-- 				<div class="card-body"> -->
-<!-- 					<a href="#" class="card-link">상세보기</a> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-			
-<!-- 		</div> -->
+
 </main>
 <%@ include file="../footer.jsp"%>

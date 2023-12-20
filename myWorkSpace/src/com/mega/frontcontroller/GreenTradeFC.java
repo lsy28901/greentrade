@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mega.additem.controller.AddItemController;
 import com.mega.index.contoller.IndexController;
+import com.mega.mypage.controller.MyPageController;
 
 @WebServlet("*.do")
 public class GreenTradeFC extends HttpServlet {
@@ -35,7 +36,9 @@ public class GreenTradeFC extends HttpServlet {
 		else if (requestURI.equals("/myWorkSpace/index.do")) {
 			forward = new IndexController().execute(req, resp);
 		}
-		
+		else if (requestURI.equals("/myWorkSpace/mypageMain.do")) {
+			forward = new MyPageController().execute(req, resp);
+		}
 		
 		
 		

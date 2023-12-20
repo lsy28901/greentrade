@@ -56,7 +56,6 @@ public class ProductDAO extends DBConnPool{
 				pdto.setUser_name(rs.getString("user_name"));
 				
 				list.add(pdto);
-				System.out.println(list);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
