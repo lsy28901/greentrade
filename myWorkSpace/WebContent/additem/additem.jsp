@@ -8,8 +8,8 @@
 		<div>
 			<!-- 모든 이미지 파일을 허용하는 input 태그 -->
 			<input type="file" id="imageInput" name="imageFile"
-				style="display: none;" onchange="previewImage(event)"> <label
-				for="imageInput"> <img class="add_image"
+				style="display: none;" onchange="handleImageSelection()"> <label
+				for="imageInput"> <img class="add_image mb-2"
 				alt="add item image" src="../imgfolder/camera.png" id="previewImage">
 			</label>
 
@@ -17,6 +17,8 @@
 		<div class="added_images" id="addedImagesContainer">
 			<!-- 선택된 이미지를 표시할 컨테이너 -->
 		</div>
+		<div id="selectedFileName"></div>
+		<!-- 선택된 파일 이름을 표시할 곳 추가 -->
 		<table>
 			<tr>
 				<td class="add_td"><input class="additem_input" type="text"
@@ -65,7 +67,8 @@
 			</tr>
 
 			<tr>
-				<td class="add_td"><button class="add_submit" type="button" onclick="submitForm()">등록</button></td>
+				<td class="add_td"><button class="add_submit" type="button"
+						onclick="submitForm()">등록</button></td>
 			</tr>
 
 		</table>
@@ -74,12 +77,45 @@
 	</form>
 </main>
 <script>
+	function handleImageSelection() {
+		var input = document.getElementById('imageInput');
+		var previewImage = document.getElementById('previewImage');
+		var addedImagesContainer = document
+				.getElementById('addedImagesContainer');
+		var selectedFileName = document.getElementById('selectedFileName');
+
+		addedImagesContainer.innerHTML = '';
+		selectedFileName.innerHTML = '';
+
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			// 선택한 이미지를 addedImagesContainer에 추가
+			var selectedImage = document.createElement('img');
+			selectedImage.src = e.target.result;
+			selectedImage.className = 'added_image';
+			addedImagesContainer.appendChild(selectedImage);
+
+			// 선택한 파일 이름을 표시
+			selectedFileName.innerHTML = '' + input.files[0].name;
+		};
+
+		reader.readAsDataURL(input.files[0]);
+
+		// addedImagesContainer를 보이도록 설정 (만약 숨겨져 있다면)
+		addedImagesContainer.style.display = 'block';
+	}
+
 	function toggleCheckbox(imgElement) {
 		if (imgElement.src.endsWith('checkbox.png')) {
 			imgElement.src = '../imgfolder/checkedbox.png';
 		} else {
 			imgElement.src = '../imgfolder/checkbox.png';
 		}
+
+		// locationRow와 locationInputRow 변수 정의
+		var locationRow = document.getElementById('locationRow');
+		var locationInputRow = document.getElementById('locationInputRow');
+
 		if (imgElement.nextSibling.nodeValue.trim() === '직거래') {
 			if (imgElement.src.endsWith('checkedbox.png')) {
 				locationRow.style.display = ''; // 보이게 설정
@@ -122,7 +158,7 @@
 		});
 		selectedValues.value = selectedValues.value.replace(/,\s*$/, '');
 		var selectedType = selectedItemType;
-	
+
 		document.getElementById('selectedType').value = selectedType;
 
 		// 폼을 서버로 제출

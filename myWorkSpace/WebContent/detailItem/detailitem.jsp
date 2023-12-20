@@ -58,7 +58,7 @@
 				
 				<div style="display:grid; grid-template-columns:1fr 1fr; grid-gap:10px; height:15%; margin-top:20px;">
 					<button style="width:100%;">채팅하기</button>
-					<button style="width:100%;">거래하기</button>
+					<button style="width:100%;"><a href="/myWorkSpace/pay/pay.jsp" style="text-decoration:none; color:black;">거래하기</a></button>
 				</div>
 			</div>
 		</div>
