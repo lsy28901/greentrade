@@ -3,7 +3,7 @@
 <%@ include file="../header.jsp"%>
 <main id="additem_main"
 	style="width: 960px; height: 100%; margin: 30px auto;">
-	<form action="/greentrade/additem.do" id="additemForm" method="post"
+	<form action="/myWorkSpace/additem.do" id="additemForm" method="post"
 		enctype="multipart/form-data">
 		<div>
 			<!-- 모든 이미지 파일을 허용하는 input 태그 -->

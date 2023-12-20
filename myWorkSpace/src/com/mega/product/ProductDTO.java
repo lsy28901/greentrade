@@ -21,4 +21,5 @@ public class ProductDTO {
 	private int userno;
 	private String image;
 	private String tradelocation;
+	private String user_name;
 }

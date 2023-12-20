@@ -26,12 +26,14 @@
 								</h2>
 								<div class="col-md-3 ">
 									<div class="row h-100">
-										<p class="col-md-4 d-flex  align-self-center w-100" style="font-size: 11px;">
+										<p class="col-md-3 d-flex  align-self-center w-100" style="font-size: 11px;">
 										이메일: ${mydto.email }</p>
-										<p class="col-md-4 d-flex  align-self-center w-100" style="font-size: 11px;">
+										<p class="col-md-3 d-flex  align-self-center w-100" style="font-size: 11px;">
 										전화번호: ${mydto.user_call }</p>
-										<div class="col-md-4 d-flex  align-self-center w-100" style="font-size: 11px;">
-										주소: ${mydto.address }</div>
+										<div class="col-md-3 d-flex  align-self-center w-100" style="font-size: 11px;">
+										${mydto.address1 }</div>
+										<div class="col-md-3 d-flex  align-self-center w-100" style="font-size: 11px;">
+										${mydto.address2 }</div>
 									</div>
 								</div>
 								<div class="col-md-3 d-flex align-items-center ">
@@ -48,26 +50,27 @@
 								<div class="row">
 									<p class="row-md-4">구매 내역</p>
 									<hr class="row-md-4 w-50 mx-auto">
-									<p class="row-md-4">1회</p>
+									<p class="row-md-4">${mydto.buylistcount }회</p>
 								</div>
 							</div>
 							<div class="col-md-4 text-center">
 								<div class="row">
-									<p class="row-md-4">구매 내역</p>
+									<p class="row-md-4">판매 내역</p>
 									<hr class="row-md-4 w-50 mx-auto">
-									<p class="row-md-4">1회</p>
+									<p class="row-md-4">${mydto.selllistcount }회</p>
 								</div>
 							</div>
 							<div class="col-md-4 text-center ">
 								<div class="row">
-									<p class="row-md-4">구매 내역</p>
+									<p class="row-md-4">평가 내역</p>
 									<hr class="row-md-4 w-50 mx-auto">
-									<p class="row-md-4">1회</p>
+									<p class="row-md-4">0회</p>
 								</div>
 							</div>
 						</div>
-						
+						<div class="mt-3 mb-2">최근본 상품</div>
 						<div class="row border " >
+							
 							<div class="col-md-4 " style="height: 150px"></div>
 							<div class="col-md-4 " style="height: 150px"></div>
 							<div class="col-md-4 " style="height: 150px"></div>
@@ -79,23 +82,23 @@
 					style="min-height: 600px; height: 100%">
 					<nav>
 						<ul class="nav flex-column">
-							<li class="nav-item mb-2"><a href="../mypage/mypage_edit.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_edit.jsp"
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
-							<li class="nav-item mb-2"><a href="../mypage/mypage_like.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_like.jsp"
 								class="nav-link text-success border rounded p-2"
 								id="manager_reportListMenu">찜 목록</a></li>
-							<li class="nav-item mb-2"><a href="../mypage/mypage_buylog.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylog.jsp"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
-							<li class="nav-item mb-2"><a href="../mypage/mypage_selllog.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllog.jsp"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
-							<li class="nav-item mb-2"><a href="../mypage/mypage_buylist.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylist.jsp"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>
-							<li class="nav-item mb-2"><a href="../mypage/mypage_selllist.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllist.jsp"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>
-							<li class="nav-item mb-2"><a href="../manager/manager_main.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/manager/manager_main.jsp"
 								class="nav-link text-success border rounded p-2">고객 센터</a></li>
 						</ul>
 					</nav>

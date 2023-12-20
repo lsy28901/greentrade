@@ -36,7 +36,7 @@ public class AddItemController implements Action {
 		AddItemService.inserItem(pdto);
 
 		forward.setRedirect(true);
-		forward.setPath("../main/index.jsp");
+		forward.setPath("/myWorkSpace/index.do");
 
 		return forward;
 	}
