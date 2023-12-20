@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mega.additem.controller.AddItemController;
+import com.mega.index.contoller.IndexController;
 
 @WebServlet("*.do")
 public class GreenTradeFC extends HttpServlet {
@@ -28,9 +29,13 @@ public class GreenTradeFC extends HttpServlet {
 		String requestURI = req.getRequestURI();
 		ActionForward forward = null;
 
-		if (requestURI.equals("/greentrade/additem.do")) {
+		if (requestURI.equals("/myWorkSpace/additem.do")) {
 			forward = new AddItemController().execute(req, resp);
 		}
+		else if (requestURI.equals("/myWorkSpace/index.do")) {
+			forward = new IndexController().execute(req, resp);
+		}
+		
 		
 		
 		
