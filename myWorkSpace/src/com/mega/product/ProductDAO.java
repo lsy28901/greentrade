@@ -33,4 +33,30 @@ public class ProductDAO extends DBConnPool{
 		return result;
 	}
 	
+	public ProductDTO getProductinfo(int num) {
+		
+		ProductDTO dto = new ProductDTO(); 
+		
+		String query = "select * from product where productno = ?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1,num);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				dto.setProductno(rs.getInt("productno"));
+				dto.setTitle(rs.getString("title"));
+				dto.setPrice(rs.getString("price"));
+				dto.setImage(rs.getString("image"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+	
 }
