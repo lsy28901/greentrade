@@ -35,10 +35,10 @@
 						<!-- Links -->
 						<h6 class="text-uppercase fw-bold mb-4 mt-3">Information</h6>
 						<p>
-							<a href="/GreenTrade/main/main_priavacy.jsp" class="text-reset">개인정보처리방침</a>
+							<a href="/myWorkSpace/main/main_priavacy.jsp" class="text-reset">개인정보처리방침</a>
 						</p>
 						<p>
-							<a href="/GreenTrade/main/main_terms.jsp" class="text-reset">이용약관</a>
+							<a href="/myWorkSpace/main/main_terms.jsp" class="text-reset">이용약관</a>
 						</p>
 					</div>
 

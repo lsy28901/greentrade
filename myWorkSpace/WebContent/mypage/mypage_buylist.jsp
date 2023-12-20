@@ -20,7 +20,7 @@
 							<div class="row">
 								<!-- 상품 카드 1 -->
 								<div class="col-md-6">
-									<div class="card" style="max-height: 250px;">
+									<div class="card" style="max-height: 250px; ">
 										<!-- 인라인 스타일로 최대 너비 설정 -->
 										<div class="row no-gutters">
 											<!-- 왼쪽에는 사진 -->
@@ -166,23 +166,23 @@
 					style="min-height: 600px; height: 100%">
 					<nav>
 						<ul class="nav flex-column">
-							<li class="nav-item mb-2"><a href="../mypage/mypage_edit.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_edit.jsp"
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
-							<li class="nav-item mb-2"><a href="../mypage/mypage_like.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_like.jsp"
 								class="nav-link text-success border rounded p-2"
 								id="manager_reportListMenu">찜 목록</a></li>
-							<li class="nav-item mb-2"><a href="../mypage/mypage_buylog.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylog.jsp"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
-							<li class="nav-item mb-2"><a href="../mypage/mypage_selllog.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllog.jsp"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
-							<li class="nav-item mb-2"><a href="../mypage/mypage_buylist.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylist.jsp"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>
-							<li class="nav-item mb-2"><a href="../mypage/mypage_selllist.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllist.jsp"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>
-							<li class="nav-item mb-2"><a href="../manager/manager_main.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/manager/manager_main.jsp"
 								class="nav-link text-success border rounded p-2">고객 센터</a></li>
 						</ul>
 					</nav>

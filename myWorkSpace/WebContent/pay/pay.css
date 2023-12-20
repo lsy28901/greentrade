@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+main {
+<<<<<<< HEAD
+	width:960px;
+	margin:40px auto;
+}
+#add {
+	display:grid;
+	grid-template-columns:1fr 1fr;
+	border:1px solid #ccc; padding:20px; margin:20px;
+	border-radius: 10px;
+}
+#Address{
+	font-weight:bold;
+}
+#updateAddContainer{
+	display:flex;
+	justify-content: flex-end;
+}
+
+#updateAdd {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	width: 80%;
+	height:100%;
+	position: relative;
+}
+
+#updateAdd button {
+	display: flex;
+	align-items: center;
+	border: 0;
+	background-color: white;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#updateAdd button svg{
+	margin-right: 5px;
+}
+#updateAdd button p{
+	margin:0;
+	font-size: 14px;
+}
+#mainContent {
+	height:400px;
+	display:grid;
+	grid-template-columns:1fr 1fr;
+	border:1px solid #ccc;
+	border-radius: 10px;
+	margin:20px;
+}
+#product_info{
+	padding:20px;
+	font-weight: bold;
+}
+#product_img {
+	width:400px;
+	height: 300px;
+}
+
+#price_info {
+	display: flex;
+	padding:20px;
+	justify-content: center;
+}
+#priceContainer{
+	width: 100%;
+	margin: auto 0;
+}
+
+#priceContainer div{
+	display:flex;
+	justify-content:space-between;
+	margin-bottom:40px;
+}
+#payBtnContainer {
+	padding: 20px;
+}
+#payBtn{
+	width:100%;
+	padding:30px;
+	border: 0;
+	font-weight: bold;
+	font-size: large;
+	border-radius: 10px;
+	background-color: #BFF6B6;
+	box-shadow: 1px 1px green;
+}
+
+
+=======
+   width:960px;
+   margin:40px auto;
+}
+#add {
+   display:grid;
+   grid-template-columns:1fr 1fr;
+   border:1px solid #ccc; padding:20px; margin:20px;
+   border-radius: 10px;
+}
+#Address{
+   font-weight:bold;
+}
+#updateAddContainer{
+   display:flex;
+   justify-content: flex-end;
+}
+
+#updateAdd {
+   display:flex;
+   align-items:center;
+   justify-content:center;
+   width: 80%;
+   height:100%;
+   position: relative;
+}
+
+#updateAdd button {
+   display: flex;
+   align-items: center;
+   border: 0;
+   background-color: white;
+   position: absolute;
+   top: 0;
+   right: 0;
+}
+#updateAdd button svg{
+   margin-right: 5px;
+}
+#updateAdd button p{
+   margin:0;
+   font-size: 14px;
+}
+#mainContent {
+   height:400px;
+   display:grid;
+   grid-template-columns:1fr 1fr;
+   border:1px solid #ccc;
+   border-radius: 10px;
+   margin:20px;
+}
+#product_info{
+   padding:20px;
+   font-weight: bold;
+}
+#product_img {
+   width:400px;
+   height: 300px;
+}
+
+#price_info {
+   display: flex;
+   padding:20px;
+   justify-content: center;
+}
+#priceContainer{
+   width: 100%;
+   margin: auto 0;
+}
+
+#priceContainer div{
+   display:flex;
+   justify-content:space-between;
+   margin-bottom:40px;
+}
+#payBtnContainer {
+   padding: 20px;
+}
+#payBtn{
+   width:100%;
+   padding:30px;
+   border: 0;
+   font-weight: bold;
+   font-size: large;
+   border-radius: 10px;
+   background-color: #BFF6B6;
+   box-shadow: 1px 1px green;
+}
+>>>>>>> refs/remotes/origin/이수연122002
+
+

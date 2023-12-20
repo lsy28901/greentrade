@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Green Trade</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <link href="/myWorkSpace/style.css" rel="stylesheet">
@@ -49,7 +52,7 @@ a {
 	<header>
 		<nav class="navbar navbar-expand-sm bg-green navbar-dark">
 			<div class="container-fluid ">
-				<a class="navbar-brand col-md-4 text-black" href="../main/index.jsp">Green
+				<a class="navbar-brand col-md-4 text-black" href="/myWorkSpace/index.do">Green
 					Trade</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -65,9 +68,11 @@ a {
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
 							href="#">채팅하기</a></li>
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="../additem/additem.jsp">판매하기</a></li>
+							href="/myWorkSpace/additem/additem.jsp">판매하기</a></li>
+							<li class="nav-item "><a class="nav-link mr-3 text-black"
+							href="/myWorkSpace/login/login.jsp">로그인</a></li>
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="../mypage/mypage_main.jsp">마이페이지</a></li>
+							href="/myWorkSpace/mypageMain.do">마이페이지</a></li>
 					</ul>
 				</div>
 
@@ -79,11 +84,11 @@ a {
 			<div class="container-fluid">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link text-black"
-						href="../login/product_list.jsp">상품목록</a></li>
+						href="/myWorkSpace/login/product_list.jsp">상품목록</a></li>
 					<li class="nav-item"><a class="nav-link text-black"
-						href="../login/product_best.jsp">인기상품</a></li>
+						href="/myWorkSpace/login/product_best.jsp">인기상품</a></li>
 					<li class="nav-item"><a class="nav-link text-black"
-						href="../login/product_share.jsp">나눔</a></li>
+						href="/myWorkSpace/login/product_share.jsp">나눔</a></li>
 				</ul>
 			</div>
 		</nav>
