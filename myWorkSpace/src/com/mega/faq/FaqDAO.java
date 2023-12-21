@@ -41,6 +41,8 @@ public class FaqDAO extends DBConnPool{
 				
 			} catch (SQLException e) {		
 				e.printStackTrace();
+			}finally {
+				
 			}
 			
 			return list;
@@ -66,6 +68,8 @@ public class FaqDAO extends DBConnPool{
 				
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {
+				
 			}
 			
 			return content;
