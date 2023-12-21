@@ -41,7 +41,7 @@
 <script>
 function goBack() {
 	var parameter="backReportList"
-	var url = 'manager/manager_main.jsp?parameter='+parameter;
+	var url = 'localhost:8000/manager/manager_main.jsp?parameter='+parameter;
     window.location.href=url;
 }
 </script>

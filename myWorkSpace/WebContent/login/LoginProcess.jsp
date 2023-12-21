@@ -22,7 +22,13 @@
 		session.setAttribute("UserName", userDTO.getUser_name());
 		session.setAttribute("UserStaff", userDTO.getStaff());
 		request.setAttribute("LoginSuccessMsg","로그인 성공");
-		request.getRequestDispatcher("login.jsp").forward(request,response);
+		
+		if(userDTO.getStaff().equals("manager")){
+			request.setAttribute("LoginManagerSuccessMsg","관리자 로그인 성공");
+			request.getRequestDispatcher("../manager/manager_main.jsp").forward(request,response);
+		}else{
+			request.getRequestDispatcher("login.jsp").forward(request,response);
+		}
 	}else{
 		//로그인실패
 		request.setAttribute("LoginErrMsg","로그인실패");
