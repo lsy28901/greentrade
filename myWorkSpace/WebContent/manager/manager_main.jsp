@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<%
+	String msg = (String)request.getAttribute("LoginManagerSuccessMsg");//로그인 성공 확인
+	if(msg!=null){
+		out.print("<script><alert>관리자 로그인성공</alert></script>");
+	}
+%>
 <script>
 //링크를 클릭할 때 페이지를 로드하도록 이벤트 핸들러 추가
 $(function() {
@@ -43,6 +49,7 @@ $(function() {
     
 });
 </script>
+	<%= msg %>
 	<div class="container-fluid">
         <main class="container-fluid mt-4">
             <div class="row" id="main">

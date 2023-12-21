@@ -23,7 +23,7 @@
 	                            <tr>
 	                                <td>${loop.index + 1}</td>
 	                                <td>${report.reporterNickname}</td>
-	                                <td><a href="/greentradetest/reportContent.do?reportid=${report.reportid}" class="text-decoration-none">${report.reporttitle}</a></td>
+	                                <td><a href="/myWorkSpace/reportContent.do?reportid=${report.reportid}" class="text-decoration-none">${report.reporttitle}</a></td>
 	                                <td>${report.reportdate }</td>
 	                                <td>${report.targetNickname}</td>
 	                            </tr>
