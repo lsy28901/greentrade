@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<%
+	String msg = (String)request.getAttribute("LoginSuccessMsg");//로그인 성공 확인
+	if(msg!=null){
+		out.print("<script><alert>로그인성공</alert></script>");
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,24 +142,64 @@
 .select a{
    color: gray;
 }
+
+.loginButton {
+	float: right;
+	margin-right: 30px;
+}
+.loginButton > input{
+	background-color: #BFF6B6;
+	width: 150px;
+	height: 60px;
+	border-radius: 10px;
+}
 </style>
+<script>
+
+	function validateForm(form){
+		//밑의 아이디와 비번 접근 방법 1//document.loginFrm.user_id.value;
+		//validateForm()의 괄호안에 this가 있을경우 함수안에 아무 변수 지금은 form을 넣으면
+		//위의 첫번째 접근 방법의 document.loginFrm부분을 생략 가능하다.
+		form.user_id.value;
+		
+		//숫자 : 0 -> false, 0아니면 -> true
+		//문자 :"" ->false, ""아니면 -> true
+		
+		if(!form.user_id.value){//
+			alert("아이디를 입력하세요");
+			form.user_id.focus();
+			return false;
+		}
+		
+		if(form.user_pw.value == ""){
+			alert("패스워드를 입력하세요");
+			return false;
+		}
+	}
+</script>
 <body>
    
 
 
-
+<% 
+	if(session.getAttribute("UserId") == null){
+%>
    <div class="login_text">로그인</div>
    <hr style="width: 90%; background: black; margin: 0 auto;">
    <section class="body">
       <div class="container-body">
-         <form action="./" method="POST" class="form_box">
+         <form action="./LoginProcess.jsp" method="POST" class="form_box" name="loginFrm"
+         onsubmit="return validateForm(this)">
             <div class="form-group">
-               <label for="Email"></label> <input type="text" class="form-control"
-                  name="id" placeholder="아이디"> <label for="Password"></label>
-               <input type="password" class="form-control" name="pw"
+               <label for="Id"></label>
+               <input type="text" class="form-control" name="user_id" placeholder="아이디">
+               <label for="Password"></label>
+               <input type="password" class="form-control" name="user_pw"
                   placeholder="비밀번호">
             </div>
-            <button type="submit" class="loginButton" href="#">로그인</button>
+            <div class="loginButton">
+	            <input type="submit" value="로그인">
+            </div>
          </form>
       </div>
       <div class="anotherlog_box">
@@ -183,11 +229,15 @@
             <a href="#">비밀번호 찾기</a>
          </div>
          <div>
-            <a href="#">회원가입</a>
+            <a href="./join.jsp">회원가입</a>
          </div>
       </div>
    </section>
 
    <%@ include file="../footer.jsp"%>	
+   <%} else{ %>
+   		<%=session.getAttribute("UserName") %> 회원님 로그인 성공
+   		<a href="logout.jsp">[로그아웃]</a>
+   <%} %>
 </body>
 </html>
