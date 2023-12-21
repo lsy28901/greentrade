@@ -11,36 +11,23 @@ $(function() {
 	
 	
     $('#manager_memberList').click(function(e) {
-    	console.log("test");
         e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('manager_memberList.jsp','main-content');
+        loadPage('/myWorkSpace/managerMemberList.do','main-content');
     });
     
     $('#manager_memberListMenu').click(function(e) {
         e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('manager_memberList.jsp','main-content');
+        loadPage('/myWorkSpace/managerMemberList.do','main-content');
     });
 
     $('#manager_reportList').click(function(e) {
         e.preventDefault(); // 링크 클릭 동작 취소
-        $.ajax({
-            url: '/myWorkSpace/reportList.do', // 컨트롤러 경로
-            success: function(data) {
-                // 컨트롤러로부터 받은 데이터를 메인 영역에 표시
-                $('#main-content').html(data);
-            }
-        });
+        loadPage('/myWorkSpace/reportList.do','main-content');
     });
 
     $('#manager_reportListMenu').click(function(e) {
+    	loadPage('/myWorkSpace/reportList.do','main-content')
         e.preventDefault(); // 링크 클릭 동작 취소
-        $.ajax({
-            url: '/myWorkSpace/reportList.do', // 컨트롤러 경로
-            success: function(data) {
-                // 컨트롤러로부터 받은 데이터를 메인 영역에 표시
-                $('#main-content').html(data);
-            }
-        });
     });
     
     $('#manager_editMenu').click(function(e) {
