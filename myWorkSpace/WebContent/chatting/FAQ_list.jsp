@@ -47,7 +47,7 @@
     $(document).ready(function() {
         $('.report_conetent').click(function(e) {
             e.preventDefault();
-            window.location.href = '/myWorkSpace/reportForm.do';
+            window.location.href = 'manager/report_form.jsp';
         });
     });
 </script>

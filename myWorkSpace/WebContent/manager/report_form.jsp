@@ -5,7 +5,7 @@
 <%@ include file="../header.jsp"%>
 <main class="container-fluid mt-4 bg-white border" style="min-height: 600px;"> 
     <div class="row">
-        <form class="col-md-12" action="/myWorkSpace/reportForm.do" method="post" enctype="multipart/form-data">
+        <form class="col-md-12" action="/greentradetest/reportForm.do" method="post" enctype="multipart/form-data">
             <div>
                 <!-- 첫 번째 div -->
                 <div class="p-2 rounded">
