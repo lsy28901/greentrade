@@ -43,7 +43,7 @@
     $(document).ready(function() {
         $('.back_FAQ_list').click(function(e) {
             e.preventDefault(); // 버튼 클릭 동작 취소
-            window.location.href = 'faqList.do'; // 페이지 이동
+            window.location.href = '/myWorkSpace/faqList.do'; // 페이지 이동
         });
     });
 </script>
