@@ -178,12 +178,15 @@
 	    //미리 만들어 놓은 div에 text(파일 이름) 추가
 	    var name = document.getElementById('imgurl');
 	    name.textContent = file.name;
-
+		name.value = file.name;//파일 이름 가져오는 역할
 	    //이미지 source 가져오기
 	    newImage.src = URL.createObjectURL(file);   
 	    
-	    var nameInput = document.getElementById('imgurl');
-	    
+	   // out.print(name.value);
+	   	//out.print(newImage.src);
+	    // 선택된 파일의 경로를 가져와 표시
+        /* var filePath = fileInput.files[0].name;
+        document.getElementById('filePath').innerText = 'File Path: ' + filePath; */
 	    
 	};
 </script> 
