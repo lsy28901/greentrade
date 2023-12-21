@@ -15,7 +15,7 @@ public class UserDAO extends DBConnPool {
 
 		UserDTO dto = new UserDTO();
 
-		String sql = "select * from user_table_real where user_id=? and user_password=?";
+		String sql = "select * from user_table_final where user_id=? and user_password=?";
 
 		try {
 			psmt = con.prepareStatement(sql);
@@ -41,20 +41,19 @@ public class UserDAO extends DBConnPool {
 //
 //			}
 			if (rs.next()) {
-				dto.setUserno(rs.getInt("userno"));
 				dto.setUser_name(rs.getString("user_name"));
 				dto.setUser_call(rs.getString("user_call"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setUser_password(rs.getString("user_password"));
 				dto.setEmail(rs.getString("email"));
 				dto.setNickname(rs.getString("nickname"));
-				dto.setImgurl(rs.getString("imgurl"));
 				dto.setGreenscore(rs.getInt("greenscore"));
 				dto.setSellcount(rs.getInt("sellcount"));
 				dto.setStaff(rs.getString("staff"));
+				dto.setPostnum(rs.getString("postnum"));
+				dto.setImgurl(rs.getString("imgurl"));
 				dto.setAddress1(rs.getString("address1"));
 				dto.setAddress2(rs.getString("address2"));
-				dto.setPostnum(rs.getString("postnum"));
 
 			}
 
@@ -70,8 +69,8 @@ public class UserDAO extends DBConnPool {
 	
 	public int insertJoinDTO(JoinDTO add) {
 		int result=0;
-		String sql = "INSERT INTO user_table_real(userno, user_name, user_call, user_id, user_password, email, nickname, imgurl, staff, address1, address2, postnum)" 
-				+" VALUES(user_no_add.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO user_table_final(user_name, user_call, user_id, user_password, email, nickname, imgurl, staff, address1, address2, postnum)" 
+				+" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 //		"INSERT INTO report (reportid, reporterid, targetid, reportdate, reportimgurl, reportcontent, reporttitle) " +
 //        "VALUES (report_seq.NEXTVAL, (SELECT userno FROM user_table WHERE nickname = '테스터1'), (SELECT userno FROM user_table WHERE nickname = ?),sysdate, ?, ?, ?)";
