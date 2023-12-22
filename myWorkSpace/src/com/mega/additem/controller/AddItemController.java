@@ -5,17 +5,19 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.tomcat.util.net.ApplicationBufferHandler;
 
 import com.mega.additem.service.AddItemService;
 import com.mega.additem.service.impl.AddItemServiceImpl;
 import com.mega.frontcontroller.Action;
 import com.mega.frontcontroller.ActionForward;
 import com.mega.product.ProductDTO;
+import com.mega.user.UserDAO;
+import com.mega.user.UserDTO;
 
 public class AddItemController implements Action {
 
@@ -25,14 +27,20 @@ public class AddItemController implements Action {
 
 		// 페이지 경로 설정 함수 호출
 		ActionForward forward = new ActionForward();
-
+		HttpSession session = req.getSession();
+		String uid = (String) session.getAttribute("UserId");
 		// DB 접근 객체 DAO , 저장- 전송 객체 호출 DTO
+		UserDAO dao = new UserDAO();
+		UserDTO udto = dao.getUserDTO(uid);
+		
 		ProductDTO pdto = handleFileUpload(req);
+		pdto.setUserno(udto.getUserno());
+		
 		AddItemService AddItemService = new AddItemServiceImpl();
 
 		pdto.setLikenum(0); // 찜 수
 		pdto.setPaymethod("결제"); // 결제,나눔
-		pdto.setUserno(1);
+		
 		AddItemService.inserItem(pdto);
 
 		forward.setRedirect(true);
