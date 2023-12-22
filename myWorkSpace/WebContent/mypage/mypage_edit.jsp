@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp"%>
 <div class="container-fluid">
 	<main class="container-fluid mt-4" id="main"
@@ -19,18 +19,33 @@
 
 
 						<!-- 여기서부터 정보수정 칸 -->
-						<form>
+						<form action="/myWorkSpace/mypageEdit.do" method="post">
 							<div class="row d-flex align-items-center justify-content-center"
 								style="text-align: center;">
-								<img
-									src="https://mdbcdn.b-cdn.net/img/new/standard/city/047.webp"
-									class="img-thumnail rounded-circle col-md-6 "
-									style="width: 200px" />
+								<!-- 								<img -->
+								<!-- 									src="https://mdbcdn.b-cdn.net/img/new/standard/city/047.webp" -->
+								<!-- 									class="img-thumnail rounded-circle col-md-6 " -->
+								<!-- 									style="width: 200px" /> -->
+								<img id="profileImagePreview"
+									class="img-thumnail rounded-circle col-md-6"
+									style="width: 200px" src="${udto.imgurl}" />
+
 								<div class="col-md-6">
-									<h2>사용자</h2>
+									<h2>${udto.user_name }</h2>
+									<input type="file" id="profileImageInput" name="profileImage"
+										style="display: none;">
+
+
+									<!-- 수정된 버튼 -->
 									<button type="button"
 										class="btn btn-success btn-secondary btn-rounded mt-3"
-										data-mdb-ripple-init>프로필 이미지 수정</button>
+										onclick="document.getElementById('profileImageInput').click()">프로필
+										이미지 수정</button>
+									<!-- 파일 선택 input -->
+									<input type="file" id="profileImageInput" name="profileImage"
+										style="display: none;">
+										
+										
 								</div>
 								<hr class="mt-3">
 
@@ -42,18 +57,18 @@
 									<div class="form-outline col-md-3 " data-mdb-input-init
 										style="width: 450px;">
 										<input type="text" id="form12" class="form-control"
-											placeholder="아이디" readonly disabled />
+											placeholder="아이디" readonly disabled value="${udto.user_id }" />
 									</div>
 								</div>
 								<div class="row d-flex align-items-center mt-3"
 									style="text-align: center;" style="width:200px;">
 									<div class="col-md-3">
-<!-- 										<h5>닉네임</h5> -->
-<!-- 									</div> -->
-<!-- 									<div class="form-outline col-md-3" data-mdb-input-init -->
-<!-- 										style="width: 450px;"> -->
-<!-- 										<input type="text" id="form12" class="form-control" -->
-<!-- 											placeholder="닉네임" /> -->
+										<!-- 										<h5>닉네임</h5> -->
+										<!-- 									</div> -->
+										<!-- 									<div class="form-outline col-md-3" data-mdb-input-init -->
+										<!-- 										style="width: 450px;"> -->
+										<!-- 										<input type="text" id="form12" class="form-control" -->
+										<!-- 											placeholder="닉네임" /> -->
 									</div>
 								</div>
 								<div class="row d-flex align-items-center mt-3"
@@ -63,8 +78,8 @@
 									</div>
 									<div class="form-outline col-md-6" data-mdb-input-init
 										style="width: 450px;">
-										<input type="text" id="form12" class="form-control" name="email"
-											placeholder="이메일" />
+										<input type="text" id="form12" class="form-control"
+											name="email" value="${udto.email }" placeholder="이메일" />
 									</div>
 								</div>
 								<div class="row d-flex align-items-center mt-3"
@@ -74,7 +89,8 @@
 									</div>
 									<div class="form-outline col-md-3" data-mdb-input-init
 										style="width: 450px;">
-										<input type="text" id="form12" class="form-control" name="user_call"
+										<input type="text" id="form12" class="form-control"
+											name="user_call" value="${udto.user_call }"
 											placeholder="전화번호" />
 									</div>
 
@@ -87,11 +103,11 @@
 									</div>
 									<div class="form-outline col-md-3" data-mdb-input-init
 										style="width: 450px;">
-										<input type="text" id="form12" class="form-control" name="address1"
-											placeholder="주소1" />
+										<input type="text" id="form12" class="form-control"
+											name="address1" placeholder="주소1" value="${udto.address1 }" />
 									</div>
 								</div>
-								
+
 								<div class="row d-flex align-items-center mt-3"
 									style="text-align: center;" style="width:200px;">
 									<div class="col-md-3">
@@ -99,8 +115,8 @@
 									</div>
 									<div class="form-outline col-md-3" data-mdb-input-init
 										style="width: 450px;">
-										<input type="text" id="form12" class="form-control" name="address2"
-											placeholder="주소2" />
+										<input type="text" id="form12" class="form-control"
+											name="address2" value="${udto.address2 }" placeholder="주소2" />
 									</div>
 								</div>
 								<hr class="mt-3 mb-3">
@@ -131,23 +147,30 @@
 					style="min-height: 600px; height: 100%">
 					<nav>
 						<ul class="nav flex-column">
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_edit.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypageEdit.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_like.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypage/mypage_like.jsp"
 								class="nav-link text-success border rounded p-2"
 								id="manager_reportListMenu">찜 목록</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylog.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypage/mypage_buylog.jsp"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllog.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypage/mypage_selllog.jsp"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylist.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypage/mypage_buylist.jsp"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllist.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypage/mypage_selllist.jsp"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/manager/manager_main.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/manager/manager_main.jsp"
 								class="nav-link text-success border rounded p-2">고객 센터</a></li>
 						</ul>
 					</nav>
@@ -156,5 +179,25 @@
 		</div>
 	</main>
 </div>
+<!-- JavaScript 코드 -->
+<script>
+    // 파일이 선택되면 미리보기 업데이트
+    document.getElementById('profileImageInput').addEventListener('change', function(event) {
+        var preview = document.getElementById('profileImagePreview');
+        var file = event.target.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // 파일이 선택되지 않았을 때 기본 이미지로 설정
+            preview.src = '${udto.imgurl}';
+        }
+    });
+</script>
+
 
 <%@ include file="../footer.jsp"%>

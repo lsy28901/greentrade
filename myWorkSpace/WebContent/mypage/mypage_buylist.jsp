@@ -166,7 +166,7 @@
 					style="min-height: 600px; height: 100%">
 					<nav>
 						<ul class="nav flex-column">
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_edit.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageEdit.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
 							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_like.jsp"
@@ -182,8 +182,8 @@
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/manager/manager_main.jsp"
-								class="nav-link text-success border rounded p-2">고객 센터</a></li>
+							<li class="nav-item mb-2"><a href="/myWorkSpace/faqList.do"
+								class="nav-link text-success border rounded p-2">자주 묻는 질문</a></li>
 						</ul>
 					</nav>
 				</div>

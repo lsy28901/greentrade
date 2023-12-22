@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class MyPageDTO {
 	private int userno;
+	private String user_id;
 	private String imgurl;
 	private String user_name;
 	private String user_call;
