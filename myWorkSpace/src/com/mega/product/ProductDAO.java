@@ -35,7 +35,7 @@ public class ProductDAO extends DBConnPool{
 		return result;
 	}
 	
-	public ProductDTO getProductinfo(int num) {
+	public ProductDTO getProductinfo(int productno) {
 		
 		ProductDTO dto = new ProductDTO(); 
 		
@@ -43,7 +43,7 @@ public class ProductDAO extends DBConnPool{
 		
 		try {
 			psmt = con.prepareStatement(query);
-			psmt.setInt(1,num);
+			psmt.setInt(1,productno);
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {

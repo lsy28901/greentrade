@@ -39,8 +39,8 @@
 			
 			<div style="border:1px solid; width:100%; height:350px; padding:10px;">
 				<div>
-					<h2 style="padding:10px;">군인 가방 보급 백팩</h2>
-					<h2 style="padding:10px;">13,000원</h2>
+					<h2 style="padding:10px;">${prodetail.title}</h2>
+					<h2 style="padding:10px;">${prodetail.price}</h2>
 				</div>
 				<hr>
 				
@@ -49,7 +49,7 @@
 						<span>찜하기 ♡ </span>
 						<span><a href="../marketPrice/MarketPrice.jsp">상품 시세 조회하러 가기</a></span><br><br>
 						<span>상품상태</span><br>
-						<span>새상품</span>
+						<span>${prodetail.productStatus}</span>
 					</div>
 					<div style="border:1px solid;">
 						<img>
@@ -67,6 +67,7 @@
 		<div style="display:grid; grid-template-columns:1fr 1fr; grid-gap:10px; margin-top:20px; margin-bottom:20px;">
 			<div style="border:1px solid; width:100%; height:300px; padding:10px;">
 				<span>상품설명</span>
+				<p>${prodetail.productDetail}</p>
 			</div>
 			
 			<div style="border:1px solid; width:100%; height:300px; padding:10px;">

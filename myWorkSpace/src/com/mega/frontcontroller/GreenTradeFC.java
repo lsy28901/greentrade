@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mega.additem.controller.AddItemController;
+import com.mega.detailitem.controller.DetailItemController;
 import com.mega.faq.controller.FaqContentController;
 import com.mega.faq.controller.FaqListController;
 import com.mega.index.contoller.IndexController;
@@ -70,6 +71,9 @@ public class GreenTradeFC extends HttpServlet {
         }
 		else if (requestURI.equals("/myWorkSpace/managerMemberDelete.do")) {
 	    	forward = new ManagerMemberDeleteController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/detaiIitem.do")) {
+	    	forward = new DetailItemController().execute(req, resp);
         }
 		
 		

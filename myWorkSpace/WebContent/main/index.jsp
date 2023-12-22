@@ -55,8 +55,7 @@
                     <li class="list-group-item px-4">상품상태: ${product.productStatus}</li>
                 </ul>
                 <div class="card-body">
-                    <a href="/myWorkSpace/detailItem/detailitem.jsp?productno=${product.productno}" class="card-link">상세보기</a>
-<!--                      <a href="/myWorkSpace/detailItem/detailitem.jsp" class="card-link">상세보기</a> -->
+                    <a href="/myWorkSpace/detaiIitem.do?productno=${product.productno}" class="card-link">상세보기</a>
                 </div>
             </div>
         </c:forEach>
