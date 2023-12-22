@@ -123,6 +123,8 @@
 	justify-content: center;
 }
 .photo_box{
+	width:300px;
+	height:200px
 	display:flex;
 }
 .photo_regist{
@@ -197,8 +199,8 @@
 	    newImage.src = URL.createObjectURL(file);   
 	  
         
-	    newImage.style.width = "50%";
-	    newImage.style.height = "50%";
+	    newImage.style.width = "70px";
+	    newImage.style.height = "70px";
 	    //newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지를 숨긴다
 	    newImage.style.objectFit = "contain";
 	    
@@ -206,6 +208,9 @@
 	    var container = document.getElementById('image-show');
 	    container.appendChild(newImage);
 	    document.getElementById('image-upload').style.visibility = 'hidden';
+	    document.getElementById('photo_regist').style.height = '0px';
+	    
+	    
 	};
 </script> 
 <body>
@@ -221,14 +226,13 @@
 				 		<div class="photo_view">
 				 			<input style="visibility: hidden;" type="file" id="fname" accept="image/*" onchange="loadFile(this)" multiple/>
 				 				<input style="visibility: hidden;" type="text" id="imgurl" name="imgurl">
-				 				<div id="image-show" style="display:flex; justify-content:end;
+				 				<div id="image-show" style="display:flex; justify-content:right;
 				 				align-items:end;
-				 				margin-bottom:10px;
-				 				margin-top:0px;">
+				 				width:230px;">
 				 				
 				 				</div>
 				 		</div>
-				 		<div class="photo_regist">
+				 		<div class="photo_regist" id="photo_regist">
 				 			<label id="image-upload" for="fname" style="cursor:pointer; border:1px solid; 
 				 			background: #BFF6B6;
 							border-radius: 4px;
@@ -277,7 +281,7 @@
 				</div>
 
 				<div style="justify-content:center; align-items:center;">
-					<button type="submit" class="regist_button">회원가입</button>
+					<button type="submit" class="regist_button" id="regist_button">회원가입</button>
 				</div>
 			</form>
 		</div>

@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class JoinDTO {
+	private int userno;//회원번호
 	private String user_name;
 	private String user_call;
 	private String user_id;

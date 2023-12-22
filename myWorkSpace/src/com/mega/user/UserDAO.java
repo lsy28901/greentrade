@@ -15,7 +15,7 @@ public class UserDAO extends DBConnPool {
 
 		UserDTO dto = new UserDTO();
 
-		String sql = "select * from user_table_final where user_id=? and user_password=?";
+		String sql = "select * from user_table_real where user_id=? and user_password=?";
 
 		try {
 			psmt = con.prepareStatement(sql);
@@ -53,14 +53,15 @@ public class UserDAO extends DBConnPool {
 	
 	public int insertJoinDTO(JoinDTO add) {
 		int result=0;
-		String sql = "INSERT INTO user_table_final(user_name, user_call, user_id, user_password, email, nickname, imgurl, staff, address1, address2, postnum)" 
-				+" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO user_table_real(userno,user_name, user_call, user_id, user_password, email, nickname, imgurl, staff, address1, address2, postnum)" 
+				+" VALUES(user_no_add.nextval,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 //		"INSERT INTO report (reportid, reporterid, targetid, reportdate, reportimgurl, reportcontent, reporttitle) " +
 //        "VALUES (report_seq.NEXTVAL, (SELECT userno FROM user_table WHERE nickname = '테스터1'), (SELECT userno FROM user_table WHERE nickname = ?),sysdate, ?, ?, ?)";
 		
 		try {
 			psmt = con.prepareStatement(sql);
+			
 			psmt.setString(1, add.getUser_name());
 			psmt.setString(2, add.getUser_call());
 			psmt.setString(3, add.getUser_id());
