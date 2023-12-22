@@ -37,6 +37,7 @@ public class LoginController implements Action{
 			session.setAttribute("UserId", userDTO.getUser_id());
 			session.setAttribute("UserName", userDTO.getUser_name());
 			session.setAttribute("UserStaff", userDTO.getStaff());
+			session.setAttribute("UserNo", userDTO.getUserno());
 			req.setAttribute("LoginSuccessMsg","로그인 성공");
 			
 			if(userDTO.getStaff().equals("manager")){
