@@ -38,10 +38,6 @@ $(function() {
         e.preventDefault(); // 링크 클릭 동작 취소
     });
     
-    $('#manager_editMenu').click(function(e) {
-        e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('/myWorkSpace/manager/manager_edit.jsp','main-content');
-    });
     
     $('#manager_productMenu').click(function(e) {
         e.preventDefault(); // 링크 클릭 동작 취소
@@ -53,7 +49,7 @@ $(function() {
 </script>
 <style>
 #manager_memberList,#manager_reportList,#manager_productMenu,
-#manager_memberListMenu,#manager_reportListMenu,#manager_editMenu:hover {
+#manager_memberListMenu,#manager_reportListMenu:hover {
     cursor: pointer;
 }
 </style>
@@ -94,7 +90,6 @@ $(function() {
                             <ul class="nav flex-column">
                                 <li class="nav-item mb-2"><div id="manager_memberListMenu" class="nav-link text-success border rounded p-2" >회원정보 관리</div></li>
                                 <li class="nav-item mb-2"><div id="manager_reportListMenu" class="nav-link text-success border rounded p-2" >신고 내역</div></li>
-                                <li class="nav-item mb-2"><div id="manager_editMenu" class="nav-link text-success border rounded p-2">정보 수정</div></li>
                                 <li class="nav-item mb-2"><a href="<%= request.getContextPath() %>/faqList.do" class="nav-link text-success border rounded p-2" >FAQ</a></li>
                                 <li class="nav-item mb-2"><div id="manager_productMenu" class="nav-link text-success border rounded p-2" >상품 관리</div></li>
                             </ul>

@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mega.faq.FaqDTO;
-
 import common.DBConnPool;
 
 public class ReportDAO extends DBConnPool{
@@ -13,8 +11,8 @@ public class ReportDAO extends DBConnPool{
 		ReportDTO content = null;
 		String query = "SELECT r.*, u1.nickname AS reporter_nickname, u2.nickname AS target_nickname " +
 	               "FROM report r " +
-	               "JOIN user_table u1 ON r.reporterid = u1.userno " +
-	               "JOIN user_table u2 ON r.targetid = u2.userno " +
+	               "JOIN user_table_real u1 ON r.reporterid = u1.userno " +
+	               "JOIN user_table_real u2 ON r.targetid = u2.userno " +
 	               "WHERE r.reportid = ?"; 
 		try {
 			psmt = con.prepareStatement(query);
@@ -46,8 +44,8 @@ public class ReportDAO extends DBConnPool{
 		
 		String query = "SELECT r.*, u1.nickname AS reporter_nickname, u2.nickname AS target_nickname " +
 	               "FROM report r " +
-	               "JOIN user_table u1 ON r.reporterid = u1.userno " +
-	               "JOIN user_table u2 ON r.targetid = u2.userno";
+	               "JOIN user_table_real u1 ON r.reporterid = u1.userno " +
+	               "JOIN user_table_real u2 ON r.targetid = u2.userno";
 
 		try {
 		    psmt = con.prepareStatement(query);
@@ -78,7 +76,7 @@ public class ReportDAO extends DBConnPool{
 	
 	public void saveReport(ReportDTO dto) {
 	    String query = "INSERT INTO report (reportid, reporterid, targetid, reportdate, reportimgurl, reportcontent, reporttitle) " +
-	                   "VALUES (report_seq.NEXTVAL, (SELECT userno FROM user_table WHERE nickname = '테스터1'), (SELECT userno FROM user_table WHERE nickname = ?),sysdate, ?, ?, ?)";
+	                   "VALUES (report_seq.NEXTVAL, (SELECT userno FROM user_table_real WHERE nickname = '테스터1'), (SELECT userno FROM user_table_real WHERE nickname = ?),sysdate, ?, ?, ?)";
 	    
 	    try {
 	        psmt = con.prepareStatement(query);
