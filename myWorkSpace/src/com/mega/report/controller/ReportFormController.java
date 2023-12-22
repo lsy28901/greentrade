@@ -25,7 +25,7 @@ public class ReportFormController implements Action {
         }
 
         // 기존 코드에서 필요한 부분을 가져옵니다.
-        String uploadPath = "D:\\work\\greentradeworkspace\\greentradetest\\WebContent\\uploads";
+        String uploadPath = request.getServletContext().getRealPath("/uploads");
         int maxFileSize = 10 * 1024 * 1024; // 업로드 파일의 최대 크기를 10MB로 설정
         String encoding = "UTF-8"; // 인코딩 방식을 UTF-8로 설정
 

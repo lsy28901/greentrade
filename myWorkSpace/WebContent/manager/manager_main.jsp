@@ -51,6 +51,12 @@ $(function() {
     
 });
 </script>
+<style>
+#manager_memberList,#manager_reportList,#manager_productMenu,
+#manager_memberListMenu,#manager_reportListMenu,#manager_editMenu:hover {
+    cursor: pointer;
+}
+</style>
 	<div class="container-fluid">
         <main class="container-fluid mt-4">
             <div class="row" id="main">
