@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+main {
+	width:960px;
+	margin:20px auto;
+	padding:20px;
+}
+
+#Product_container {
+	display:grid;
+	grid-template-columns:1fr 1fr;
+	grid-gap:10px;
+	margin-bottom:20px;
+}
+
+#Product_info1_container {
+	border:1px solid;
+	width:100%;
+	height:350px;
+	padding:10px;
+}
+
+#Product_img {
+	width:100%;
+	height:100%;
+}
+#Product_info2_container {
+	border:1px solid;
+	width:100%;
+	height:350px;
+	padding:10px;"
+}
+
+#info2_detail{
+	display:grid;
+	height:30%;
+	grid-template-columns:auto auto;
+}
+#info2_img{
+	border:1px solid;
+}
+#button_Container{
+	display:grid;
+	grid-template-columns:1fr 1fr;
+	grid-gap:10px;
+	height:15%;
+	margin-top:20px;
+}
+#chatBtn {
+	width:100%;
+}
+#tradeBtn{
+	width:100%;
+}
+#tradeBtn a{
+	text-decoration:none;
+	color:black;
+}
+
+#seller_container {
+	display:grid;
+	grid-template-columns:1fr 1fr;
+	grid-gap:10px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+#Product_ment {
+	border:1px solid;
+	width:100%;
+	height:300px;
+	padding:10px;
+}
+#Seller_info {
+	border:1px solid;
+	width:100%;
+	height:300px;
+	padding:10px;"
+}
+#map {
+	border:1px solid;
+	width:100%;
+	height:350px;
+}
+#go_MarketPrice{
+	font-size: 13px;
+	text-decoration:none;
+	color: gray;
+}
+#go_MarketPrice:hover{
+	text-decoration:none;
+	color: black;
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
