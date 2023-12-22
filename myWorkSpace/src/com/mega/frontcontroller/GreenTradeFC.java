@@ -21,6 +21,7 @@ import com.mega.manager.controller.ManagerMemberDeleteController;
 import com.mega.manager.controller.ManagerMemberInfoController;
 import com.mega.manager.controller.ManagerMemberListController;
 import com.mega.mypage.controller.MyPageController;
+import com.mega.mypage.controller.MyPageEditController;
 import com.mega.report.controller.ReportContentController;
 import com.mega.report.controller.ReportFormController;
 import com.mega.report.controller.ReportListController;
@@ -36,9 +37,11 @@ public class GreenTradeFC extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doProcess(req, resp);
+		
 	}
 
 	public void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
 		String requestURI = req.getRequestURI();
 		ActionForward forward = null;
 
@@ -84,10 +87,16 @@ public class GreenTradeFC extends HttpServlet {
 		else if (requestURI.equals("/myWorkSpace/login.do")) {
 	    	forward = new LoginController().execute(req, resp);
         }
+
+		else if (requestURI.equals("/myWorkSpace/mypageEdit.do")) {
+			forward = new MyPageEditController().execute(req, resp);
+		}
+
 		else if (requestURI.equals("/myWorkSpace/join.do")) {
 	    	forward = new JoinController().execute(req, resp);
         }
 		
+
 		
 		
 		// 페이지 이동 일괄처리

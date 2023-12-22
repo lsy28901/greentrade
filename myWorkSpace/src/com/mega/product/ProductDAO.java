@@ -31,6 +31,7 @@ public class ProductDAO extends DBConnPool{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		close();
 		
 		return result;
 	}
@@ -59,7 +60,7 @@ public class ProductDAO extends DBConnPool{
 		}finally {
 			close();
 		}
-		
+		close();
 		return dto;
 	}
 	public List<ProductDTO> getRecentAddItem(){
@@ -89,7 +90,7 @@ public class ProductDAO extends DBConnPool{
 			e.printStackTrace();
 		}
 		
-		
+		close();
 		return list;
 	}
 	
