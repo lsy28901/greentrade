@@ -49,7 +49,6 @@ $(function() {
     
 });
 </script>
-	<%= msg %>
 	<div class="container-fluid">
         <main class="container-fluid mt-4">
             <div class="row" id="main">

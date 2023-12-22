@@ -23,23 +23,7 @@ public class UserDAO extends DBConnPool {
 			psmt.setString(2, upass);
 			rs = psmt.executeQuery();
 
-//			if (rs.next()) {
-//				dto.setUserno(rs.getInt("userno"));
-//				dto.setUser_name(rs.getString("user_name"));
-//				dto.setUser_call(rs.getString("user_call"));
-//				dto.setUser_id(rs.getString("user_id"));
-//				dto.setUser_password(rs.getString("user_password"));
-//				dto.setEmail(rs.getString("email"));
-//				dto.setNickname(rs.getString("nickname"));
-//				dto.setImgurl(rs.getString("imgurl"));
-//				dto.setGreenscore(rs.getInt("greenscore"));
-//				dto.setSellcount(rs.getInt("sellcount"));
-//				dto.setStaff(rs.getString("staff"));
-//				dto.setAddress1(rs.getString("address1"));
-//				dto.setAddress2(rs.getString("address2"));
-//				dto.setPostnum(rs.getString("postnum"));
-//
-//			}
+
 			if (rs.next()) {
 				dto.setUser_name(rs.getString("user_name"));
 				dto.setUser_call(rs.getString("user_call"));
