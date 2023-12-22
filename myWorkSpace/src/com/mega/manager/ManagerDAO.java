@@ -9,12 +9,14 @@ import com.mega.manager.ManagerDTO;
 import common.DBConnPool;
 
 public class ManagerDAO extends DBConnPool{
+	
+	
 	public List<ManagerDTO> getManagerMemberList() {
 		List<ManagerDTO> list = new ArrayList<>();
 		
 		String query = "SELECT u.userno, u.user_name, u.user_id," + 
 				"COUNT(r.targetid) AS targetid_count " + 
-				"FROM user_table u " + 
+				"FROM user_table_real u " + 
 				"LEFT JOIN report r ON u.userno = r.targetid " + 
 				"WHERE u.staff = 'user' " +
 				"GROUP BY u.userno, u.user_name, u.user_id";
@@ -46,7 +48,7 @@ public class ManagerDAO extends DBConnPool{
 	public ManagerDTO getManagerMemberInfo(String user_id) {
 		ManagerDTO dto = null;
 		String query="SELECT userno, user_id, user_password, email, user_call, address1, address2, imgurl " +
-				"FROM user_table " +
+				"FROM user_table_real " +
 				"WHERE user_id = ?";
 
 		try {
@@ -76,7 +78,7 @@ public class ManagerDAO extends DBConnPool{
 	}
 	
 	public void deleteMemberInfo(String user_id) {
-	    String query = "DELETE FROM user_table WHERE user_id = ?";
+	    String query = "DELETE FROM user_table_real WHERE user_id = ?";
 	    
 	    try {
 	        // SQL 쿼리 준비

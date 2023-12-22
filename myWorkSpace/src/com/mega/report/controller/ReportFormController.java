@@ -23,6 +23,7 @@ public class ReportFormController implements Action {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
 
         // 기존 코드에서 필요한 부분을 가져옵니다.
         String uploadPath = request.getServletContext().getRealPath("/uploads");
