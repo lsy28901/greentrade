@@ -56,6 +56,8 @@ public class ProductDAO extends DBConnPool{
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close();
 		}
 		
 		return dto;
