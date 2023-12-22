@@ -42,24 +42,49 @@
 	</div>
 	 <div class="m-3" style="font-weight: bold; font-family: 'Arial', sans-serif;">최근 등록된 상품</div>
 
-    <div class="row m-3 justify-content-start" style="display: flex; text-align: center;">
-        <c:forEach var="product" items="${recentProduct}">
-            <div class="card col-md-4 mb-5" style="width: 16rem; margin-right: 50px; padding: 10px;">
-                <img src="${product.image}" class="card-img-top" alt="Product Image" />
-                <div class="card-body">
-                    <h5 class="card-title">${product.title}</h5>
-                </div>
-                <ul class="list-group list-group-light list-group-small">
-                    <li class="list-group-item px-4" style="background-color:#BFF6B6;font-weight: bold; font-family: 'Arial', sans-serif;">판매자: ${product.user_name}</li>
-                    <li class="list-group-item px-4">가격: ${product.price}</li>
-                    <li class="list-group-item px-4">상품상태: ${product.productStatus}</li>
-                </ul>
-                <div class="card-body">
-                    <a href="/myWorkSpace/detaiIitem.do?productno=${product.productno}" class="card-link">상세보기</a>
-                </div>
-            </div>
-        </c:forEach>
-    </div>
+    <section class="product mt-2">
+		<section class="products row " style=" text-align:center;" >
+			<c:forEach var="product" items="${recentProduct}">
+				<article class="mt-3 col-md-2" style="transition: box-shadow 0.3s, cursor 0.3s; cursor: pointer;" onmouseover="this.style.boxShadow='0 0 10px rgba(0, 0, 0, 0.3)'" onmouseout="this.style.boxShadow='none'"
+				onclick="location.href='/myWorkSpace/detaiIitem.do?productno=${product.productno}';">
+					<img src="${product.image}" style="width:100%;height:150px;">
 
+					<div class="mt-2">
+						<b>${product.title}</b>
+					</div>
+
+					<div class="text-secondary mt-2"">${product.price}원</div>
+
+					<div class="mt-2">판매자: ${product.user_name}</div>
+					
+					
+					<div class="mt-2">${product.productStatus}</div>
+				</article>
+			</c:forEach>
+		</section>
+	</section>
+	
+	<div class="mt-4"
+		style="font-weight: bold; font-family: 'Arial', sans-serif;">인기 상품</div>
+	<section class="product mt-2">
+		<section class="products row " style="text-align:center;">
+			<c:forEach var="product" items="${recentProduct}">
+				<article class="mt-3 col-md-2 product-card"  style="transition: box-shadow 0.3s, cursor 0.3s; cursor: pointer;" onmouseover="this.style.boxShadow='0 0 10px rgba(0, 0, 0, 0.3)'" onmouseout="this.style.boxShadow='none'"
+				onclick="location.href='/myWorkSpace/detaiIitem.do?productno=${product.productno}';">
+					<img src="${product.image}" style="width:100%;height:150px;">
+
+					<div class="mt-2">
+						<b>${product.title}</b>
+					</div>
+
+					<div class="text-secondary mt-2"">${product.price}원</div>
+
+					<div class="mt-2">판매자: ${product.user_name}</div>
+
+					<div class="mt-2">${product.productStatus}</div>
+				</article>
+			</c:forEach>
+		</section>
+	</section>
 </main>
 <%@ include file="../footer.jsp"%>
