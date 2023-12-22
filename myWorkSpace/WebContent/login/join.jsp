@@ -219,7 +219,7 @@
 	<hr style="width: 90%; background: black; margin: 0 auto;">
 	<section class="body">
 		<div class="container-body">
-			<form action="./joinProcess.jsp" method="POST" class="form_box" onsubmit="return validateForm(this)">
+			<form action="/myWorkSpace/join.do" method="POST" class="form_box" onsubmit="return validateForm(this)">
 
 				
 					<div class="photo_box" style="width:405px;justify-content:center; align-items: center; margin: 0 auto;">

@@ -177,7 +177,6 @@
 	}
 </script>
 <body>
-   
 
 
 <% 
@@ -228,7 +227,8 @@
             <a href="#">비밀번호 찾기</a>
          </div>
          <div>
-            <a href="./join.jsp">회원가입</a>
+         <!--./join.jsp  -->
+            <a href="/myWorkSpace/join.do">회원가입</a>
          </div>
       </div>
    </section>
