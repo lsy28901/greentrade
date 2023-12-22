@@ -122,6 +122,15 @@
 	align-items: center;
 	justify-content: center;
 }
+.photo_box{
+	display:flex;
+}
+.photo_regist{
+	cursor: pointer;
+}
+.photo_view{
+	margin-top: 0px;;
+}
 </style>
 
 <script>
@@ -179,15 +188,24 @@
 	    var name = document.getElementById('imgurl');
 	    name.textContent = file.name;
 		name.value = file.name;//파일 이름 가져오는 역할
+	    
+	  //새로운 이미지 div 추가
+	    var newImage = document.createElement("img");
+	    newImage.setAttribute("class", 'img');
+		
 	    //이미지 source 가져오기
 	    newImage.src = URL.createObjectURL(file);   
+	  
+        
+	    newImage.style.width = "50%";
+	    newImage.style.height = "50%";
+	    //newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지를 숨긴다
+	    newImage.style.objectFit = "contain";
 	    
-	   // out.print(name.value);
-	   	//out.print(newImage.src);
-	    // 선택된 파일의 경로를 가져와 표시
-        /* var filePath = fileInput.files[0].name;
-        document.getElementById('filePath').innerText = 'File Path: ' + filePath; */
-	    
+	    //이미지를 image-show div에 추가
+	    var container = document.getElementById('image-show');
+	    container.appendChild(newImage);
+	    document.getElementById('image-upload').style.visibility = 'hidden';
 	};
 </script> 
 <body>
@@ -198,19 +216,30 @@
 		<div class="container-body">
 			<form action="./joinProcess.jsp" method="POST" class="form_box" onsubmit="return validateForm(this)">
 
-				<div>
-					
-
-					<div style="width:405px;justify-content:center; align-items: center; margin: 0 auto;">
-				 		<div style="margin: 10px 0;">
-				 			<label for="fname">
+				
+					<div class="photo_box" style="width:405px;justify-content:center; align-items: center; margin: 0 auto;">
+				 		<div class="photo_view">
+				 			<input style="visibility: hidden;" type="file" id="fname" accept="image/*" onchange="loadFile(this)" multiple/>
+				 				<input style="visibility: hidden;" type="text" id="imgurl" name="imgurl">
+				 				<div id="image-show" style="display:flex; justify-content:end;
+				 				align-items:end;
+				 				margin-bottom:10px;
+				 				margin-top:0px;">
+				 				
+				 				</div>
+				 		</div>
+				 		<div class="photo_regist">
+				 			<label id="image-upload" for="fname" style="cursor:pointer; border:1px solid; 
+				 			background: #BFF6B6;
+							border-radius: 4px;
+							text-align: center; 
+							align-items: center;
+							padding:1px;
+							width:120px;
+							margin-top:12px;">
 				 				사진등록 클릭</label>
 				 		</div>
-				 		<input style="visibility: hidden;" type="file" id="fname" accept="image/*" onchange="loadFile(this)">
-				 			<p>FILE NAME:  <input type="text" id="imgurl" name="imgurl"> </p>
-                    	
 					</div>
-				</div>
 				
 			
 				<hr>
@@ -233,8 +262,6 @@
 					<label for="nickname"></label>
 					<input type="text" class="form-control"name="nickname" placeholder="닉네임">
 					
-					<label for="staff"></label>
-					<input type="text" class="form-control"name="staff" placeholder="역할">
 					
 					<label for="address1"></label>
 					<input type="text" class="form-control"name="address1" placeholder="주소">
@@ -244,6 +271,9 @@
 					
 					<label for="postnum"></label>
 					<input type="text" class="form-control"name="postnum" placeholder="우편변호">
+					
+					<label for="staff"></label>
+					<input type="text" class="form-control"name="staff" value="user" style="visibility: hidden;">
 				</div>
 
 				<div style="justify-content:center; align-items:center;">

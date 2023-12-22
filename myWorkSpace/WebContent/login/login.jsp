@@ -2,10 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <%
-	String msg = (String)request.getAttribute("LoginSuccessMsg");//로그인 성공 확인
-	if(msg!=null){
-		out.print("<script><alert>로그인성공</alert></script>");
-	}
+	request.setCharacterEncoding("UTF-8");
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -188,7 +187,7 @@
    <hr style="width: 90%; background: black; margin: 0 auto;">
    <section class="body">
       <div class="container-body">
-         <form action="./LoginProcess.jsp" method="POST" class="form_box" name="loginFrm"
+         <form action="/myWorkSpace/login.do" method="POST" class="form_box" name="loginFrm"
          onsubmit="return validateForm(this)">
             <div class="form-group">
                <label for="Id"></label>
@@ -236,8 +235,8 @@
 
    <%@ include file="../footer.jsp"%>	
    <%} else{ %>
-   		<%=session.getAttribute("UserName") %> 회원님 로그인 성공
-   		<a href="logout.jsp">[로그아웃]</a>
+   		<%-- <%=session.getAttribute("UserName") %> 회원님 로그인 성공
+   		<a href="logout.jsp">[로그아웃]</a> --%>
    <%} %>
 </body>
 </html>

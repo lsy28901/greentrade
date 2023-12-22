@@ -34,7 +34,7 @@
 	int result = dao.insertJoinDTO(dto);//잘 반영됬으면 0이 아님
 	
 	if(result!=0){
-		request.getRequestDispatcher("login.jsp").forward(request,response);
+		request.getRequestDispatcher("../main.jsp").forward(request,response);
 	}else{
 		response.sendRedirect("join.jsp");
 	}
