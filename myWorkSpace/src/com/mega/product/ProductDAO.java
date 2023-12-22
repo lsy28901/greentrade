@@ -66,7 +66,7 @@ public class ProductDAO extends DBConnPool{
 				" SELECT p.productno, p.title, p.price, p.image,u.user_name,p.productstatus" + 
 				" FROM product p join user_table u on p.userno = u.userno" + 
 				" ORDER BY p.adddate DESC" + 
-				") WHERE ROWNUM <= 3";
+				") WHERE ROWNUM <= 6";
 		
 		try {
 			psmt=con.prepareStatement(query);
