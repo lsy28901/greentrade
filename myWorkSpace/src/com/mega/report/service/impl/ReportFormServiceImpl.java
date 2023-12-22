@@ -7,9 +7,10 @@ import com.mega.report.service.ReportFormService;
 public class ReportFormServiceImpl implements ReportFormService {
 
 	ReportDAO reportdao = new ReportDAO();
-	public void saveReport(ReportDTO dto) {
-		
-		reportdao.saveReport(dto);
+	@Override
+	public void saveReport(ReportDTO reportDTO, int reporterid) {
+	    reportdao.saveReport(reportDTO, reporterid);
 	}
+
 
 }

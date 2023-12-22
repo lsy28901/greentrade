@@ -22,10 +22,10 @@
 	                        <c:forEach var="report" items="${reportList}" varStatus="loop">
 	                            <tr>
 	                                <td>${loop.index + 1}</td>
-	                                <td>${report.reporterNickname}</td>
+	                                <td>${report.targetNickname}</td>
 	                                <td><a href="/myWorkSpace/reportContent.do?reportid=${report.reportid}" class="text-decoration-none">${report.reporttitle}</a></td>
 	                                <td>${report.reportdate }</td>
-	                                <td>${report.targetNickname}</td>
+	                                <td>${report.reporterNickname}</td>
 	                            </tr>
 	                        </c:forEach>
 	                    </tbody>

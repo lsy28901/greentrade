@@ -3,6 +3,7 @@ package com.mega.report.controller;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession; // HttpSession 추가
 
 import com.mega.frontcontroller.Action;
 import com.mega.frontcontroller.ActionForward;
@@ -23,7 +24,6 @@ public class ReportFormController implements Action {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
 
         // 기존 코드에서 필요한 부분을 가져옵니다.
         String uploadPath = request.getServletContext().getRealPath("/uploads");
@@ -52,6 +52,10 @@ public class ReportFormController implements Action {
             reportContent = reportContent.substring(0, 960);
         }
 
+        // 세션에서 userno를 가져옵니다.
+        HttpSession session = request.getSession();
+        int reporterid = (int) session.getAttribute("UserNo");
+
         // ReportDTO 객체 생성 및 정보 설정
         ReportDTO reportDTO = new ReportDTO();
         reportDTO.setReporttitle(reportTitle);
@@ -59,8 +63,8 @@ public class ReportFormController implements Action {
         reportDTO.setReportimgurl(reportImgUrl);
         reportDTO.setReportcontent(reportContent);
 
-        // 서비스를 통해 신고 저장
-        reportFormService.saveReport(reportDTO);
+        // 서비스를 통해 신고 저장 (세션에서 가져온 reporterid를 사용)
+        reportFormService.saveReport(reportDTO, reporterid);
         
         ActionForward forward = new ActionForward();
         forward.setRedirect(true);
@@ -69,4 +73,5 @@ public class ReportFormController implements Action {
         return forward;
     }
 }
+
 

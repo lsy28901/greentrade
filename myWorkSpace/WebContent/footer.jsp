@@ -25,7 +25,7 @@
 							<a href="/myWorkSpace/faqList.do" class="text-reset">자주 묻는 질문</a>
 						</p>
 						<p>
-							<a href="/myWorkSpace/reportForm.do" class="text-reset">신고하기</a>
+							<a href="/myWorkSpace/manager/report_form.jsp" class="text-reset">신고하기</a>
 						</p>
 					</div>
 					<!-- Grid column -->
