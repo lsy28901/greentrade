@@ -47,7 +47,7 @@ public class ManagerDAO extends DBConnPool{
 	
 	public ManagerDTO getManagerMemberInfo(String user_id) {
 		ManagerDTO dto = null;
-		String query="SELECT userno, user_id, user_password, email, user_call, address1, address2, imgurl " +
+		String query="SELECT userno, user_id, user_password,user_name,email, user_call, address1, address2, imgurl " +
 				"FROM user_table_real " +
 				"WHERE user_id = ?";
 
@@ -60,6 +60,7 @@ public class ManagerDAO extends DBConnPool{
 				dto = new ManagerDTO();
 				dto.setUserno(rs.getInt("userno"));
 			    dto.setUser_id(rs.getString("user_id"));
+			    dto.setUser_name(rs.getString("user_name"));
 			    dto.setUser_password(rs.getString("user_password"));
 			    dto.setEmail(rs.getString("email"));
 			    dto.setUser_call(rs.getString("user_call"));

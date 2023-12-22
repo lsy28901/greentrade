@@ -14,7 +14,7 @@
 					class="img-fluid rounded-circle col-md-6"
 					style="width: 200px; height: 200px" />
 				<div class="col-md-6">
-					<h2>${managerMemberInfo.user_id}회원님</h2>
+					<h2>${managerMemberInfo.user_name} 회원님</h2>
 				</div>
 				<hr class="mt-3">
 	
