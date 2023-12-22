@@ -17,16 +17,10 @@ public class LoginController implements Action{
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) {
 		// 페이지 경로 설정 함수 호출
 		ActionForward forward = new ActionForward();
+		HttpSession session = req.getSession();
 		
 		String userId = req.getParameter("user_id");
 		String userPwd = req.getParameter("user_pw");
-		
-		HttpSession session = req.getSession();
-		//어플리케이션 객체를 사용해 web.xml에서 디비 정보를 가져옴
-		/* String driver = application.getInitParameter("OracleDriver");
-		String url = application.getInitParameter("OracleURL");
-		String id = application.getInitParameter("OracleId");
-		String pwd = application.getInitParameter("OraclePwd"); */
 		
 		LoginService loginservice = new LoginServiceImpl();
 		UserDTO userDTO = loginservice.getUserDTO(userId, userPwd);
