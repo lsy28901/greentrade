@@ -37,7 +37,7 @@ public class ManagerDAO extends DBConnPool{
 		} catch (SQLException e) {		
 			e.printStackTrace();
 		}finally {
-			
+			close();
 		}
 
 		return list;
@@ -69,7 +69,7 @@ public class ManagerDAO extends DBConnPool{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			
+			close();
 		}
 		
 		return dto;
@@ -89,7 +89,7 @@ public class ManagerDAO extends DBConnPool{
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } finally {
-	        
+	    	close();
 	    }
 	}
 

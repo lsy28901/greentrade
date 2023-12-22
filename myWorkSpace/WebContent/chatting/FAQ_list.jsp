@@ -25,7 +25,7 @@
 	                            <tr>
 	                                <td>${loop.index + 1}</td>
 	                                <td>${faq.faqcate}</td>
-	                                <td><a href="faqContent.do?faqno=${faq.faqno}" class="text-decoration-none">${faq.faqtitle}</a></td>
+	                                <td><a href="/myWorkSpace/faqContent.do?faqno=${faq.faqno}" class="text-decoration-none">${faq.faqtitle}</a></td>
 	                                <td>${faq.faqdate}</td>
 	                            </tr>
 	                        </c:forEach>
