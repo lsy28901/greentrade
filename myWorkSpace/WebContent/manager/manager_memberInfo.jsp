@@ -3,8 +3,7 @@
 <div class="mb-4">
 		<div class="d-flex align-items-center mb-4">
 			<div class="bg-secondary rounded-circle h-12 w-12"></div>
-			<span class="font-weight-bold" style="font-size: 24px;">관리자
-				정보 수정</span>
+			<span class="font-weight-bold" style="font-size: 24px;">회원 정보 상세</span>
 			</div>
 			<hr>
 		<form>
@@ -15,7 +14,7 @@
 					class="img-fluid rounded-circle col-md-6"
 					style="width: 200px; height: 200px" />
 				<div class="col-md-6">
-					<h2>관리자</h2>
+					<h2>${managerMemberInfo.user_id}회원님</h2>
 				</div>
 				<hr class="mt-3">
 	
