@@ -70,12 +70,9 @@ public class ReportDAO extends DBConnPool{
 		    }
 		} catch (SQLException e) {		
 			e.printStackTrace();
+		}finally {
+			close();
 		}
-
-			
-			
-		
-		
 		return list;
 	}
 	
@@ -85,7 +82,6 @@ public class ReportDAO extends DBConnPool{
 	    
 	    try {
 	        psmt = con.prepareStatement(query);
-//	        psmt.setInt(1, dto.getReporterid());
 	        psmt.setString(1, dto.getTargetNickname());
 	        psmt.setString(2, dto.getReportimgurl());
 	        psmt.setString(3, dto.getReportcontent());
@@ -93,6 +89,8 @@ public class ReportDAO extends DBConnPool{
 	        psmt.executeUpdate();
 	    } catch (SQLException e) {
 	        e.printStackTrace();
+	    }finally {
+	    	close();
 	    }
 	}
 
