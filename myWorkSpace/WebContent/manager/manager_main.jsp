@@ -4,7 +4,9 @@
 <%
 	String msg = (String)request.getAttribute("LoginManagerSuccessMsg");//로그인 성공 확인
 	if(msg!=null){
-		out.print("<script><alert>관리자 로그인성공</alert></script>");
+%>
+<script>alert("<%=msg%>");</script>
+<%
 	}
 %>
 <script>
@@ -38,18 +40,17 @@ $(function() {
     
     $('#manager_editMenu').click(function(e) {
         e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('manager_edit.jsp','main-content');
+        loadPage('/myWorkSpace/manager/manager_edit.jsp','main-content');
     });
     
     $('#manager_productMenu').click(function(e) {
         e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('manager_product.jsp','main');
+        loadPage('/myWorkSpace/manager/manager_product.jsp','main');
     });
     
     
 });
 </script>
-	<%= msg %>
 	<div class="container-fluid">
         <main class="container-fluid mt-4">
             <div class="row" id="main">
@@ -73,8 +74,8 @@ $(function() {
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <a href="<%= request.getContextPath() %>/faqList.do" class="p-4 border rounded text-center bg-light d-block text-decoration-none">
-                                        	FAQ
+                                    <a href="/myWorkSpace/chatting/FAQ_form.jsp" class="p-4 border rounded text-center bg-light d-block text-decoration-none">
+                                        	FAQ 작성하기
                                     </a>
                                 </div>
                             </div>

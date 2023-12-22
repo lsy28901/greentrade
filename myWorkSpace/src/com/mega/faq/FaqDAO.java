@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mega.report.ReportDTO;
 
 import common.DBConnPool;
 
@@ -42,7 +43,7 @@ public class FaqDAO extends DBConnPool{
 			} catch (SQLException e) {		
 				e.printStackTrace();
 			}finally {
-				
+				close();
 			}
 			
 			return list;
@@ -69,10 +70,27 @@ public class FaqDAO extends DBConnPool{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
-				
+				close();
 			}
 			
 			return content;
+		}
+		
+		public void saveFaq(FaqDTO dto) {
+		    String query = "insert into faq values("+
+		    		"faq_sequence.NEXTVAL,?,?,sysdate,?)";
+		    
+		    try {
+		        psmt = con.prepareStatement(query);
+		        psmt.setString(1, dto.getFaqtitle());
+		        psmt.setString(2, dto.getFaqcontent());
+		        psmt.setString(3, dto.getFaqcate());
+		        psmt.executeUpdate();
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }finally {
+		    	close();
+		    }
 		}
 	}
 
