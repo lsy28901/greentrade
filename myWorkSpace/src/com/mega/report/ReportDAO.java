@@ -74,16 +74,17 @@ public class ReportDAO extends DBConnPool{
 		return list;
 	}
 	
-	public void saveReport(ReportDTO dto) {
+	public void saveReport(ReportDTO dto,int reporterid) {
 	    String query = "INSERT INTO report (reportid, reporterid, targetid, reportdate, reportimgurl, reportcontent, reporttitle) " +
-	                   "VALUES (report_seq.NEXTVAL, (SELECT userno FROM user_table_real WHERE nickname = '테스터1'), (SELECT userno FROM user_table_real WHERE nickname = ?),sysdate, ?, ?, ?)";
+	                   "VALUES (report_seq.NEXTVAL, ?, (SELECT userno FROM user_table_real WHERE nickname = ?),sysdate, ?, ?, ?)";
 	    
 	    try {
 	        psmt = con.prepareStatement(query);
-	        psmt.setString(1, dto.getTargetNickname());
-	        psmt.setString(2, dto.getReportimgurl());
-	        psmt.setString(3, dto.getReportcontent());
-	        psmt.setString(4, dto.getReporttitle());
+	        psmt.setInt(1, reporterid);
+	        psmt.setString(2, dto.getTargetNickname());
+	        psmt.setString(3, dto.getReportimgurl());
+	        psmt.setString(4, dto.getReportcontent());
+	        psmt.setString(5, dto.getReporttitle());
 	        psmt.executeUpdate();
 	    } catch (SQLException e) {
 	        e.printStackTrace();
