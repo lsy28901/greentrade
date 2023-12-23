@@ -76,7 +76,7 @@
 								id="manager_reportListMenu">찜 목록</a></li>
 							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylog.jsp"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllog.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageSelllog.do"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
 							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylist.jsp"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>

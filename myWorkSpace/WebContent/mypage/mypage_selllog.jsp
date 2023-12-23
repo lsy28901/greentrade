@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../header.jsp"%>
 <div class="container-fluid">
-	<main class="container-fluid mt-4" id="main" style="width: 960px; height: 100%; margin: 30px auto;">
+	<main class="container-fluid mt-4" id="main"
+		style="width: 960px; height: 100%; margin: 30px auto;">
 		<div class="row">
 			<section class="col-md-9">
 				<div id="main-content" class="border p-4 rounded bg-white"
@@ -11,11 +12,13 @@
 					<div class="mb-4">
 						<div class="d-flex align-items-center mb-4">
 							<div class="bg-secondary rounded-circle h-12 w-12"></div>
-							<span class="font-weight-bold" style="font-size: 24px;">판매 현황</span>
+							<span class="font-weight-bold" style="font-size: 24px;">판매
+								현황</span>
 						</div>
 						<hr>
 						<div class="container mt-3">
-							<table id="board-table" class="table table-hover" border="1px" style="text-align: center">
+							<table id="board-table" class="table table-hover" border="1px"
+								style="text-align: center">
 								<thead>
 									<tr>
 										<th>상태</th>
@@ -28,56 +31,52 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>거래중</td>
-										<td>딸기</td>
-										<td>20000</td>
-										<td>2023-12-04</td>
-										<td>결제</td>
-										<td>직거래</td>
-										<td>판매취소하기</td>
-									</tr>
-									<tr>
-										<td>거래중</td>
-										<td>딸기</td>
-										<td>20000</td>
-										<td>2023-12-04</td>
-										<td>결제</td>
-										<td>직거래</td>
-										<td>판매취소하기</td>
-									</tr>
-									<tr>
-										<td>취소</td>
-										<td>딸기</td>
-										<td>20000</td>
-										<td>2023-12-04</td>
-										<td>결제</td>
-										<td>직거래</td>
-										<td>판매취소</td>
-									</tr>
+									<c:forEach var="selllogList" items="${selllogList}">
+										<tr>
+											<td>${selllogList.tradestatus}</td>
+											<td>${selllogList.title}</td>
+											<td>${selllogList.price}</td>
+											<td>${selllogList.tradestartdate}</td>
+											<td>${selllogList.paymethod}</td>
+											<td>${selllogList.trademethod}</td>
+											<td>
+												<form action="/myWorkSpace/delleteSellItem.do" method="post">
+													<input type="hidden" name="productno"
+														value="${selllogList.productno}"> <input
+														type="submit" value="판매취소">
+												</form>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
 			</section>
-				<aside class="col-md-3">
+			<aside class="col-md-3">
 				<div class="border p-4 rounded bg-white text-center"
 					style="min-height: 600px; height: 100%">
 					<nav>
 						<ul class="nav flex-column">
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageEdit.do"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypageEdit.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_like.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypage/mypage_like.jsp"
 								class="nav-link text-success border rounded p-2"
 								id="manager_reportListMenu">찜 목록</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylog.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypage/mypage_buylog.jsp"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllog.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypageSelllog.do"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylist.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypage/mypage_buylist.jsp"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllist.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypage/mypage_selllist.jsp"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>

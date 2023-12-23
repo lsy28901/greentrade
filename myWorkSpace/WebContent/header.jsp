@@ -74,8 +74,6 @@ a {
 							href="/myWorkSpace/additem/additem.jsp">판매하기</a></li>
 							<li class="nav-item "><a class="nav-link mr-3 text-black"
 							href="/myWorkSpace/login/login.jsp">로그인</a></li>
-						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="/myWorkSpace/mypageMain.do">마이페이지</a></li>
 					</ul>
 				</div>
 

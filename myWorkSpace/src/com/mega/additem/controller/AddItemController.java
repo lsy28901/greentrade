@@ -39,7 +39,6 @@ public class AddItemController implements Action {
 		AddItemService AddItemService = new AddItemServiceImpl();
 
 		pdto.setLikenum(0); // 찜 수
-		pdto.setPaymethod("결제"); // 결제,나눔
 		
 		AddItemService.inserItem(pdto);
 
@@ -82,6 +81,9 @@ public class AddItemController implements Action {
 						break;
 					case "selectedType":
 						dto.setProductStatus(value);
+						break;
+					case "selectedPayMethod":
+						dto.setPaymethod(value);
 						break;
 					case "selectedValues":
 						dto.setTrademethod(value);
