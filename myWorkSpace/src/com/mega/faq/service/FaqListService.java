@@ -6,6 +6,7 @@ import com.mega.faq.FaqDTO;
 
 public interface FaqListService {
 
-	List<FaqDTO> getFaqList();
+	List<FaqDTO> getFaqList(int startRow, int endRow);
+	public int getTotalRowCount();
 	
 }

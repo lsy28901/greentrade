@@ -6,7 +6,7 @@ import com.mega.report.ReportDTO;
 
 public interface ReportListService {
 
-	List<ReportDTO> getReportList();
-
+	List<ReportDTO> getReportList(int startRow, int endRow);
+	public int getTotalRowCount();
 
 }

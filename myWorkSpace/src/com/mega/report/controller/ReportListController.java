@@ -20,11 +20,22 @@ public class ReportListController implements Action {
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
         // 서블릿 초기화 시 ReportListService를 생성합니다.
         reportListService = new ReportListServiceImpl();
-
+        
+        int pageNo = request.getParameter("pageNo") != null ? Integer.parseInt(request.getParameter("pageNo")) : 1;
+        int pageSize = 10; // 페이지당 게시물 수
+        
+        // 시작과 끝 행 번호 계산
+        int startRow = (pageNo - 1) * pageSize + 1;
+        int endRow = pageNo * pageSize;
+        
         // Report 목록을 가져와서 request에 저장합니다.
-        List<ReportDTO> reportList = reportListService.getReportList();
+        List<ReportDTO> reportList = reportListService.getReportList(startRow, endRow);
+        int totalRows = reportListService.getTotalRowCount();
+        
         request.setAttribute("reportList", reportList);
-
+        request.setAttribute("totalRows", totalRows);
+        
+        
         // Report 목록을 표시할 JSP 페이지로 포워딩합니다.
         ActionForward forward = new ActionForward();
         forward.setRedirect(false); // 리다이렉트 여부 (false로 설정)
