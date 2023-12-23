@@ -11,18 +11,25 @@ import common.DBConnPool;
 public class ManagerDAO extends DBConnPool{
 	
 	
-	public List<ManagerDTO> getManagerMemberList() {
+	public List<ManagerDTO> getManagerMemberList(int startRow, int endRow) {
 		List<ManagerDTO> list = new ArrayList<>();
 		
-		String query = "SELECT u.userno, u.user_name, u.user_id," + 
-				"COUNT(r.targetid) AS targetid_count " + 
-				"FROM user_table_real u " + 
-				"LEFT JOIN report r ON u.userno = r.targetid " + 
-				"WHERE u.staff = 'user' " +
-				"GROUP BY u.userno, u.user_name, u.user_id";
+		String query = "SELECT * FROM (SELECT ROWNUM AS rnum, rr.* FROM ( " +
+	               "SELECT u.userno, u.user_name, u.user_id," + 
+	               "COUNT(r.targetid) AS targetid_count " + 
+	               "FROM user_table_real u " + 
+	               "LEFT JOIN report r ON u.userno = r.targetid " + 
+	               "WHERE u.staff = 'user' " +
+	               "GROUP BY u.userno, u.user_name, u.user_id " +
+	               "ORDER BY u.userno DESC" + 
+	               ") rr) WHERE rnum BETWEEN ? AND ?";
+		//최근에 들어온 회원들이 먼저 나온다
 
 		try {
 		    psmt = con.prepareStatement(query);
+		    psmt.setInt(1, startRow);
+	        psmt.setInt(2, endRow);
+		    
 		    rs = psmt.executeQuery();
 	
 		    while (rs.next()) {
@@ -39,7 +46,7 @@ public class ManagerDAO extends DBConnPool{
 		} catch (SQLException e) {		
 			e.printStackTrace();
 		}finally {
-			close();
+			
 		}
 
 		return list;
@@ -94,6 +101,27 @@ public class ManagerDAO extends DBConnPool{
 	    } finally {
 	    	close();
 	    }
+	}
+	
+	public int getTotalRowCount() {
+	    int totalRowCount = 0;
+
+	    String query = "SELECT COUNT(*) FROM user_table_real WHERE staff = 'user'";
+
+	    try {
+	        psmt = con.prepareStatement(query);
+	        rs = psmt.executeQuery();
+
+	        if (rs.next()) {
+	            totalRowCount = rs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        
+	    }
+
+	    return totalRowCount;
 	}
 
 	

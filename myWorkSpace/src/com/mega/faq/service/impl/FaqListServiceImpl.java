@@ -10,8 +10,12 @@ public class FaqListServiceImpl implements FaqListService {
 	FaqDAO Faqdao = new FaqDAO();
 	
 	@Override
-	public List<FaqDTO> getFaqList() {
-		return Faqdao.getFaqList();
+	public List<FaqDTO> getFaqList(int startRow, int endRow) {
+		return Faqdao.getFaqList(startRow, endRow);
 	}
-
+	
+	@Override
+    public int getTotalRowCount() {
+        return Faqdao.getTotalRowCount();
+    }
 }

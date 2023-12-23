@@ -6,5 +6,6 @@ import com.mega.manager.ManagerDTO;
 
 
 public interface ManagerMemberListService {
-	List<ManagerDTO> getManagerMemberList();
+	List<ManagerDTO> getManagerMemberList(int startRow,int endRow);
+	public int getTotalRowCount();
 }

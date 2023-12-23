@@ -10,8 +10,13 @@ public class ManagerMemberListServiceImpl implements ManagerMemberListService {
 
 	ManagerDAO dao = new ManagerDAO();
 	@Override
-	public List<ManagerDTO> getManagerMemberList() {
-		return dao.getManagerMemberList();
+	public List<ManagerDTO> getManagerMemberList(int startRow, int endRow) {
+		return dao.getManagerMemberList(startRow,endRow);
 	}
+	
+	@Override
+    public int getTotalRowCount() {
+        return dao.getTotalRowCount();
+    }
 
 } 

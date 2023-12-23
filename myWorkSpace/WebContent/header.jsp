@@ -50,6 +50,7 @@ a {
 </style>
 <body>
 	<%
+		String userStaff = (String) session.getAttribute("UserStaff");
 		if(session.getAttribute("UserId") == null){
 	%>
 	<header>
@@ -119,8 +120,13 @@ a {
 							href="/myWorkSpace/additem/additem.jsp">판매하기</a></li>
 							<li class="nav-item "><a class="nav-link mr-3 text-black"
 							href="/myWorkSpace/login/logout.jsp">로그아웃</a></li>
+						<%if("manager".equals(userStaff)) {%>
+						<li class="nav-item "><a class="nav-link mr-3 text-black"
+							href="/myWorkSpace/manager/manager_main.jsp">관리자 페이지</a></li>
+						<%}else{ %>
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
 							href="/myWorkSpace/mypageMain.do">마이페이지</a></li>
+						<%} %>
 					</ul>
 				</div>
 

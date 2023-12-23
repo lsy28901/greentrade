@@ -39,16 +39,23 @@ public class ReportDAO extends DBConnPool{
 		return content;
 	}
 
-	public List<ReportDTO> getReportList() {
+	public List<ReportDTO> getReportList(int startRow, int endRow) {
 		List<ReportDTO> list = new ArrayList<>();
 		
-		String query = "SELECT r.*, u1.nickname AS reporter_nickname, u2.nickname AS target_nickname " +
+		String query = "SELECT * FROM (SELECT ROWNUM AS rnum, rr.* FROM ( " +
+	               "SELECT r.*, u1.nickname AS reporter_nickname, u2.nickname AS target_nickname " +
 	               "FROM report r " +
 	               "JOIN user_table_real u1 ON r.reporterid = u1.userno " +
-	               "JOIN user_table_real u2 ON r.targetid = u2.userno";
+	               "JOIN user_table_real u2 ON r.targetid = u2.userno " +
+	               "ORDER BY r.reportid DESC" + 
+	               ") rr) WHERE rnum BETWEEN ? AND ?";
+
 
 		try {
 		    psmt = con.prepareStatement(query);
+		    psmt.setInt(1, startRow);
+	        psmt.setInt(2, endRow);
+		    
 		    rs = psmt.executeQuery();
 	
 		    while (rs.next()) {
@@ -69,7 +76,7 @@ public class ReportDAO extends DBConnPool{
 		} catch (SQLException e) {		
 			e.printStackTrace();
 		}finally {
-			close();
+			
 		}
 		return list;
 	}
@@ -91,6 +98,27 @@ public class ReportDAO extends DBConnPool{
 	    }finally {
 	    	close();
 	    }
+	}
+	
+	public int getTotalRowCount() {
+	    int totalRowCount = 0;
+
+	    String query = "SELECT COUNT(*) FROM report";
+
+	    try {
+	        psmt = con.prepareStatement(query);
+	        rs = psmt.executeQuery();
+
+	        if (rs.next()) {
+	            totalRowCount = rs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close();
+	    }
+
+	    return totalRowCount;
 	}
 
 }
