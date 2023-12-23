@@ -54,7 +54,7 @@ public class MyPageDAO extends DBConnPool{
 	//마이페이지 정보수정
 	public void updateMypage(UserDTO dto) {
 		String query = "update user_table_real "
-						+ " set email=?, user_call=?, address1=?, address2=? "
+						+ " set email=?, user_call=?, address1=?, address2=? , imgurl=? "
 						+ " where userno=?";
 		
 		try {
@@ -63,7 +63,9 @@ public class MyPageDAO extends DBConnPool{
 			psmt.setString(2, dto.getUser_call());
 			psmt.setString(3, dto.getAddress1());
 			psmt.setString(4, dto.getAddress2());
-			psmt.setInt(5, dto.getUserno());
+			psmt.setString(5, dto.getImgurl());
+			psmt.setInt(6, dto.getUserno());
+			
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -73,4 +75,5 @@ public class MyPageDAO extends DBConnPool{
 		}
 		
 	}
+	
 }

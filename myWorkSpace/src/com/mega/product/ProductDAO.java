@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mega.log.LogDTO;
+
 import common.DBConnPool;
 
 public class ProductDAO extends DBConnPool{
@@ -11,11 +13,15 @@ public class ProductDAO extends DBConnPool{
 	
 	public int insertItem(ProductDTO dto) {
 		int result = 0;
-		String query = "insert into product" + 
+		String insertItemQuery = "insert into product" + 
 				" values(seq_productno.nextval,?,?,?,?,?,?,?,'판매중',sysdate," + 
 				"null,0, ?,?,?)" ;
+		
+		 String logsQuery = "insert into logs " +
+		            "values(seq_tradeno.nextval,sysdate,null,'판매',?,'거래중',?,null,?)";
+		
 		try {
-			psmt = con.prepareStatement(query);
+			psmt = con.prepareStatement(insertItemQuery, new String[]{"productno"});
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getPrice());
 			psmt.setInt(3, dto.getLikenum());
@@ -27,11 +33,27 @@ public class ProductDAO extends DBConnPool{
 			psmt.setString(9, dto.getImage());
 			psmt.setString(10, dto.getTradelocation());
 			result = psmt.executeUpdate();			
+			
+			  if (result > 0) {
+		            rs = psmt.getGeneratedKeys();
+		            if (rs.next()) {
+		                int productno = rs.getInt(1);
+
+		                // Insert into logs table using the retrieved productno
+		                psmt = con.prepareStatement(logsQuery);
+		                psmt.setString(1, dto.getTrademethod());
+		                psmt.setInt(2, productno);
+		                psmt.setInt(3, dto.getUserno());
+		                result = psmt.executeUpdate();
+		            }
+		        }
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		close();
+		}finally {
+	        close();
+	    }
 		
 		return result;
 	}

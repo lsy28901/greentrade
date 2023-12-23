@@ -19,7 +19,7 @@
 
 
 						<!-- 여기서부터 정보수정 칸 -->
-						<form action="/myWorkSpace/mypageEdit.do" method="post">
+						<form action="/myWorkSpace/mypageEdit.do" method="post" enctype="multipart/form-data">
 							<div class="row d-flex align-items-center justify-content-center"
 								style="text-align: center;">
 								<!-- 								<img -->
@@ -147,31 +147,24 @@
 					style="min-height: 600px; height: 100%">
 					<nav>
 						<ul class="nav flex-column">
-							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/mypageEdit.do"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageEdit.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
-							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/mypage/mypage_like.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_like.jsp"
 								class="nav-link text-success border rounded p-2"
 								id="manager_reportListMenu">찜 목록</a></li>
-							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/mypage/mypage_buylog.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylog.jsp"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
-							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/mypage/mypage_selllog.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageSelllog.do"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
-							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/mypage/mypage_buylist.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylist.jsp"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>
-							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/mypage/mypage_selllist.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllist.jsp"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>
-							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/manager/manager_main.jsp"
-								class="nav-link text-success border rounded p-2">고객 센터</a></li>
+							<li class="nav-item mb-2"><a href="/myWorkSpace/faqList.do"
+								class="nav-link text-success border rounded p-2">자주 묻는 질문</a></li>
 						</ul>
 					</nav>
 				</div>

@@ -9,7 +9,7 @@
 			<!-- 모든 이미지 파일을 허용하는 input 태그 -->
 			<input type="file" id="imageInput" name="imageFile"
 				style="display: none;" onchange="handleImageSelection()"> <label
-				for="imageInput"> <img class="add_image mb-2"
+				for="imageInput">사진 선택 <img class="add_image mb-2"
 				alt="add item image" src="../imgfolder/camera.png" id="previewImage">
 			</label>
 
@@ -25,9 +25,25 @@
 					id="item_name" name="title" placeholder="상품명" required="required"></td>
 			</tr>
 			<tr>
-				<td class="add_td"><input class="additem_input" type="text"
-					id="item_price" name="price" placeholder="판매가격" required="required"></td>
+				<td class="add_td">결제방법</td>
 			</tr>
+			<tr>
+				<td class="add_td">
+					<button class="paymethod_btn" type="button"
+						style="border: none; border-radius: 5px; margin-right: 10px;"
+						onclick="togglePayMethod(this, '결제')">결제</button>
+					<button class="paymethod_btn" type="button"
+						style="border: none; border-radius: 5px; margin-right: 10px;"
+						onclick="togglePayMethod(this, '나눔')">나눔</button>
+				</td>
+			</tr>
+			<tr id="itemPriceRow">
+				<td class="add_td"><input class="additem_input" type="text"
+					id="item_price" name="price" placeholder="판매가격" required="required">
+				</td>
+			</tr>
+
+
 			<tr>
 				<td class="add_td"><textarea id="item_info"
 						name="productDetail" required="required"
@@ -46,6 +62,7 @@
 						onclick="toggleItemType(this, '새상품')">새상품</button>
 				</td>
 			</tr>
+
 			<tr>
 				<td class="add_td">거래방법</td>
 			</tr>
@@ -73,7 +90,8 @@
 
 		</table>
 		<input type="hidden" id="selectedValues" name="selectedValues" /> <input
-			type="hidden" id="selectedType" name="selectedType" />
+			type="hidden" id="selectedType" name="selectedType" /> <input
+			type="hidden" id="selectedPayMethod" name="selectedPayMethod" />
 	</form>
 </main>
 <script>
@@ -144,6 +162,54 @@
 		}
 	}
 
+	var selectedPayMethod = ""; // 선택된 결제/나눔 값을 저장할 변수
+
+// 	function togglePayMethod(button, method) {
+// 		var buttons = document.querySelectorAll('.paymethod_btn');
+// 		buttons.forEach(function(btn) {
+// 			btn.style.backgroundColor = ''; // 모든 버튼의 배경색 초기화
+// 		});
+
+// 		if (button.style.backgroundColor !== '#BFF6B6') {
+// 			button.style.backgroundColor = '#BFF6B6'; // 선택된 버튼의 배경색을 초록색으로 변경
+// 			selectedPayMethod = method; // 선택된 결제/나눔 값 업데이트
+// 		} else {
+// 			button.style.backgroundColor = ''; // 선택 해제되면 배경색 초기화
+// 			selectedPayMethod = ""; // 선택된 결제/나눔 값 초기화
+// 		}
+		
+
+// 	}
+	function togglePayMethod(button, method) {
+	    var buttons = document.querySelectorAll('.paymethod_btn');
+	    buttons.forEach(function (btn) {
+	        btn.style.backgroundColor = ''; // 모든 버튼의 배경색 초기화
+	    });
+
+	    var itemPriceRow = document.getElementById('itemPriceRow');
+	    var itemPriceInput = document.getElementById('item_price');
+
+	    if (button.style.backgroundColor !== '#BFF6B6') {
+	        button.style.backgroundColor = '#BFF6B6'; // 선택된 버튼의 배경색을 초록색으로 변경
+	        selectedPayMethod = method; // 선택된 결제/나눔 값 업데이트
+
+	        if (selectedPayMethod === '나눔') {
+	            // 나눔이 선택되면 itemPriceRow를 숨기고 값을 0으로 설정
+	            itemPriceRow.style.display = 'none';
+	            itemPriceInput.value = '0';
+	        } else {
+	            // 결제가 선택되면 itemPriceRow를 보이게 하고 값을 초기화
+	            itemPriceRow.style.display = '';
+	            itemPriceInput.value = '';
+	        }
+	    } else {
+	        button.style.backgroundColor = ''; // 선택 해제되면 배경색 초기화
+	        selectedPayMethod = ""; // 선택된 결제/나눔 값 초기화
+	        itemPriceRow.style.display = ''; // itemPriceRow를 보이게 설정
+	        itemPriceInput.value = '';
+	    }
+	}
+
 	function submitForm() {
 		// 여기서 선택된 값을 가져와서 사용할 수 있음
 		var selectedValues = document.getElementById('selectedValues');
@@ -158,8 +224,11 @@
 		});
 		selectedValues.value = selectedValues.value.replace(/,\s*$/, '');
 		var selectedType = selectedItemType;
-
 		document.getElementById('selectedType').value = selectedType;
+
+		var selectedPayMethodField = document
+				.getElementById('selectedPayMethod');
+		selectedPayMethodField.value = selectedPayMethod;
 
 		// 폼을 서버로 제출
 		document.getElementById('additemForm').submit();
