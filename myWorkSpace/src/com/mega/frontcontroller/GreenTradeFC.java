@@ -10,12 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mega.additem.controller.AddItemController;
+import com.mega.buylist.controller.BuyListController;
+import com.mega.buylist.controller.InsertBuyListsController;
 import com.mega.detailitem.controller.DetailItemController;
 import com.mega.faq.controller.FaqContentController;
 import com.mega.faq.controller.FaqListController;
 import com.mega.faq.controller.FaqSaveController;
 import com.mega.index.contoller.IndexController;
 import com.mega.join.controller.JoinController;
+import com.mega.like.controller.LikeController;
+import com.mega.log.controller.BuyLogController;
+import com.mega.log.controller.DeleteLogsController;
 import com.mega.log.controller.DeleteSellItemController;
 import com.mega.log.controller.SellLogController;
 import com.mega.login.controller.LoginController;
@@ -27,6 +32,8 @@ import com.mega.mypage.controller.MyPageEditController;
 import com.mega.report.controller.ReportContentController;
 import com.mega.report.controller.ReportFormController;
 import com.mega.report.controller.ReportListController;
+import com.mega.selllist.controller.InsertSellListController;
+import com.mega.selllist.controller.SellListController;
 
 @WebServlet("*.do")
 public class GreenTradeFC extends HttpServlet {
@@ -103,8 +110,28 @@ public class GreenTradeFC extends HttpServlet {
 		else if (requestURI.equals("/myWorkSpace/delleteSellItem.do")) {
 	    	forward = new DeleteSellItemController().execute(req, resp);
         }
+		else if (requestURI.equals("/myWorkSpace/getLikeList.do")) {
+	    	forward = new LikeController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/mypageBuylog.do")) {
+	    	forward = new BuyLogController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/deleteLogs.do")) {
+	    	forward = new DeleteLogsController().execute(req, resp);
+        }
 		
-
+		else if (requestURI.equals("/myWorkSpace/insertbuyList.do")) {
+	    	forward = new InsertBuyListsController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/insertSellList.do")) {
+	    	forward = new InsertSellListController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/getBuyList.do")) {
+	    	forward = new BuyListController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/getSellList.do")) {
+	    	forward = new SellListController().execute(req, resp);
+        }
 		
 		
 		// 페이지 이동 일괄처리

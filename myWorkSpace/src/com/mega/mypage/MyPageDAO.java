@@ -12,17 +12,30 @@ public class MyPageDAO extends DBConnPool{
 	public MyPageDTO getMyPageInfo(int userno){
 		MyPageDTO mydto = new MyPageDTO();
 		
-		String query ="select u.userno,u.user_id,u.imgurl,u.user_name,u.user_call,u.email,u.address1,u.address2"
-				+ ",(select count(bl.buylistno) from buylist bl"
-				+ " where u.userno = bl.buyuserno group by bl.buylistno) as buylistcount "
-				+ ",(select count(sl.selllistno) from selllist sl"
-				+ " where u.userno = sl.selluserno group by sl.selllistno) as selllistcount "
-				
-				+ " from user_table_real u left join buylist bl on u.userno= bl.buyuserno "
-				+ " left join selllist sl on u.userno= sl.selluserno "
-				
-				+ " where u.userno = ?";
+//		String query ="select u.userno,u.user_id,u.imgurl,u.user_name,u.user_call,u.email,u.address1,u.address2"
+//				+ ",(select count(bl.buylistno) from buylist bl"
+//				+ " where u.userno = bl.buyuserno group by bl.buylistno) as buylistcount "
+//				+ ",(select count(sl.selllistno) from selllist sl"
+//				+ " where u.userno = sl.selluserno group by sl.selllistno) as selllistcount "
+//				
+//				+ " from user_table_real u left join buylist bl on u.userno= bl.buyuserno "
+//				+ " left join selllist sl on u.userno= sl.selluserno "
+//				
+//				+ " where u.userno = ?";
 		
+		String query = "select" + 
+				"  u.userno," + 
+				"  u.user_id," + 
+				"  u.imgurl," + 
+				"  u.user_name," + 
+				"  u.user_call," + 
+				"  u.email," + 
+				"  u.address1," + 
+				"  u.address2," + 
+				"  (select count(*) from buylist bl where u.userno = bl.buyuserno) as buylistcount," + 
+				"  (select count(*) from selllist sl where u.userno = sl.selluserno) as selllistcount" + 
+				" from user_table_real u" + 
+				" where u.userno = ?";
 		
 		try {
 			psmt=con.prepareStatement(query);

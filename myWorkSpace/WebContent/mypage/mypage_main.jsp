@@ -85,16 +85,16 @@
 							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageEdit.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_like.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/getLikeList.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_reportListMenu">찜 목록</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylog.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageBuylog.do"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
 							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageSelllog.do"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylist.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/getBuyList.do"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllist.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/getSellList.do"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>

@@ -13,9 +13,9 @@ public class LogDAO extends DBConnPool {
 	public List<LogDTO> getSellLogList(int userno) {
 		List<LogDTO> selllogList = new ArrayList<LogDTO>();
 
-		String query = "select logs.tradestatus, p.title,p.price,logs.tradestartdate, p.paymethod, p.trademethod, p.productno"
+		String query = "select logs.tradestatus, p.title,p.price,logs.tradestartdate, p.paymethod, p.trademethod, p.productno, logs.buyuserno"
 				+ " from product p join logs on p.productno = logs.productno "
-				+ " where logs.selluserno=? and logs.tradetype='판매' and p.sellstatus = '판매중'"
+				+ " where logs.selluserno=? and logs.tradetype='판매' "
 				+ " order by logs.tradestartdate desc";
 
 		try {
@@ -32,7 +32,7 @@ public class LogDAO extends DBConnPool {
 				logdto.setTradestartdate(rs.getDate("tradestartdate"));
 				logdto.setPaymethod(rs.getString("paymethod"));
 				logdto.setTrademethod(rs.getString("trademethod"));
-				System.out.println(logdto);
+				logdto.setBuyuserno(rs.getInt("buyuserno"));
 				selllogList.add(logdto);
 			}
 		} catch (SQLException e) {
@@ -86,6 +86,59 @@ public class LogDAO extends DBConnPool {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			close();
+		}
+		
+		
+	}
+	
+	public List<LogDTO> getBuyLogList(int userno){
+		List<LogDTO> buylogList = new ArrayList<LogDTO>();
+		
+		
+		String query= "select logs.tradestatus, p.title,p.price,logs.tradesuccessdate, p.paymethod, p.trademethod, logs.buyuserno, p.productno " + 
+				" from product p join logs on p.productno = logs.productno" + 
+				" where logs.buyuserno=? and logs.tradetype='구매' and p.sellstatus = '판매완료'" + 
+				" order by logs.tradestartdate desc ";
+		
+		try {
+			psmt=con.prepareStatement(query);
+			psmt.setInt(1, userno);
+			
+			rs=psmt.executeQuery();
+			
+			while(rs.next()) {
+				LogDTO logdto = new LogDTO();
+				logdto.setProductno(rs.getInt("productno"));
+				logdto.setTradestatus(rs.getString("tradestatus"));
+				logdto.setTitle(rs.getString("title"));
+				logdto.setPrice(rs.getString("price"));
+				logdto.setTradesuccessdate(rs.getDate("tradesuccessdate"));
+				logdto.setPaymethod(rs.getString("paymethod"));
+				logdto.setTrademethod(rs.getString("trademethod"));
+				logdto.setBuyuserno(rs.getInt("buyuserno"));
+				buylogList.add(logdto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return buylogList;
+	}
+	
+	public void deleteLogs(int productno) {
+		String query = "delete from logs where productno = ?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1, productno);
+			psmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			close();
 		}
 	}

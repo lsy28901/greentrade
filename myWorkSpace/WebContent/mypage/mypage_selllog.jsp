@@ -40,11 +40,17 @@
 											<td>${selllogList.paymethod}</td>
 											<td>${selllogList.trademethod}</td>
 											<td>
-												<form action="/myWorkSpace/delleteSellItem.do" method="post">
-													<input type="hidden" name="productno"
-														value="${selllogList.productno}"> <input
-														type="submit" value="판매취소">
-												</form>
+											<c:if test="${selllogList.buyuserno ne 0}">
+											    판매완료
+											</c:if>
+											<c:if test="${selllogList.buyuserno eq 0}">
+											    <form action="/myWorkSpace/delleteSellItem.do" method="post">
+											        <input type="hidden" name="productno" value="${selllogList.productno}">
+											        <input type="submit" 
+											        style=" background-color: #4CAF50; color: white; border: none; border-radius: 4px;"
+											        value="판매취소">
+											    </form>
+											</c:if>
 											</td>
 										</tr>
 									</c:forEach>
@@ -63,20 +69,20 @@
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
 							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/mypage/mypage_like.jsp"
+								href="/myWorkSpace/getLikeList.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_reportListMenu">찜 목록</a></li>
 							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/mypage/mypage_buylog.jsp"
+								href="/myWorkSpace/mypageBuylog.do"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
 							<li class="nav-item mb-2"><a
 								href="/myWorkSpace/mypageSelllog.do"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
 							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/mypage/mypage_buylist.jsp"
+								href="/myWorkSpace/getBuyList.do"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>
 							<li class="nav-item mb-2"><a
-								href="/myWorkSpace/mypage/mypage_selllist.jsp"
+								href="/myWorkSpace/getSellList.do"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>
