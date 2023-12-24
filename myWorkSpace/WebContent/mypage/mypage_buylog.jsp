@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../header.jsp"%>
 <div class="container-fluid">
 	<main class="container-fluid mt-4" id="main" style="width: 960px; height: 100%; margin: 30px auto;">
@@ -26,38 +26,29 @@
 										<th>가격</th>
 										<th>거래일</th>
 										<th>결제방식</th>
-										<th>배송방식</th>
-										<th>거래확인</th>
+										<th>수령방식</th>
+										<th>수령확인</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>거래중</td>
-										<td>딸기</td>
-										<td>20000</td>
-										<td>2023-12-04</td>
-										<td>결제</td>
-										<td>직거래</td>
-										<td>거래완료하기</td>
-									</tr>
-									<tr>
-										<td>거래중</td>
-										<td>딸기</td>
-										<td>20000</td>
-										<td>2023-12-04</td>
-										<td>나눔</td>
-										<td>택배거래</td>
-										<td>거래완료하기</td>
-									</tr>
-									<tr>
-										<td>거래완료</td>
-										<td>딸기</td>
-										<td>20000</td>
-										<td>2023-12-04</td>
-										<td>나눔</td>
-										<td>택배거래</td>
-										<td>거래완료</td>
-									</tr>
+									<c:forEach var="buyLogList" items="${buyLogList}">
+										<tr>
+											<td>${buyLogList.tradestatus}</td>
+											<td>${buyLogList.title}</td>
+											<td>${buyLogList.price}</td>
+											<td>${buyLogList.tradesuccessdate}</td>
+											<td>${buyLogList.paymethod}</td>
+											<td>${buyLogList.trademethod}</td>
+											<td>
+											    <form action="/myWorkSpace/deleteLogs.do" method="post">
+											        <input type="hidden" name="productno" value="${buyLogList.productno}">
+											        <input type="submit" 
+											         style=" background-color: #4CAF50; color: white; border: none; border-radius: 4px;"
+											        value="수령확인" >
+											    </form>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -71,16 +62,16 @@
 							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageEdit.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_like.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/getLikeList.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_reportListMenu">찜 목록</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylog.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageBuylog.do"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
 							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageSelllog.do"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylist.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/getBuyList.do"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllist.jsp"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/getSellList.do"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>

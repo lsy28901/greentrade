@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../header.jsp"%>
 <div class="container-fluid">
-	<main class="container-fluid mt-4" id="main" style="width: 960px; height: 100%; margin: 30px auto;">
+	<main class="container-fluid mt-4" id="main"
+		style="width: 960px; height: 100%; margin: 30px auto;">
 		<div class="row">
 			<section class="col-md-9 " style="">
 				<div id="main-content" class="border p-4 rounded bg-white"
@@ -18,167 +19,80 @@
 
 						<div class="container mt-3" style="font-size: 12px;">
 							<div class="row">
-								<!-- 상품 카드 1 -->
-								<div class="col-md-6">
-									<div class="card" style="max-height: 250px; ">
-										<!-- 인라인 스타일로 최대 너비 설정 -->
-										<div class="row no-gutters">
-											<!-- 왼쪽에는 사진 -->
-											<div class="col-md-6">
-												<img src="../imgfolder/clothes1.png" alt="상품 사진 1"
-													class="card-img" style="max-height: 250px; height:100%;">
-												<!-- 이미지 최대 높이 설정 -->
-											</div>
-											<!-- 오른쪽에는 상품 정보 -->
-											<div class="col-md-6">
-												<div class="card-body">
-													<h6 class="card-title">상품 제목 2</h6>
-													<p class="card-text">결제</p>
-
-													<p class="card-text">
-														<strong>판매자:</strong>
-													</p>
-													<p class="card-text">
-														<strong>가격:</strong> 200000원
-													</p>
-													<p class="card-text">
-														<strong style="cursor: pointer;">판매자 평가하기</strong>
-													</p>
+								<!-- 반복문으로 BuyListDTO 정보를 동적으로 생성 -->
+								<c:forEach var="buyList" items="${buyList}">
+									<div class="col-md-6">
+										<div class="card" style="max-height: 250px;">
+											<div class="row no-gutters">
+												<div class="col-md-6"
+													style="display: flex; align-items: center;">
+													<img src="${buyList.image}" class="card-img"
+														style="max-height: 150px; height: 100%; margin-left: 10px;">
+												</div>
+												<div class="col-md-6">
+													<div class="card-body">
+														<h6 class="card-title">${buyList.title}</h6>
+														<p class="card-text mt-3">
+															<strong>결제방법:</strong> ${buyList.paymethod}
+														</p>
+														<p class="card-text">
+															<strong>판매자:</strong> ${buyList.user_name}
+														</p>
+														<p class="card-text">
+															<strong>가격:</strong> ${buyList.price}원
+														</p>
+														<p class="card-text">
+															<c:choose>
+																<c:when test="${buyList.isreview eq 'no'}">
+																	
+																		<a href="#" style="text-decoration: none;"> 
+																			판매자 평가하기
+																		</a>
+																	
+																</c:when>
+																<c:otherwise>
+																	<p class="card-text">
+																		<strong>판매자평가완료</strong>
+																	</p>
+																</c:otherwise>
+															</c:choose>
+														</p>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-
-								<!-- 상품 카드 2 -->
-
-								<div class="col-md-6">
-									<div class="card" style="max-height: 250px;">
-										<!-- 인라인 스타일로 최대 너비 설정 -->
-										<div class="row no-gutters">
-											<!-- 왼쪽에는 사진 -->
-											<div class="col-md-6">
-												<img src="../imgfolder/clothes1.png" alt="상품 사진 1"
-													class="card-img" style="max-height: 250px;  height:100%;">
-												<!-- 이미지 최대 높이 설정 -->
-											</div>
-											<!-- 오른쪽에는 상품 정보 -->
-											<div class="col-md-6">
-												<div class="card-body">
-													<h6 class="card-title">상품 제목 2</h6>
-													<p class="card-text">결제</p>
-
-													<p class="card-text">
-														<strong>판매자:</strong>
-													</p>
-													<p class="card-text">
-														<strong>가격:</strong> 200000원
-													</p>
-													<p class="card-text">
-														<strong style="cursor: pointer;">판매자 평가하기</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								</c:forEach>
 							</div>
 						</div>
-
-						<div class="container mt-3" style="font-size: 12px;">
-							<div class="row">
-								<!-- 상품 카드 1 -->
-								<div class="col-md-6">
-									<div class="card" style="max-height: 250px;">
-										<!-- 인라인 스타일로 최대 너비 설정 -->
-										<div class="row no-gutters">
-											<!-- 왼쪽에는 사진 -->
-											<div class="col-md-6">
-												<img src="../imgfolder/clothes1.png" alt="상품 사진 1"
-													class="card-img" style="max-height: 250px;  height:100%;">
-												<!-- 이미지 최대 높이 설정 -->
-											</div>
-											<!-- 오른쪽에는 상품 정보 -->
-											<div class="col-md-6">
-												<div class="card-body">
-													<h6 class="card-title">상품 제목 2</h6>
-													<p class="card-text">결제</p>
-
-													<p class="card-text">
-														<strong>판매자:</strong>
-													</p>
-													<p class="card-text">
-														<strong>가격:</strong> 200000원
-													</p>
-													<p class="card-text">
-														<strong style="cursor: pointer;">판매자 평가하기</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- 상품 카드 2 -->
-
-								<div class="col-md-6">
-									<div class="card" style="max-height: 250px;">
-										<!-- 인라인 스타일로 최대 너비 설정 -->
-										<div class="row no-gutters">
-											<!-- 왼쪽에는 사진 -->
-											<div class="col-md-6">
-												<img src="../imgfolder/clothes1.png" alt="상품 사진 1"
-													class="card-img" style="max-height: 250px;  height:100%;">
-												<!-- 이미지 최대 높이 설정 -->
-											</div>
-											<!-- 오른쪽에는 상품 정보 -->
-											<div class="col-md-6">
-												<div class="card-body">
-													<h6 class="card-title">상품 제목 2</h6>
-													<p class="card-text">결제</p>
-
-													<p class="card-text">
-														<strong>판매자:</strong>
-													</p>
-													<p class="card-text">
-														<strong>가격:</strong> 200000원
-													</p>
-													<p class="card-text">
-														<strong style="cursor: pointer;">판매자 평가하기</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-
-
 
 					</div>
 				</div>
 			</section>
-				<aside class="col-md-3">
+			<aside class="col-md-3">
 				<div class="border p-4 rounded bg-white text-center"
 					style="min-height: 600px; height: 100%">
 					<nav>
 						<ul class="nav flex-column">
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageEdit.do"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypageEdit.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_memberListMenu">내 정보 수정</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_like.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/getLikeList.do"
 								class="nav-link text-success border rounded p-2"
 								id="manager_reportListMenu">찜 목록</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylog.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypageBuylog.do"
 								class="nav-link text-success border rounded p-2">구매 현황</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypageSelllog.do"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/mypageSelllog.do"
 								class="nav-link text-success border rounded p-2">판매 현황</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_buylist.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/getBuyList.do"
 								class="nav-link text-success border rounded p-2">구매 내역</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/mypage/mypage_selllist.jsp"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/getSellList.do"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
 							<li class="nav-item mb-2"><a href="#"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>
