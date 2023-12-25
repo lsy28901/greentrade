@@ -113,7 +113,7 @@ a {
 					id="collapsibleNavbar">
 					<ul class="navbar-nav ">
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="#">채팅하기</a></li>
+							href="/myWorkSpace/chatting/chating.jsp?UserNo=<%=session.getAttribute("UserNo")%>">채팅하기</a></li>
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
 							href="/myWorkSpace/additem/additem.jsp">판매하기</a></li>
 							<li class="nav-item "><a class="nav-link mr-3 text-black"

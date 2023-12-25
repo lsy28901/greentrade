@@ -116,4 +116,84 @@ public class ProductDAO extends DBConnPool{
 		return list;
 	}
 	
+	// 상품 목록 전부 가져오기(한페이지에 12개씩을 가져온다) - 김찬희
+	public List<ProductDTO> getAllProducts(int startRow, int endRow) {
+	    List<ProductDTO> list = new ArrayList<ProductDTO>();
+	    String query = "SELECT * FROM ("
+	                 + "  SELECT ROWNUM AS rnum, p.*, u.user_name"
+	                 + "  FROM ("
+	                 + "    SELECT productno, title, price, productstatus, image, userno, sellstatus FROM product"
+	                 + "  ) p"
+	                 + "  LEFT JOIN user_table_real u ON p.userno = u.userno"
+	                 + "  WHERE ROWNUM <= ?"
+	                 + ") WHERE rnum >= ?";
+	    
+	    try {
+	        psmt = con.prepareStatement(query);
+	        psmt.setInt(1, endRow);
+	        psmt.setInt(2, startRow);
+	        rs = psmt.executeQuery();
+	        while (rs.next()) {
+	            ProductDTO pdto = new ProductDTO();
+	            pdto.setProductno(rs.getInt("productno"));
+	            pdto.setTitle(rs.getString("title"));
+	            pdto.setPrice(rs.getString("price"));
+	            pdto.setProductStatus(rs.getString("productstatus"));
+	            pdto.setImage(rs.getString("image"));
+	            pdto.setUser_name(rs.getString("user_name"));
+	            pdto.setSellstatus(rs.getString("sellstatus"));
+	            
+	            list.add(pdto);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close();
+	    }
+	    
+	    return list;
+	}
+
+	//상품 관리에서 상품을 삭제 - 김찬희
+	public void managerProductDelete(int productno) {
+	    String query = "DELETE FROM product WHERE productno = ?";
+	    
+	    try {
+	        // SQL 쿼리 준비
+	        psmt = con.prepareStatement(query);
+	        psmt.setInt(1, productno);
+	        
+	        // 쿼리 실행
+	        psmt.executeUpdate();
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	    	close();
+	    }
+	}
+
+	//상품 목록 페이지용 페이지 세는 메서드 - 김찬희
+	public int getTotalRowCount() {
+	    int totalRowCount = 0;
+
+	    String query = "SELECT COUNT(*) FROM product";
+
+	    try {
+	        psmt = con.prepareStatement(query);
+	        rs = psmt.executeQuery();
+
+	        if (rs.next()) {
+	            totalRowCount = rs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        
+	    }
+
+	    return totalRowCount;
+	}
+	
+	
 }

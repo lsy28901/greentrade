@@ -9,10 +9,6 @@
 		<form>
 			<div class="row d-flex align-items-center justify-content-center"
 				style="text-align: center;">
-				<img
-					src="https://mdbcdn.b-cdn.net/img/new/standard/city/047.webp"
-					class="img-fluid rounded-circle col-md-6"
-					style="width: 200px; height: 200px" />
 				<div class="col-md-6">
 					<h2>${managerMemberInfo.user_name} 회원님</h2>
 				</div>
