@@ -27,6 +27,8 @@ import com.mega.login.controller.LoginController;
 import com.mega.manager.controller.ManagerMemberDeleteController;
 import com.mega.manager.controller.ManagerMemberInfoController;
 import com.mega.manager.controller.ManagerMemberListController;
+import com.mega.manager.controller.ManagerProductController;
+import com.mega.manager.controller.ManagerProductDeleteController;
 import com.mega.mypage.controller.MyPageController;
 import com.mega.mypage.controller.MyPageEditController;
 import com.mega.report.controller.ReportContentController;
@@ -89,6 +91,12 @@ public class GreenTradeFC extends HttpServlet {
         }
 		else if (requestURI.equals("/myWorkSpace/managerMemberDelete.do")) {
 	    	forward = new ManagerMemberDeleteController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/managerProduct.do")) {
+	    	forward = new ManagerProductController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/managerProductDelete.do")) {
+	    	forward = new ManagerProductDeleteController().execute(req, resp);
         }
 		else if (requestURI.equals("/myWorkSpace/detaiIitem.do")) {
 	    	forward = new DetailItemController().execute(req, resp);
