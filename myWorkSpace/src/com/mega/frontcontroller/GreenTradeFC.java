@@ -36,6 +36,8 @@ import com.mega.mypage.controller.MyPageEditController;
 import com.mega.report.controller.ReportContentController;
 import com.mega.report.controller.ReportFormController;
 import com.mega.report.controller.ReportListController;
+import com.mega.review.controller.GetReviewListController;
+import com.mega.review.controller.InsertReviewController;
 import com.mega.selllist.controller.InsertSellListController;
 import com.mega.selllist.controller.SellListController;
 
@@ -142,12 +144,19 @@ public class GreenTradeFC extends HttpServlet {
 		else if (requestURI.equals("/myWorkSpace/getSellList.do")) {
 	    	forward = new SellListController().execute(req, resp);
         }
+		else if (requestURI.equals("/myWorkSpace/insertReview.do")) {
+	    	forward = new InsertReviewController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/getReviewList.do")) {
+	    	forward = new GetReviewListController().execute(req, resp);
+        }
 		else if (requestURI.equals("/myWorkSpace/doheart.do")) {
 	    	forward = new DoHeartController().execute(req, resp);
         }
 		else if (requestURI.equals("/myWorkSpace/cancleheart.do")) {
 	    	forward = new CancleHeartController().execute(req, resp);
         }
+
 		
 		// 페이지 이동 일괄처리
 		if (forward != null) {

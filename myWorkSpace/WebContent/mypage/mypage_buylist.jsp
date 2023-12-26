@@ -45,15 +45,13 @@
 															<c:choose>
 																<c:when test="${buyList.isreview eq 'no'}">
 																	
-																		<a href="#" style="text-decoration: none;"> 
+																		<a href="/myWorkSpace/insertReview.do?productno=${buyList.productno }" style="text-decoration: none; color:blue;"> 
 																			판매자 평가하기
 																		</a>
 																	
 																</c:when>
 																<c:otherwise>
-																	<p class="card-text">
-																		<strong>판매자평가완료</strong>
-																	</p>
+																		판매자평가 완료
 																</c:otherwise>
 															</c:choose>
 														</p>
@@ -94,7 +92,7 @@
 							<li class="nav-item mb-2"><a
 								href="/myWorkSpace/getSellList.do"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
-							<li class="nav-item mb-2"><a href="#"
+							<li class="nav-item mb-2"><a href="/myWorkSpace/getReviewList.do"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>
 							<li class="nav-item mb-2"><a href="/myWorkSpace/faqList.do"
 								class="nav-link text-success border rounded p-2">자주 묻는 질문</a></li>
