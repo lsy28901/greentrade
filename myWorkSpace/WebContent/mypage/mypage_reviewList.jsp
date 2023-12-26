@@ -12,46 +12,32 @@
 					<div class="mb-4">
 						<div class="d-flex align-items-center mb-4">
 							<div class="bg-secondary rounded-circle h-12 w-12"></div>
-							<span class="font-weight-bold" style="font-size: 24px;">판매
-								현황</span>
+							<span class="font-weight-bold" style="font-size: 24px;">판매자
+								평가 내역</span>
 						</div>
 						<hr>
+
 						<div class="container mt-3">
 							<table id="board-table" class="table table-hover" border="1px"
 								style="text-align: center">
 								<thead>
 									<tr>
-										<th>상태</th>
-										<th>상품명</th>
-										<th>가격</th>
-										<th>거래일</th>
-										<th>결제방식</th>
-										<th>배송방식</th>
-										<th>취소</th>
+										<th>판매자</th>
+										<th>내용</th>
+										<th>평점</th>
+										<th>거래방식</th>
+										<th>평가일</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="selllogList" items="${selllogList}">
+									<c:forEach var="reviewList" items="${reviewList}">
 										<tr>
-											<td>${selllogList.tradestatus}</td>
-											<td>${selllogList.title}</td>
-											<td>${selllogList.price}</td>
-											<td>${selllogList.tradestartdate}</td>
-											<td>${selllogList.paymethod}</td>
-											<td>${selllogList.trademethod}</td>
-											<td>
-											<c:if test="${selllogList.buyuserno ne 0}">
-											    판매완료
-											</c:if>
-											<c:if test="${selllogList.buyuserno eq 0}">
-											    <form action="/myWorkSpace/delleteSellItem.do" method="post">
-											        <input type="hidden" name="productno" value="${selllogList.productno}">
-											        <input type="submit" 
-											        style=" background-color: #4CAF50; color: white; border: none; border-radius: 4px;"
-											        value="판매취소">
-											    </form>
-											</c:if>
-											</td>
+											<td>${reviewList.sellername }</td>
+											<td>${reviewList.reviewcontent }</td>
+											<td>${reviewList.reviewscore }</td>
+											<td>${reviewList.paymethod }</td>
+											<td>${reviewList.reviewdate }</td>
+											
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -84,7 +70,8 @@
 							<li class="nav-item mb-2"><a
 								href="/myWorkSpace/getSellList.do"
 								class="nav-link text-success border rounded p-2">판매 내역</a></li>
-							<li class="nav-item mb-2"><a href="/myWorkSpace/getReviewList.do"
+							<li class="nav-item mb-2"><a
+								href="/myWorkSpace/getReviewList.do"
 								class="nav-link text-success border rounded p-2">판매자 평가</a></li>
 							<li class="nav-item mb-2"><a href="/myWorkSpace/faqList.do"
 								class="nav-link text-success border rounded p-2">자주 묻는 질문</a></li>

@@ -75,6 +75,7 @@ public class ProductDAO extends DBConnPool{
 				dto.setTitle(rs.getString("title"));
 				dto.setPrice(rs.getString("price"));
 				dto.setImage(rs.getString("image"));
+				dto.setPaymethod(rs.getString("paymethod"));
 				dto.setUserno(rs.getInt("userno"));
 			}
 		} catch (SQLException e) {
