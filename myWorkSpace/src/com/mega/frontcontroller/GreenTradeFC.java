@@ -16,6 +16,8 @@ import com.mega.detailitem.controller.DetailItemController;
 import com.mega.faq.controller.FaqContentController;
 import com.mega.faq.controller.FaqListController;
 import com.mega.faq.controller.FaqSaveController;
+import com.mega.heart.controller.CancleHeartController;
+import com.mega.heart.controller.DoHeartController;
 import com.mega.index.contoller.IndexController;
 import com.mega.join.controller.JoinController;
 import com.mega.like.controller.LikeController;
@@ -140,7 +142,12 @@ public class GreenTradeFC extends HttpServlet {
 		else if (requestURI.equals("/myWorkSpace/getSellList.do")) {
 	    	forward = new SellListController().execute(req, resp);
         }
-		
+		else if (requestURI.equals("/myWorkSpace/doheart.do")) {
+	    	forward = new DoHeartController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/cancleheart.do")) {
+	    	forward = new CancleHeartController().execute(req, resp);
+        }
 		
 		// 페이지 이동 일괄처리
 		if (forward != null) {
