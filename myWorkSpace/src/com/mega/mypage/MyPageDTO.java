@@ -14,5 +14,5 @@ public class MyPageDTO {
 	private String address2;
 	private int buylistcount;
 	private int selllistcount;
-//	private int reviewcount;
+	private int reviewcount;
 }

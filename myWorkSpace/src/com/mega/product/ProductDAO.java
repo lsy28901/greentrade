@@ -89,11 +89,11 @@ public class ProductDAO extends DBConnPool{
 	public List<ProductDTO> getRecentAddItem(){
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
 		String query="SELECT * FROM (" + 
-				" SELECT p.productno, p.title, p.price, p.image,u.user_name,p.productstatus" + 
+				" SELECT p.productno, p.title, p.price, p.image,u.user_name,p.productstatus,p.trademethod,p.adddate,p.paymethod" + 
 				" FROM product p join user_table_real u on p.userno = u.userno" +
 				" where p.sellstatus = '판매중' " +
 				" ORDER BY p.adddate DESC" + 
-				") WHERE ROWNUM <= 6  ";
+				") WHERE ROWNUM <= 8  ";
 		
 		try {
 			psmt=con.prepareStatement(query);
@@ -104,6 +104,9 @@ public class ProductDAO extends DBConnPool{
 				pdto.setTitle(rs.getString("title"));
 				pdto.setPrice(rs.getString("price"));
 				pdto.setProductStatus(rs.getString("productstatus"));
+				pdto.setTrademethod(rs.getString("trademethod"));
+				pdto.setAdddate(rs.getDate("adddate"));
+				pdto.setPaymethod(rs.getString("paymethod"));
 				pdto.setImage(rs.getString("image"));
 				pdto.setUser_name(rs.getString("user_name"));
 				

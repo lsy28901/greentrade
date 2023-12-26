@@ -20,6 +20,7 @@ public class IndexController implements Action {
 		System.out.println("index액션컨트롤러");
 		HttpSession session = req.getSession();
 		int userno = (int) session.getAttribute("UserNo");
+		System.out.println(userno);
 		// 페이지 경로 설정 함수 호출
 		ActionForward forward = new ActionForward();
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
