@@ -61,7 +61,32 @@ public class DBConnPool {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	// ResultSet를 닫는 인스턴스 메서드
+    public void closeResultSet() {
+        try {
+            if (rs != null)
+                rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // PreparedStatement를 닫는 인스턴스 메서드
+    public void closePreparedStatement() {
+        try {
+            if (psmt != null)
+                psmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     
-    
+    public void closeRsAndPsmt() {
+        closeResultSet();
+        closePreparedStatement();
+        System.out.println("DBCP 커넥션 풀 자원 해제 (Connection 제외)");
+    }
 
 }

@@ -178,10 +178,10 @@ public ProductDTO getProductlistinfo() {
 	            list.add(pdto);
 	        }
 	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        close();
-	    }
+	        e.printStackTrace();}
+//	    } finally {
+//			closeRsAndPsmt();
+//        }
 	    
 	    return list;
 	}
@@ -220,8 +220,8 @@ public ProductDTO getProductlistinfo() {
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } finally {
-	        close();
-	    }
+			closeRsAndPsmt();
+        }
 	    
 	    return list;
 	}
@@ -264,7 +264,7 @@ public ProductDTO getProductlistinfo() {
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } finally {
-	        
+	        close();
 	    }
 
 	    return totalRowCount;
@@ -287,7 +287,7 @@ public ProductDTO getProductlistinfo() {
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } finally {
-	        
+	        close();
 	    }
 
 	    return totalRowCount;

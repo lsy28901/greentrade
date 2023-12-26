@@ -35,6 +35,7 @@ public class ReportDAO extends DBConnPool{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		close();
 		
 		return content;
 	}
@@ -76,8 +77,9 @@ public class ReportDAO extends DBConnPool{
 		} catch (SQLException e) {		
 			e.printStackTrace();
 		}finally {
-			
-		}
+			closeRsAndPsmt();
+        }
+		
 		return list;
 	}
 	
