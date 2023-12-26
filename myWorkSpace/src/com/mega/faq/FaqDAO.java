@@ -39,9 +39,10 @@ public class FaqDAO extends DBConnPool{
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	    } finally {
-	        
-	    }
+	    }finally {
+			closeRsAndPsmt();
+        }
+	    
 	    
 	    return list;
 	}
@@ -66,9 +67,9 @@ public class FaqDAO extends DBConnPool{
 				
 			} catch (Exception e) {
 				e.printStackTrace();
-			}finally {
-				close();
 			}
+			
+			close();
 			
 			return content;
 		}
@@ -85,9 +86,9 @@ public class FaqDAO extends DBConnPool{
 		        psmt.executeUpdate();
 		    } catch (SQLException e) {
 		        e.printStackTrace();
-		    }finally {
-		    	close();
 		    }
+		    close();
+
 		}
 		
 		public int getTotalRowCount() {
@@ -104,9 +105,9 @@ public class FaqDAO extends DBConnPool{
 		        }
 		    } catch (SQLException e) {
 		        e.printStackTrace();
-		    } finally {
-		        close();
 		    }
+		    
+		    close();
 
 		    return totalRowCount;
 		}

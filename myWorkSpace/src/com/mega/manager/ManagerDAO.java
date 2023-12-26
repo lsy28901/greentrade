@@ -42,13 +42,13 @@ public class ManagerDAO extends DBConnPool{
 		        
 	
 		        list.add(dto);
+		        
 		    }
 		} catch (SQLException e) {		
 			e.printStackTrace();
 		}finally {
-			
-		}
-
+			closeRsAndPsmt();
+        }
 		return list;
 	}
 	
@@ -117,9 +117,8 @@ public class ManagerDAO extends DBConnPool{
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	    } finally {
-	        
-	    }
+	    } 
+	    close();
 
 	    return totalRowCount;
 	}

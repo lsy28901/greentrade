@@ -28,15 +28,15 @@ public class ManagerProductController implements Action {
         int endRow = pageNo * pageSize;
         
 		// 페이지 경로 설정 함수 호출
-		ActionForward forward = new ActionForward();
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
 		ManagerProductService managerProductService = new ManagerProductServiceImpl();
+		list = managerProductService.getAllProducts(startRow,endRow);
 		int totalRows = managerProductService.getTotalRowCount();
 		
-		list = managerProductService.getAllProducts(startRow,endRow);
 		request.setAttribute("allProduct", list);
 		request.setAttribute("totalRows", totalRows);
 		
+		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("/manager/manager_product.jsp");
 		
