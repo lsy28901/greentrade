@@ -1,5 +1,6 @@
 package com.mega;
 import java.io.IOException;
+import java.io.StringReader;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collections;
@@ -30,7 +31,10 @@ public class ChatServer extends DBConnPool{
     @OnMessage
     public void onMessage(String message, Session session) throws IOException {
         System.out.println("메시지 전송: " + session.getId() + ": " + message);
+         
         int sender = 42;
+        System.out.println(sender);
+      
         addChatMessage(message,sender);
         synchronized (clients) {
             for (Session client : clients) {
@@ -108,4 +112,3 @@ public class ChatServer extends DBConnPool{
 
 
 }
-

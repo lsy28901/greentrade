@@ -15,10 +15,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <link href="/myWorkSpace/style.css" rel="stylesheet">
 <link href="/myWorkSpace/additem.css" rel="stylesheet" >
-
-
-
-
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/myWorkSpace/manager_script.js"></script>
@@ -67,8 +63,8 @@ a {
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<form class="d-flex col-md-4">
-					<input class="form-control me-2 " type="text" placeholder="Search">
-					<button class="btn btn-primary bg-black" type="button">Search</button>
+					<input id="searchInput" class="form-control me-2" type="text" placeholder="검색어를 입력하세요">
+					<button id="searchButton" class="btn btn-primary bg-black" type="button" style="min-width:70px">검색</button>
 				</form>
 				<div class="collapse navbar-collapse col-md-4 justify-content-end "
 					id="collapsibleNavbar">
@@ -110,8 +106,8 @@ a {
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<form class="d-flex col-md-4">
-					<input class="form-control me-2 " type="text" placeholder="Search">
-					<button class="btn btn-primary bg-black" type="button">Search</button>
+					<input id="searchInputLogin" class="form-control me-2" type="text" placeholder="검색어를 입력하세요">
+					<button id="searchButtonLogin" class="btn btn-primary bg-black" type="button" style="min-width:70px">검색</button>
 				</form>
 				<div class="collapse navbar-collapse col-md-4 justify-content-end "
 					id="collapsibleNavbar">
@@ -153,3 +149,62 @@ a {
    		<%-- <%=session.getAttribute("UserName") %> 회원님 로그인 성공
    		<a href="logout.jsp">[로그아웃]</a> --%>
    <%} %>
+   <script>
+	$(document).ready(function() {
+	    $("#searchButton").click(function() {
+	        var keyword = $("#searchInput").val(); // 검색어를 가져옴
+	        
+	        // 검색어가 비어있지 않은 경우에만 검색 요청을 보냄
+	        if (keyword.trim() !== "") {
+	            // AJAX 요청을 사용하여 검색어를 서버로 보냄
+	            $.ajax({
+	                type: "GET", // 또는 "POST" 등 HTTP 요청 방식 선택
+	                url: "/myWorkSpace/search.do", // 검색 요청을 처리할 서블릿 또는 컨트롤러 URL
+	                data: { keyword: keyword }, // 검색어를 전달
+	                success: function(data) {
+	                    window.location.href = "/myWorkSpace/search.do?keyword=" + keyword
+	                },
+	                error: function(jqXHR, textStatus, errorThrown) {
+	                    alert("검색 요청 실패: " + textStatus);
+	                }
+	            });
+	        } else {
+	            alert("검색어를 입력하세요.");
+	        }
+	    });
+	    $("#searchButtonLogin").click(function() {
+	        var keyword = $("#searchInputLogin").val(); // 검색어를 가져옴
+	        
+	        // 검색어가 비어있지 않은 경우에만 검색 요청을 보냄
+	        if (keyword.trim() !== "") {
+	            // AJAX 요청을 사용하여 검색어를 서버로 보냄
+	            $.ajax({
+	                type: "GET", // 또는 "POST" 등 HTTP 요청 방식 선택
+	                url: "/myWorkSpace/search.do", // 검색 요청을 처리할 서블릿 또는 컨트롤러 URL
+	                data: { keyword: keyword }, // 검색어를 전달
+	                success: function(data) {
+	                    window.location.href = "/myWorkSpace/search.do?keyword=" + keyword
+	                },
+	                error: function(jqXHR, textStatus, errorThrown) {
+	                    alert("검색 요청 실패: " + textStatus);
+	                }
+	            });
+	        } else {
+	            alert("검색어를 입력하세요.");
+	        }
+	    });
+	    
+	    $("#searchInput").keypress(function(event) {
+	        if (event.which === 13) {
+	            event.preventDefault();
+	            $("#searchButton").click();
+	        }
+	    });
+	    $("#searchInputLogin").keypress(function(event) {
+	        if (event.which === 13) {
+	            event.preventDefault();
+	            $("#searchButtonLogin").click();
+	        }
+	    });
+	});
+	</script>

@@ -42,6 +42,7 @@ import com.mega.report.controller.ReportFormController;
 import com.mega.report.controller.ReportListController;
 import com.mega.review.controller.GetReviewListController;
 import com.mega.review.controller.InsertReviewController;
+import com.mega.search.controller.SearchController;
 import com.mega.selllist.controller.InsertSellListController;
 import com.mega.selllist.controller.SellListController;
 
@@ -162,6 +163,9 @@ public class GreenTradeFC extends HttpServlet {
         }
 		else if (requestURI.equals("/myWorkSpace/paySuccess.do")) {
 	    	forward = new PaySuccessController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/search.do")) {
+	    	forward = new SearchController().execute(req, resp);
         }
 		else if (requestURI.equals("/myWorkSpace/productList.do")) {
 	    	forward = new ProductListController().execute(req, resp);

@@ -185,6 +185,47 @@ public ProductDTO getProductlistinfo() {
 	    
 	    return list;
 	}
+	
+	//제목 검색을 통해 가져온다
+	public List<ProductDTO> getProductsByTitle(String title, int startRow, int endRow) {
+	    List<ProductDTO> list = new ArrayList<ProductDTO>();
+	    String query = "SELECT * FROM ("
+	                 + "  SELECT ROWNUM AS rnum, p.*, u.user_name"
+	                 + "  FROM ("
+	                 + "    SELECT productno, title, price, productstatus, image, userno FROM product"
+	                 + "    WHERE title LIKE ?"
+	                 + "  ) p"
+	                 + "  LEFT JOIN user_table_real u ON p.userno = u.userno"
+	                 + "  WHERE ROWNUM <= ?"
+	                 + ") WHERE rnum >= ?";
+	    
+	    try {
+	        psmt = con.prepareStatement(query);
+	        psmt.setString(1, '%'+title+'%'); // title 값을 설정
+	        psmt.setInt(2, endRow);
+	        psmt.setInt(3, startRow);
+	        rs = psmt.executeQuery();
+	        while (rs.next()) {
+	            ProductDTO pdto = new ProductDTO();
+	            pdto.setProductno(rs.getInt("productno"));
+	            pdto.setTitle(rs.getString("title"));
+	            pdto.setPrice(rs.getString("price"));
+	            pdto.setProductStatus(rs.getString("productstatus"));
+	            pdto.setImage(rs.getString("image"));
+	            pdto.setUser_name(rs.getString("user_name"));
+	            
+	            
+	            list.add(pdto);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close();
+	    }
+	    
+	    return list;
+	}
+
 
 	//상품 관리에서 상품을 삭제 - 김찬희
 	public void managerProductDelete(int productno) {
@@ -204,6 +245,8 @@ public ProductDTO getProductlistinfo() {
 	    	close();
 	    }
 	}
+	
+	
 
 	//상품 목록 페이지용 페이지 세는 메서드 - 김찬희
 	public int getTotalRowCount() {
@@ -213,6 +256,29 @@ public ProductDTO getProductlistinfo() {
 
 	    try {
 	        psmt = con.prepareStatement(query);
+	        rs = psmt.executeQuery();
+
+	        if (rs.next()) {
+	            totalRowCount = rs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        
+	    }
+
+	    return totalRowCount;
+	}
+	
+	//title
+	public int getTotalRowCount(String title) {
+	    int totalRowCount = 0;
+
+	    String query = "SELECT COUNT(*) FROM product where title LIKE ?";
+
+	    try {
+	        psmt = con.prepareStatement(query);
+	        psmt.setString(1, '%'+title+'%');
 	        rs = psmt.executeQuery();
 
 	        if (rs.next()) {
