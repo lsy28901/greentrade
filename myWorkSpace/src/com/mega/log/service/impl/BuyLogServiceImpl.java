@@ -6,6 +6,7 @@ import java.util.List;
 import com.mega.log.LogDAO;
 import com.mega.log.LogDTO;
 import com.mega.log.service.BuyLogService;
+import com.mega.product.ProductDTO;
 
 public class BuyLogServiceImpl implements BuyLogService {
 	LogDAO dao = new LogDAO();
@@ -18,6 +19,11 @@ public class BuyLogServiceImpl implements BuyLogService {
 	@Override
 	public void deleteLogs(int productno) {
 		dao.deleteLogs(productno);
+	}
+	@Override
+	public int updateLogs(ProductDTO pdto, int userno) {
+		int result = dao.updateLogs(pdto, userno);
+		return result;
 	}
 
 }

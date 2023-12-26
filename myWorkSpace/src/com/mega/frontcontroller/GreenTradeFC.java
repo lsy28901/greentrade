@@ -24,6 +24,7 @@ import com.mega.like.controller.LikeController;
 import com.mega.log.controller.BuyLogController;
 import com.mega.log.controller.DeleteLogsController;
 import com.mega.log.controller.DeleteSellItemController;
+import com.mega.log.controller.PaySuccessController;
 import com.mega.log.controller.SellLogController;
 import com.mega.login.controller.LoginController;
 import com.mega.manager.controller.ManagerMemberDeleteController;
@@ -155,6 +156,9 @@ public class GreenTradeFC extends HttpServlet {
         }
 		else if (requestURI.equals("/myWorkSpace/cancleheart.do")) {
 	    	forward = new CancleHeartController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/paySuccess.do")) {
+	    	forward = new PaySuccessController().execute(req, resp);
         }
 
 		
