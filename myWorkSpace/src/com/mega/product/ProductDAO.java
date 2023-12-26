@@ -86,6 +86,33 @@ public class ProductDAO extends DBConnPool{
 		close();
 		return dto;
 	}
+	
+public ProductDTO getProductlistinfo() {
+		
+		ProductDTO dto = new ProductDTO(); 
+		
+		String query = "select * from product";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setProductno(rs.getInt("productno"));
+				dto.setTitle(rs.getString("title"));
+				dto.setPrice(rs.getString("price"));
+				dto.setImage(rs.getString("image"));
+				dto.setPaymethod(rs.getString("paymethod"));
+				dto.setUserno(rs.getInt("userno"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		close();
+		return dto;
+	}
 	public List<ProductDTO> getRecentAddItem(){
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
 		String query="SELECT * FROM (" + 
@@ -200,5 +227,110 @@ public class ProductDAO extends DBConnPool{
 	    return totalRowCount;
 	}
 	
+	
+	public List<ProductDTO> getproductlistinfo(){
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		String query="SELECT * FROM (" + 
+				" SELECT p.productno, p.title, p.price, p.image,u.user_name,p.productstatus,p.trademethod,p.adddate,p.paymethod" + 
+				" FROM product p join user_table_real u on p.userno = u.userno" +
+				" where p.sellstatus = '판매중' " +
+				" ORDER BY p.adddate DESC" + 
+				") WHERE ROWNUM <= 16  ";
+		
+		try {
+			psmt=con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductDTO pdto = new ProductDTO();
+				pdto.setProductno(rs.getInt("productno"));
+				pdto.setTitle(rs.getString("title"));
+				pdto.setPrice(rs.getString("price"));
+				pdto.setProductStatus(rs.getString("productstatus"));
+				pdto.setTrademethod(rs.getString("trademethod"));
+				pdto.setAdddate(rs.getDate("adddate"));
+				pdto.setPaymethod(rs.getString("paymethod"));
+				pdto.setImage(rs.getString("image"));
+				pdto.setUser_name(rs.getString("user_name"));
+				
+				list.add(pdto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		close();
+		return list;
+	}
+	
+	public List<ProductDTO> getproductshareinfo(){
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		String query="SELECT * FROM (" + 
+				" SELECT p.productno, p.title, p.price, p.image,u.user_name,p.productstatus,p.trademethod,p.adddate,p.paymethod" + 
+				" FROM product p join user_table_real u on p.userno = u.userno" +
+				" where p.sellstatus = '판매중'  AND p.paymethod = '나눔'" +
+				" ORDER BY p.adddate DESC" + 
+				") WHERE ROWNUM <= 16  ";
+		
+		try {
+			psmt=con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductDTO pdto = new ProductDTO();
+				pdto.setProductno(rs.getInt("productno"));
+				pdto.setTitle(rs.getString("title"));
+				pdto.setPrice(rs.getString("price"));
+				pdto.setProductStatus(rs.getString("productstatus"));
+				pdto.setTrademethod(rs.getString("trademethod"));
+				pdto.setAdddate(rs.getDate("adddate"));
+				pdto.setPaymethod(rs.getString("paymethod"));
+				pdto.setImage(rs.getString("image"));
+				pdto.setUser_name(rs.getString("user_name"));
+				
+				list.add(pdto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		close();
+		return list;
+	}
+	
+	public List<ProductDTO> getproductbestinfo(){
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		String query="SELECT * FROM (" + 
+				" SELECT p.productno, p.title, p.price, p.image,u.user_name,p.productstatus,p.trademethod,p.adddate,p.paymethod" + 
+				" FROM product p join user_table_real u on p.userno = u.userno" +
+				" where p.sellstatus = '판매중'" +
+				" ORDER BY p.viewcount DESC" + 
+				") WHERE ROWNUM <= 16  ";
+		
+		try {
+			psmt=con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductDTO pdto = new ProductDTO();
+				pdto.setProductno(rs.getInt("productno"));
+				pdto.setTitle(rs.getString("title"));
+				pdto.setPrice(rs.getString("price"));
+				pdto.setProductStatus(rs.getString("productstatus"));
+				pdto.setTrademethod(rs.getString("trademethod"));
+				pdto.setAdddate(rs.getDate("adddate"));
+				pdto.setPaymethod(rs.getString("paymethod"));
+				pdto.setImage(rs.getString("image"));
+				pdto.setUser_name(rs.getString("user_name"));
+				
+				list.add(pdto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		close();
+		return list;
+	}
 	
 }

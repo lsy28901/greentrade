@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,128 +107,50 @@
 <body>
 
 	<div class="title_box">
-		<div class="title_text">인기 제품</div>
-		<div></div>
-		<div class="select">
-				<a class="nav-link text-white" href="#">제품 목록</a>
-				<a class="nav-link text-white" href="#">인기 제품</a>
-				<a class="nav-link text-white" href="#">나눔</a>
-		</div>
+		<div class="title_text">나눔</div>
 	</div>
 	<hr style="width: 90%; background: black; margin: 0 auto;">
 	
-	<section class="body">
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes1.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>가격: 23000</p>
-				<p>판매자: 인천 계양구</p>
-				<div class="grade">
-					1위	
-				</div>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes2.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>가격: 23000</p>
-				<p>판매자: 인천 계양구</p>
-				<div class="grade">
-					2위	
-				</div>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes3.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>가격: 23000</p>
-				<p>판매자: 인천 계양구</p>ㄴ
-				<div class="grade">
-					3위	
-				</div>
+	<main style="width: 960px; height: 100%; margin: 30px auto;">
+	<section class="">
+		<div class="container  mt-2">
+			<div
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				<c:forEach var="productbest" items="${productbest}">
+					<div class="col mb-5">
+						<div class="card h-100"
+							style="transition: box-shadow 0.3s, cursor 0.3s; cursor: pointer;"
+							onmouseover="this.style.boxShadow='0 0 10px rgba(0, 0, 0, 0.3)'"
+							onmouseout="this.style.boxShadow='none'"
+							onclick="location.href='/myWorkSpace/detaiIitem.do?productno=${productbest.productno}';">
+							<!-- Sale badge-->
+							<div class="badge bg-green text-black position-absolute"
+								style="top: 0.5rem; right: 0.5rem">${productbest.paymethod}</div>
+							<!-- Product image-->
+							<img class="card-img-top h-100" src="${productbest.image}" />
+							<!-- Product details-->
+							<div class="card-body p-4">
+								<div class="text-center">
+									<!-- Product name-->
+									<h5 class="fw-bolder">${productbest.title}</h5>
+									<div class="text-secondary">${productbest.price}원</div>
+									<!-- Product reviews-->
+									<div class="d-flex justify-content-center text-success mb-2">
+										<div class="bi-star-fill mt-2">${productbest.productStatus}</div>
+									</div>
+									<div class="d-flex justify-content-center  mb-2">
+										<div class="bi-star-fill text-danger mt-2">${productbest.adddate}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
-		
-		<!-- 위에는 제일 인기있는 제품 3개 뽑아서 순위 매기면 됨 아래 출력부터는 반복문으로 제품들 출력하면 될 듯 -->
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes1.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>가격: 23000</p>
-				<p>판매자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes2.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>가격: 23000</p>
-				<p>판매자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes3.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>가격: 23000</p>
-				<p>판매자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes1.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>가격: 23000</p>
-				<p>판매자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes2.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>가격: 23000</p>
-				<p>판매자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes3.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>가격: 23000</p>
-				<p>판매자: 인천 계양구</p>
-			</div>
-		</div>
-			
 	</section>
+	
+	</main>
 
 	<%@ include file="../footer.jsp"%>
 </body>
