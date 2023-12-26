@@ -26,7 +26,7 @@ int endPage = Math.min(startPage + maxPageLinks - 1, totalPages); // 끝 페이�
 								<c:forEach var="search" items="${search}">
 									<article class="mt-3 col-md-2 product-card"  style="transition: box-shadow 0.3s, cursor 0.3s; cursor: pointer;" onmouseover="this.style.boxShadow='0 0 10px rgba(0, 0, 0, 0.3)'" onmouseout="this.style.boxShadow='none'">
 										<div onclick="location.href='/myWorkSpace/detaiIitem.do?productno=${search.productno}';">
-											<img src="../${search.image}" style="width:100%;height:150px;">
+											<img src="./${search.image}" style="width:100%;height:150px;">
 											<div class="mt-2">
 												<b>${search.title}</b>
 											</div>
