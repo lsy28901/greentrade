@@ -165,11 +165,11 @@
 			<form action="./" method="POST" class="form_box">
 				<div class="form-group">
 					<label for="Id"></label>
-					<input type="text" class="form-control" name="id"
+					<input type="text" class="form-control" name="user_id"
 						placeholder="아이디">
 					<label for="Email"></label> 
 					<input type="text" class="form-control"
-						name="email" placeholder="이메일"> 
+						name="user_email" placeholder="이메일"> 
 				</div>
 				<div>
 					<button type="button" onclick="">취소</button>

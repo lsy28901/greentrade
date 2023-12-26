@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,168 +97,49 @@
 
 	<div class="title_box">
 		<div class="title_text">나눔</div>
-		<div></div>
-		<div class="select">
-				<a class="nav-link text-white" href="#">제품 목록</a>
-				<a class="nav-link text-white" href="#">인기 제품</a>
-				<a class="nav-link text-white" href="#">나눔</a>
-		</div>
 	</div>
 	<hr style="width: 90%; background: black; margin: 0 auto;">
 	
-	<section class="body">
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes1.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes2.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes3.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes1.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
+	<main style="width: 960px; height: 100%; margin: 30px auto;">
+	<section class="">
+		<div class="container  mt-2">
+			<div
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				<c:forEach var="productshare" items="${productshare}">
+					<div class="col mb-5">
+						<div class="card h-100"
+							style="transition: box-shadow 0.3s, cursor 0.3s; cursor: pointer;"
+							onmouseover="this.style.boxShadow='0 0 10px rgba(0, 0, 0, 0.3)'"
+							onmouseout="this.style.boxShadow='none'"
+							onclick="location.href='/myWorkSpace/detaiIitem.do?productno=${productshare.productno}';">
+							<!-- Sale badge-->
+							<div class="badge bg-green text-black position-absolute"
+								style="top: 0.5rem; right: 0.5rem">${productshare.paymethod}</div>
+							<!-- Product image-->
+							<img class="card-img-top h-100" src="${productshare.image}" />
+							<!-- Product details-->
+							<div class="card-body p-4">
+								<div class="text-center">
+									<!-- Product name-->
+									<h5 class="fw-bolder">${productshare.title}</h5>
+									<div class="text-secondary">${productshare.price}원</div>
+									<!-- Product reviews-->
+									<div class="d-flex justify-content-center text-success mb-2">
+										<div class="bi-star-fill mt-2">${productshare.productStatus}</div>
+									</div>
+									<div class="d-flex justify-content-center  mb-2">
+										<div class="bi-star-fill text-danger mt-2">${productshare.adddate}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes2.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes3.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes1.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes2.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes3.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes1.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes2.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes3.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes1.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes2.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="item-img" style="border-right:1px solid black">
-				<img src="../imgfolder/clothes3.png"/>
-			</div>
-			<div class="item-detail">
-				<p>스웨터</p>
-				<p>나눔자: 인천 계양구</p>
-			</div>
-		</div>
-			
 	</section>
-
+	
+	</main>
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>

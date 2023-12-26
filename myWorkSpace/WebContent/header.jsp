@@ -86,11 +86,11 @@ a {
 			<div class="container-fluid">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link text-black"
-						href="/myWorkSpace/login/product_list.jsp">상품목록</a></li>
+						href="/myWorkSpace/productList.do">상품목록</a></li>
 					<li class="nav-item"><a class="nav-link text-black"
-						href="/myWorkSpace/login/product_best.jsp">인기상품</a></li>
+						href="/myWorkSpace/productBest.do">인기상품</a></li>
 					<li class="nav-item"><a class="nav-link text-black"
-						href="/myWorkSpace/login/product_share.jsp">나눔</a></li>
+						href="/myWorkSpace/productShare.do">나눔</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -136,11 +136,11 @@ a {
 			<div class="container-fluid">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link text-black"
-						href="/myWorkSpace/login/product_list.jsp">상품목록</a></li>
+						href="/myWorkSpace/productList.do">상품목록</a></li>
 					<li class="nav-item"><a class="nav-link text-black"
-						href="/myWorkSpace/login/product_best.jsp">인기상품</a></li>
+						href="/myWorkSpace/productBest.do">인기상품</a></li>
 					<li class="nav-item"><a class="nav-link text-black"
-						href="/myWorkSpace/login/product_share.jsp">나눔</a></li>
+						href="/myWorkSpace/productShare.do">나눔</a></li>
 				</ul>
 			</div>
 		</nav>

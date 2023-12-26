@@ -34,6 +34,9 @@ import com.mega.manager.controller.ManagerProductController;
 import com.mega.manager.controller.ManagerProductDeleteController;
 import com.mega.mypage.controller.MyPageController;
 import com.mega.mypage.controller.MyPageEditController;
+import com.mega.productlist.controller.ProductBestController;
+import com.mega.productlist.controller.ProductListController;
+import com.mega.productlist.controller.ProductShareController;
 import com.mega.report.controller.ReportContentController;
 import com.mega.report.controller.ReportFormController;
 import com.mega.report.controller.ReportListController;
@@ -164,8 +167,17 @@ public class GreenTradeFC extends HttpServlet {
 		else if (requestURI.equals("/myWorkSpace/search.do")) {
 	    	forward = new SearchController().execute(req, resp);
         }
-
+		else if (requestURI.equals("/myWorkSpace/productList.do")) {
+	    	forward = new ProductListController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/productShare.do")) {
+	    	forward = new ProductShareController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/productBest.do")) {
+	    	forward = new ProductBestController().execute(req, resp);
+        }
 		
+
 		// 페이지 이동 일괄처리
 		if (forward != null) {
 			if (forward.isRedirect()) {
