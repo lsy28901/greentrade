@@ -22,7 +22,6 @@ public class DetailItemController implements Action {
 		
 		System.out.println("detailItemController 호출");
         int productno = Integer.parseInt(req.getParameter("productno"));
-        String userno = req.getParameter("userno");
         HttpSession session = req.getSession();
         String uid = (String) session.getAttribute("UserId");
         UserDAO dao = new UserDAO();
@@ -32,13 +31,11 @@ public class DetailItemController implements Action {
 		DetailItemService detailItemService = new DetailItemServiceImpl();
 		DoHeartService heartService = new DoHeartServiceImpl();
 		ProductDTO prodto = detailItemService.getProductInfo(productno);
+		detailItemService.IncViewcount(productno);
 		HeartDTO heartdto = heartService.getHeartStatus(udto.getUserno(), prodto.getProductno());
 		req.setAttribute("prodetail", prodto);
 		req.setAttribute("heartstat", heartdto);
-		System.out.println(udto.getUserno());
-		System.out.println(prodto.getProductno());
-		System.out.println(prodto.getTradelocation());
-		
+
 		forward.setRedirect(false);
 		forward.setPath("/detailItem/detailitem.jsp");
 		

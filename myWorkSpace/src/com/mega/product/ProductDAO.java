@@ -81,9 +81,8 @@ public class ProductDAO extends DBConnPool{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			close();
+			closeRsAndPsmt();
 		}
-		close();
 		return dto;
 	}
 	
@@ -399,4 +398,23 @@ public ProductDTO getProductlistinfo() {
 		return list;
 	}
 	
+	//상품 클릭시 조회수 증가
+	public void IncViewcount(int productno) {
+		
+		String query = "update product set viewcount = viewcount + 1 where productno = ?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1,productno);
+			
+			psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			System.out.println("조회수 증가");
+			close();
+		}
+	}
+
 }

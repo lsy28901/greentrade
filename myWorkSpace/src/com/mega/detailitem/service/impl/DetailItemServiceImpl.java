@@ -13,4 +13,9 @@ public class DetailItemServiceImpl implements DetailItemService {
 		return prodetail;
 	}
 
+	@Override
+	public void IncViewcount(int productno) {
+		dao.IncViewcount(productno);
+	}
+
 }
