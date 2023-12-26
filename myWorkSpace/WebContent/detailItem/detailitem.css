@@ -36,6 +36,10 @@ main {
 	height:30%;
 	grid-template-columns:auto auto;
 }
+#likeBtn{
+	background-color:white;
+	border:0;
+}
 #info2_img{
 	border:1px solid;
 }
@@ -91,7 +95,9 @@ main {
 	color: black;
 	font-weight: bold;
 }
-
+#redheart{
+	fill: red;
+}
 
 
 

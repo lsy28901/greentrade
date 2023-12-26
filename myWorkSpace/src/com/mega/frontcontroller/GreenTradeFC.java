@@ -16,6 +16,8 @@ import com.mega.detailitem.controller.DetailItemController;
 import com.mega.faq.controller.FaqContentController;
 import com.mega.faq.controller.FaqListController;
 import com.mega.faq.controller.FaqSaveController;
+import com.mega.heart.controller.CancleHeartController;
+import com.mega.heart.controller.DoHeartController;
 import com.mega.index.contoller.IndexController;
 import com.mega.join.controller.JoinController;
 import com.mega.like.controller.LikeController;
@@ -27,6 +29,8 @@ import com.mega.login.controller.LoginController;
 import com.mega.manager.controller.ManagerMemberDeleteController;
 import com.mega.manager.controller.ManagerMemberInfoController;
 import com.mega.manager.controller.ManagerMemberListController;
+import com.mega.manager.controller.ManagerProductController;
+import com.mega.manager.controller.ManagerProductDeleteController;
 import com.mega.mypage.controller.MyPageController;
 import com.mega.mypage.controller.MyPageEditController;
 import com.mega.report.controller.ReportContentController;
@@ -92,6 +96,12 @@ public class GreenTradeFC extends HttpServlet {
 		else if (requestURI.equals("/myWorkSpace/managerMemberDelete.do")) {
 	    	forward = new ManagerMemberDeleteController().execute(req, resp);
         }
+		else if (requestURI.equals("/myWorkSpace/managerProduct.do")) {
+	    	forward = new ManagerProductController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/managerProductDelete.do")) {
+	    	forward = new ManagerProductDeleteController().execute(req, resp);
+        }
 		else if (requestURI.equals("/myWorkSpace/detaiIitem.do")) {
 	    	forward = new DetailItemController().execute(req, resp);
 		}
@@ -140,7 +150,13 @@ public class GreenTradeFC extends HttpServlet {
 		else if (requestURI.equals("/myWorkSpace/getReviewList.do")) {
 	    	forward = new GetReviewListController().execute(req, resp);
         }
-		
+		else if (requestURI.equals("/myWorkSpace/doheart.do")) {
+	    	forward = new DoHeartController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/cancleheart.do")) {
+	    	forward = new CancleHeartController().execute(req, resp);
+        }
+
 		
 		// 페이지 이동 일괄처리
 		if (forward != null) {

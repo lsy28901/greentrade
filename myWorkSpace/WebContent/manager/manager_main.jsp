@@ -41,7 +41,7 @@ $(function() {
     
     $('#manager_productMenu').click(function(e) {
         e.preventDefault(); // 링크 클릭 동작 취소
-        loadPage('/myWorkSpace/manager/manager_product.jsp','main');
+        loadPage('/myWorkSpace/managerProduct.do','main');
     });
     
     
