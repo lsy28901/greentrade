@@ -10,7 +10,10 @@ import com.mega.frontcontroller.Action;
 import com.mega.frontcontroller.ActionForward;
 import com.mega.join.service.JoinService;
 import com.mega.join.service.impl.JoinServiceImpl;
+import com.mega.login.service.LoginService;
+import com.mega.login.service.impl.LoginServiceImpl;
 import com.mega.user.JoinDTO;
+import com.mega.user.UserDTO;
 
 public class JoinController implements Action{
 
@@ -38,7 +41,10 @@ public class JoinController implements Action{
 		String userAddress2 = req.getParameter("address2");
 		String userPostnum = req.getParameter("postnum");
 		
-		JoinService joinservice = new JoinServiceImpl();
+		JoinService joinservice = new JoinServiceImpl();//insert부분 객체
+		JoinService dupliservice= new JoinServiceImpl();//중복확인 객체
+		
+		
 		JoinDTO dto = new JoinDTO();
 		
 		dto.setUser_name(userName);
@@ -53,15 +59,28 @@ public class JoinController implements Action{
 		dto.setAddress2(userAddress2);
 		dto.setPostnum(userPostnum);
 		
-		int result = joinservice.insertJoinDTO(dto);//잘 반영됬으면 0이 아님
+		//insert전 아이디 중복 확인 부분
+		JoinDTO joinDTO = dupliservice.dupliUserDTO(userId);
+		//System.out.println(joinDTO.getUser_id());//DB에 저장된 id값 잘 읽어옴
 		
-		if(result!=0){
+		if(joinDTO.getUser_id() != null) {//입력한 id가 DB에 존재,//여기서 자꾸 null
 			forward.setRedirect(true);
-			forward.setPath("/myWorkSpace/main.jsp");
-		}else{
-			forward.setRedirect(true);
-			forward.setPath("/myWorkSpace/login/join.jsp");
+			forward.setPath("/myWorkSpace/login/join.jsp");//다시 회원가입하게 페이지 이동
+		}else {
+			//중복이 없으니 insert하는 부분
+			//insert부분
+			int result = joinservice.insertJoinDTO(dto);//잘 반영됬으면 0이 아님//insert하기위해 확인유무 변수 result
+			
+			if(result!=0){
+				forward.setRedirect(true);
+				forward.setPath("/myWorkSpace/main.jsp");
+			}else{
+				forward.setRedirect(true);
+				forward.setPath("/myWorkSpace/login/join.jsp");
+			}
 		}
+		
+		
 		return forward;
 	}
 	

@@ -228,7 +228,7 @@
          </div>
          <div>
          <!--./join.jsp  -->
-            <a href="/myWorkSpace/join.do">회원가입</a>
+            <a href="/myWorkSpace/login/join.jsp">회원가입</a>
          </div>
       </div>
    </section>
