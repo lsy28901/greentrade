@@ -37,29 +37,20 @@ int endPage = Math.min(startPage + maxPageLinks - 1, totalPages); // 끝 페이�
 									</article>
 								</c:forEach>
 								<div class="text-center mt-4">
-						 			<%
-										if (pageNo > 1) {
-									%>
-										<a href="#" class="btn btn-success" onclick="loadPage('/myWorkSpace/managerProduct.do?pageNo=<%= pageNo - 1 %>', 'main')">이전</a>
-									<%
-										}
-										for (int currentPage = startPage; currentPage <= endPage; currentPage++) {
-											if (currentPage == pageNo) {
-									%>
-											 <span class="btn btn-primary"><%= currentPage %></span>
-									<%
-											} else {
-									%>
-												<a href="#" class="btn btn-secondary" onclick="loadPage('/myWorkSpace/managerProduct.do?pageNo=<%= currentPage %>', 'main')"><%= currentPage %></a>
-									<%
-											}
-										}
-										if (pageNo < totalPages) {
-									%>
-											<a href="#" class="btn btn-success" onclick="loadPage('/myWorkSpace/managerProduct.do?pageNo=<%= pageNo + 1 %>', 'main')">다음</a>
-									<%
-										}
-									%>
+						 			<% if (pageNo > 1) { %>
+									  <a href="/myWorkSpace/search.do?keyword=<%= request.getParameter("keyword") %>&pageNo=<%= pageNo - 1 %>" class="btn btn-success">이전</a>
+									<% } %>
+									<% for (int currentPage = startPage; currentPage <= endPage; currentPage++) { %>
+									  <% if (currentPage == pageNo) { %>
+									    <span class="btn btn-primary"><%= currentPage %></span>
+									  <% } else { %>
+									    <a href="/myWorkSpace/search.do?keyword=<%= request.getParameter("keyword") %>&pageNo=<%= currentPage %>" class="btn btn-secondary"><%= currentPage %></a>
+									  <% } %>
+									<% } %>
+									<% if (pageNo < totalPages) { %>
+									  <a href="/myWorkSpace/search.do?keyword=<%= request.getParameter("keyword") %>&pageNo=<%= pageNo + 1 %>" class="btn btn-success">다음</a>
+									<% } %>
+
 								</div>
 							</section>
 						</section>
