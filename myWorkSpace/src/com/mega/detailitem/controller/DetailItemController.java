@@ -19,6 +19,7 @@ public class DetailItemController implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) {
+		
 		System.out.println("detailItemController 호출");
         int productno = Integer.parseInt(req.getParameter("productno"));
         String userno = req.getParameter("userno");
@@ -40,6 +41,7 @@ public class DetailItemController implements Action {
 		
 		forward.setRedirect(false);
 		forward.setPath("/detailItem/detailitem.jsp");
+		
 
 		return forward;
 	}
