@@ -9,16 +9,16 @@
     <script>
 		const socket = new WebSocket("ws://localhost:8000/myWorkSpace/ChatingServer");
 		const userNo = <%= request.getParameter("UserNo") %>;
-		
 		socket.onopen = function (event) {
 		    // 웹 소켓 연결이 열릴 때 처리
+		    socket.send(userNo);
 		    appendMessage("Connected to the server");
 		};
 		
 		socket.onmessage = function (event) {
 		    // 수신된 웹 소켓 메시지 처리
 		    const message = event.data;
-		    appendMessage("Received: " + message);
+		    appendMessage(userId+": " + message);
 		};
 		
 		socket.onclose = function (event) {
