@@ -1,5 +1,6 @@
 package com.mega.index.contoller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +20,17 @@ public class IndexController implements Action {
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("index액션컨트롤러");
 		HttpSession session = req.getSession();
+		ActionForward forward = new ActionForward();
+		if(session.getAttribute("UserNo")== null) {
+				forward.setRedirect(true);
+				forward.setPath("/myWorkSpace/login/login.jsp");
+				return forward;
+		}
+		
 		int userno = (int) session.getAttribute("UserNo");
 		System.out.println(userno);
 		// 페이지 경로 설정 함수 호출
-		ActionForward forward = new ActionForward();
+		
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
 		IndexService indexService = new IndexServicImpl();
 		
