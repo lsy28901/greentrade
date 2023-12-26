@@ -48,23 +48,29 @@
 						<div class="row mt-5">
 							<div class="col-md-4 text-center"  style="align-items: center">
 								<div class="row">
-									<p class="row-md-4">구매 내역</p>
+									<p class="row-md-4"><a href="/myWorkSpace/getBuyList.do">구매 내역</a></p>
 									<hr class="row-md-4 w-50 mx-auto">
-									<p class="row-md-4">${mydto.buylistcount }회</p>
+									<p class="row-md-4">
+									<a href="/myWorkSpace/getBuyList.do">${mydto.buylistcount }회</a>
+									</p>
 								</div>
 							</div>
 							<div class="col-md-4 text-center">
 								<div class="row">
-									<p class="row-md-4">판매 내역</p>
+									<p class="row-md-4"><a href="/myWorkSpace/getSellList.do" >판매 내역</a></p>
 									<hr class="row-md-4 w-50 mx-auto">
-									<p class="row-md-4">${mydto.selllistcount }회</p>
+									<p class="row-md-4">
+									<a href="/myWorkSpace/getSellList.do" >${mydto.selllistcount }회</a>
+									</p>
 								</div>
 							</div>
 							<div class="col-md-4 text-center ">
 								<div class="row">
-									<p class="row-md-4">평가 내역</p>
+									<p class="row-md-4"><a href="/myWorkSpace/getReviewList.do">평가 내역</a></p>
 									<hr class="row-md-4 w-50 mx-auto">
-									<p class="row-md-4">0회</p>
+									<p class="row-md-4">
+									<a href="/myWorkSpace/getReviewList.do">${mydto.reviewcount }회</a>
+									</p>
 								</div>
 							</div>
 						</div>
