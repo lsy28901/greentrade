@@ -6,5 +6,6 @@ import com.mega.user.UserDTO;
 public interface JoinService {
 	int insertJoinDTO(JoinDTO add);
 	JoinDTO dupliUserDTO(String uid);
+	int insertAddress(JoinDTO add);
 }
 

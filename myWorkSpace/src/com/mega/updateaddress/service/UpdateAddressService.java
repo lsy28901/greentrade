@@ -1,7 +1,8 @@
 package com.mega.updateaddress.service;
 
-import com.mega.user.UserDTO;
+import com.mega.address.AddressDTO;
 
 public interface UpdateAddressService {
-	public int UpdateAddress(UserDTO dto);
+	public int UpdateAddress(AddressDTO dto);
+	AddressDTO getUpdatedAdd(String userId);
 }

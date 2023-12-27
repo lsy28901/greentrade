@@ -70,7 +70,7 @@ public class JoinController implements Action{
 			//중복이 없으니 insert하는 부분
 			//insert부분
 			int result = joinservice.insertJoinDTO(dto);//잘 반영됬으면 0이 아님//insert하기위해 확인유무 변수 result
-			
+			joinservice.insertAddress(dto);
 			if(result!=0){
 				forward.setRedirect(true);
 				forward.setPath("/myWorkSpace/main.jsp");

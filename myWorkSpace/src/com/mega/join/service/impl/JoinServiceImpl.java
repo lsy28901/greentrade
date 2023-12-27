@@ -19,5 +19,12 @@ public class JoinServiceImpl implements JoinService{
 		JoinDTO dto = userDAO.dupliUserDTO(uid);
 		return dto;
 	}
+
+	@Override
+	public int insertAddress(JoinDTO add) {
+		int result2 = 0;
+		result2 = userDAO.insertAddress(add);
+		return result2;
+	}
 	
 }

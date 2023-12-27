@@ -6,9 +6,10 @@ import com.mega.user.UserDTO;
 
 public class AddFrmServiceImpl implements AddFrmService {
 	UserDAO dao = new UserDAO();
-	
-	public UserDTO getUserDTO(int userno) {
-		UserDTO userdto = dao.getUserDTO(userno);
+
+	@Override
+	public UserDTO getUserDTO(String userId) {
+		UserDTO userdto = dao.getUserDTO(userId);
 		return userdto;
 	}
 }	
