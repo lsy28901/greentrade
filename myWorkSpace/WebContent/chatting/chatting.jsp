@@ -42,7 +42,7 @@
 </div>
 <%@ include file="../footer.jsp"%>
 <script>
-    const socket = new WebSocket("ws://localhost:8000/myWorkSpace/ChatingServer");
+    const socket = new WebSocket("ws://192.168.20.24:8000/myWorkSpace/ChatingServer");
     const userNo = <%= request.getParameter("UserNo") %>;
 
     socket.onopen = function (event) {
