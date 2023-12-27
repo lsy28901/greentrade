@@ -6,6 +6,8 @@ import java.sql.Statement;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.servlet.http.HttpServlet;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -13,6 +15,8 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import common.DBConnPool;
 
@@ -28,21 +32,51 @@ public class ChatServer extends DBConnPool{
         System.out.println("웹 소켓 연결: " + session.getId());
     }
 
+//    @OnMessage
+//    public void onMessage(String message, Session session) throws IOException {
+//        System.out.println("메시지 전송: " + session.getId() + ": " + message);
+//         
+////        int sender = 42;
+////        System.out.println(sender);
+////      
+////        addChatMessage(message,sender);
+//        synchronized (clients) {
+//            for (Session client : clients) {
+//                if (!client.equals(session)) {
+//                    client.getBasicRemote().sendText(message);
+//                }
+//            }
+//        }
+//    }
     @OnMessage
     public void onMessage(String message, Session session) throws IOException {
-        System.out.println("메시지 전송: " + session.getId() + ": " + message);
-         
-        int sender = 42;
-        System.out.println(sender);
-      
-        addChatMessage(message,sender);
-        synchronized (clients) {
-            for (Session client : clients) {
-                if (!client.equals(session)) {
-                    client.getBasicRemote().sendText(message);
-                }
-            }
-        }
+        // JSON 형태의 데이터 파싱
+        JSONObject jsonMessage;
+		try {
+			jsonMessage = new JSONObject(message);
+			int userNo = jsonMessage.getInt("userNo");
+	        String textMessage = jsonMessage.getString("message");
+	        
+	        String nickname = getNickname(userNo);
+	     // userNo와 메시지를 처리하는 로직 추가
+	        System.out.println("userNo: " + userNo);
+	        System.out.println("메시지: " + textMessage);
+	        addChatMessage(textMessage, userNo);
+	        String responseMessage = nickname + ": " + textMessage;
+	        // 클라이언트에게 응답 메시지 전송
+	        synchronized (clients) {
+	            for (Session client : clients) {
+	                if (!client.equals(session)) {
+	                    client.getBasicRemote().sendText(responseMessage);
+	                }
+	            }
+	        }
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
     }
 
     @OnClose
@@ -64,51 +98,41 @@ public class ChatServer extends DBConnPool{
             String sql = "INSERT INTO chat (chatid,message, timestamp, chatroom,sender) "
             		+ "VALUES (chat_message_seq.NEXTVAL,?, sysdate, 1,?)";
             psmt = con.prepareStatement(sql);
+            System.out.println(message);
+            System.out.println(sender);
             psmt.setString(1,message);
             psmt.setInt(2, sender);
             
             psmt.executeUpdate();
+            
+            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            close();
+           closeRsAndPsmt();
+
         }
     }
-
-    // buyerId와 sellerId로 chatroom의 외래 키 값을 가져오는 메서드
-    private int getOrCreateChatroom(int senderId, int receiverId) {
+    
+    private String getNickname(int userNo) {
+        String nickname = null;
         try {
-            // 이미 생성된 채팅방이 있는지 확인
-            String sql = "SELECT chatroom FROM chatroom WHERE (buyer = 42 AND seller = 51) OR (buyer = 51 AND seller = 42)";
+            // 데이터베이스에서 사용자 번호에 해당하는 닉네임 조회
+            String sql = "SELECT nickname FROM user_table_real WHERE userno = ?";
             psmt = con.prepareStatement(sql);
-            psmt.setInt(1, senderId);
-            psmt.setInt(2, receiverId);
-            psmt.setInt(3, receiverId);
-            psmt.setInt(4, senderId);
-            rs = psmt.executeQuery();
-
+            psmt.setInt(1, userNo);
+             rs = psmt.executeQuery();
             if (rs.next()) {
-                // 이미 생성된 채팅방이 있으면 해당 채팅방 ID를 반환
-                return rs.getInt("chatroom");
-            } else {
-                // 새로운 채팅방을 생성하고 ID를 반환
-                sql = "INSERT INTO chatroom (chatroom,buyer, seller) VALUES (chat_room_seq.NEXTVAL,42, 51)";
-                psmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                psmt.setInt(1, senderId);
-                psmt.setInt(2, receiverId);
-                psmt.executeUpdate();
-
-                // 생성된 채팅방의 ID를 가져옴
-                rs = psmt.getGeneratedKeys();
-                if (rs.next()) {
-                    return rs.getInt(1);
-                }
+                nickname = rs.getString("nickname");
             }
-        } catch (SQLException e) {
+            rs.close();
+            psmt.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return -1;
+        return nickname;
     }
+
 
 
 }
