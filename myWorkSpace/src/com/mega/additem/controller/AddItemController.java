@@ -24,7 +24,7 @@ public class AddItemController implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("additem액션컨트롤러");
-
+		//테스트
 		// 페이지 경로 설정 함수 호출
 		ActionForward forward = new ActionForward();
 		HttpSession session = req.getSession();
