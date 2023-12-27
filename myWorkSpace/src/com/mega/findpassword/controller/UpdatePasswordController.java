@@ -16,7 +16,7 @@ import com.mega.frontcontroller.ActionForward;
 import com.mega.user.UserDTO;
 
 
-public class FindPasswordController implements Action{
+public class UpdatePasswordController implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -34,7 +34,21 @@ public class FindPasswordController implements Action{
 		UserDTO userDTO = findpasswordservice.findpasswordDTO(userId);
 		
 		if (user_newpw != null && !user_newpw.trim().isEmpty()) {
-		    System.out.println("실행됨" + user_newpw);
+		    //System.out.println("실행됨" + user_newpw);
+			
+			FindPasswordService updatepasswordservice = new FindPasswordServiceImpl();
+			UserDTO updateDTO = updatepasswordservice.updatepasswordDTO(userId, user_newpw);
+			
+			if (updateDTO != null) {
+				// 업데이트가 성공했을 때의 로직을 추가할 수 있음
+				System.out.println("Password updated successfully!");
+				forward.setRedirect(false);
+				forward.setPath("./main.jsp");
+			} else {
+				// 업데이트가 실패했을 때의 로직을 추가할 수 있음
+				System.out.println("Password update failed!");
+			}
+		    
 		} else {
 		    System.out.println("조건문 실행 안됨");
 		}
@@ -43,47 +57,11 @@ public class FindPasswordController implements Action{
 		
 		
 		
-		if(userDTO.getUser_id().equals(userId)) {
-			System.out.println("아이디 존재");
-			//userDTO.getUser_id();
-			int length = 4; // 생성하고자 하는 난수의 길이
-			
-			String generatedPassword = generateRandomPassword(length);
-			//System.out.println("Generated Password: " + generatedPassword);
-			req.setAttribute("Random", generatedPassword);
-			
-			
-			FindPasswordService updatepasswordservice = new FindPasswordServiceImpl();
-			UserDTO updateDTO = updatepasswordservice.updatepasswordDTO(userId, generatedPassword);
-			
-			if (updateDTO != null) {
-				// 업데이트가 성공했을 때의 로직을 추가할 수 있음
-				System.out.println("Password updated successfully!");
-				forward.setRedirect(false);
-				forward.setPath("/login/find_password.jsp");
-			} else {
-				// 업데이트가 실패했을 때의 로직을 추가할 수 있음
-				System.out.println("Password update failed!");
-			}
-			
-			
-		}else {
-			
-			System.out.println("아이디 없음");
-			forward.setRedirect(false);
-			forward.setPath("/login/find_password.jsp");
-		}
+		
 		return forward;
 	}
 	
 
-    public static String generateRandomPassword(int length) {
-        SecureRandom random = new SecureRandom();
-        byte[] bytes = new byte[length];
-        random.nextBytes(bytes);
-
-        // 생성된 난수를 Base64로 인코딩하여 반환
-        return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
-    }
+   
 
 }

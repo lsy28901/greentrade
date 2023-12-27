@@ -8,8 +8,13 @@ public class FindPasswordServiceImpl implements FindPasswordService{
 
 	UserDAO userDAO = new UserDAO();
 	@Override
-	public UserDTO findpasswordDTO(String uid, String uemail) {
-		UserDTO dto = userDAO.findpasswordDTO(uid, uemail);
+	public UserDTO findpasswordDTO(String uid) {
+		UserDTO dto = userDAO.findpasswordDTO(uid);
+		return dto;
+	}
+	@Override
+	public UserDTO updatepasswordDTO(String uid, String upass) {
+		UserDTO dto = userDAO.updatepasswordDTO(uid, upass);
 		return dto;
 	}
 

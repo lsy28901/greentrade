@@ -199,16 +199,15 @@ public class UserDAO extends DBConnPool {
 
 	}
 	
-	public UserDTO findpasswordDTO(String uid, String uemail) {
+	public UserDTO findpasswordDTO(String uid) {
 
 		UserDTO dto = new UserDTO();
 
-		String sql = "select * from user_table_real where user_id=? and email=?";
+		String sql = "select * from user_table_real where user_id=?";
 
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, uid);
-			psmt.setString(2, uemail);
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
@@ -336,5 +335,51 @@ public class UserDAO extends DBConnPool {
 
 				return dto;
 
+			}
+			
+			//비밀번호 업데이트
+			public UserDTO updatepasswordDTO(String uid, String upass) {
+
+			    UserDTO dto = new UserDTO();
+
+			    String updatesql = "UPDATE user_table_real SET user_password = ? WHERE user_id = ?";
+			    String selectsql = "SELECT * FROM user_table_real WHERE user_id = ?";
+			    
+			    try {
+			        // 비밀번호 업데이트
+			        psmt = con.prepareStatement(updatesql);
+			        psmt.setString(1, upass);
+			        psmt.setString(2, uid);
+			        psmt.executeUpdate();
+
+			        // 업데이트된 정보를 가져옴
+			        psmt = con.prepareStatement(selectsql);
+			        psmt.setString(1, uid);
+			        rs = psmt.executeQuery();
+
+			        if (rs.next()) {
+			            dto.setUserno(rs.getInt("userno"));
+			            dto.setUser_name(rs.getString("user_name"));
+			            dto.setUser_call(rs.getString("user_call"));
+			            dto.setUser_id(rs.getString("user_id"));
+			            dto.setUser_password(rs.getString("user_password"));
+			            dto.setEmail(rs.getString("email"));
+			            dto.setNickname(rs.getString("nickname"));
+			            dto.setGreenscore(rs.getInt("greenscore"));
+			            dto.setSellcount(rs.getInt("sellcount"));
+			            dto.setStaff(rs.getString("staff"));
+			            dto.setPostnum(rs.getString("postnum"));
+			            dto.setImgurl(rs.getString("imgurl"));
+			            dto.setAddress1(rs.getString("address1"));
+			            dto.setAddress2(rs.getString("address2"));
+			        }
+
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			    } finally {
+			        close();
+			    }
+
+			    return dto;
 			}
 }
