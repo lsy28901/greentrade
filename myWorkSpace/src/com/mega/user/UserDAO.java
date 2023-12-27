@@ -54,10 +54,11 @@ public class UserDAO extends DBConnPool {
 		int result = 0;
 		String sql = "INSERT INTO user_table_real(userno,user_name, user_call, user_id, user_password, email, nickname, imgurl, staff, address1, address2, postnum)"
 				+ " VALUES(user_no_add.nextval,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-//		"INSERT INTO report (reportid, reporterid, targetid, reportdate, reportimgurl, reportcontent, reporttitle) " +
-//        "VALUES (report_seq.NEXTVAL, (SELECT userno FROM user_table WHERE nickname = '테스터1'), (SELECT userno FROM user_table WHERE nickname = ?),sysdate, ?, ?, ?)";
-
+		
+		String query = "INSERT into address (addno, receivername, phone, address1, address2, postnum, userid)"
+				+ " values (add_no_seq.nextval, ?, ?, ?, ?, ?, ?)";
+				//+ receivername = ?, phone = ?, address1 = ?, address2 = ?, postnum = ?"
+				
 		try {
 			psmt = con.prepareStatement(sql);
 
@@ -74,12 +75,13 @@ public class UserDAO extends DBConnPool {
 			psmt.setString(11, add.getPostnum());
 
 			result = psmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		close();
+		closeRsAndPsmt();
 
 		return result;// 회원가입 성공유무
 
@@ -271,35 +273,7 @@ public class UserDAO extends DBConnPool {
 
 	}
 	
-	//배송지 수정하기
-	public int UpdateAddress(UserDTO dto) {
-		int result = 0;
-		
-		String sql = "UPDATE user_table_real set user_name = ?, user_call = ?, address1 = ?, address2 = ?, postnum = ?"
-				   + " WHERE userno = ?";
-		
-		try {
-			psmt = con.prepareStatement(sql);
-			
-			psmt.setString(1, dto.getUser_name());
-			psmt.setString(2, dto.getUser_call());
-			psmt.setString(3, dto.getAddress1());
-			psmt.setString(4, dto.getAddress2());
-			psmt.setString(5, dto.getPostnum());
-			psmt.setInt(6, dto.getUserno());
-			
-			psmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			System.out.println("배송지 업데이트");
-			close();
-		}
-
-		return result;
-
-	}
+	
 	
 	//판매자정보 페이지
 			public UserDTO sellerInfo(int userno) {
@@ -381,5 +355,35 @@ public class UserDAO extends DBConnPool {
 			    }
 
 			    return dto;
+			}
+			
+			//회원가입시 address테이블에 데이터삽입
+			public int insertAddress(JoinDTO add) {
+				int result = 0;
+				
+				String query = "INSERT into address (addno, receivername, phone, address1, address2, postnum, userid)"
+						+ " values (add_no_seq.nextval, ?, ?, ?, ?, ?, ?)";
+						
+				try {
+					psmt = con.prepareStatement(query);
+
+					psmt.setString(1, add.getUser_name());
+					psmt.setString(2, add.getUser_call());
+					psmt.setString(3, add.getAddress1());
+					psmt.setString(4, add.getAddress2());
+					psmt.setString(5, add.getPostnum());
+					psmt.setString(6, add.getUser_id());
+
+					result = psmt.executeUpdate();
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				close();
+
+				return result;// 회원가입 성공유무
+
 			}
 }

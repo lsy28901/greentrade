@@ -2,7 +2,9 @@ package com.mega.updateaddress.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.mega.address.AddressDTO;
 import com.mega.detailitem.service.DetailItemService;
 import com.mega.detailitem.service.impl.DetailItemServiceImpl;
 import com.mega.frontcontroller.Action;
@@ -20,38 +22,38 @@ public class UpdateAddressController implements Action {
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) {
 		
 		System.out.println("UpdateAddressController 호출");
-        int userno = Integer.parseInt(req.getParameter("userno"));
+        HttpSession session = req.getSession();
+        String userId = (String) session.getAttribute("UserId");
         int productno = Integer.parseInt(req.getParameter("productno"));
         
-		String user_name = req.getParameter("user_name");
-		String user_call = req.getParameter("user_call");
+		String receivername = req.getParameter("receivername");
+		String phone = req.getParameter("phone");
 		String address1 = req.getParameter("address1");
 		String address2 = req.getParameter("address2");
 		String postnum = req.getParameter("postnum");
 		
 		ActionForward forward = new ActionForward();
-		UserDTO dto = new UserDTO();
+		AddressDTO adddto = new AddressDTO();
 		
-		dto.setUserno(userno);
-		dto.setUser_name(user_name);
-		dto.setUser_call(user_call);
-		dto.setAddress1(address1);
-		dto.setAddress2(address2);
-		dto.setPostnum(postnum);
+		adddto.setUserid(userId);
+		adddto.setReceivername(receivername);
+		adddto.setPhone(phone);
+		adddto.setAddress1(address1);
+		adddto.setAddress2(address2);
+		adddto.setPostnum(postnum);
 		
 		UpdateAddressService UpdateAddressService = new UpdateAddressServiceImpl();
-		UpdateAddressService.UpdateAddress(dto);
+		UpdateAddressService.UpdateAddress(adddto);
 		
 		DetailItemService detailItemService = new DetailItemServiceImpl();
 		PayService payService = new PayServiceImpl();
 		ProductDTO prodto = detailItemService.getProductInfo(productno);
-		UserDTO udto = payService.getUserAdd(userno);
-		
+		AddressDTO updto = UpdateAddressService.getUpdatedAdd(userId);
 		req.setAttribute("prodetail", prodto);
-		req.setAttribute("user", udto);
+		req.setAttribute("user", updto);
 		
 		forward.setRedirect(false);
-		forward.setPath("/pay/pay.jsp");
+		forward.setPath("/pay/updatedpay.jsp");
 
 		return forward;
 	}

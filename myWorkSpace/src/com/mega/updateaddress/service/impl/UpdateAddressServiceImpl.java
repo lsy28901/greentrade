@@ -1,18 +1,24 @@
 package com.mega.updateaddress.service.impl;
 
+import com.mega.address.AddressDAO;
+import com.mega.address.AddressDTO;
 import com.mega.updateaddress.service.UpdateAddressService;
-import com.mega.user.UserDAO;
-import com.mega.user.UserDTO;
 
 public class UpdateAddressServiceImpl implements UpdateAddressService {
-	UserDAO dao = new UserDAO();
-	UserDTO dto = new UserDTO();
+	AddressDAO dao = new AddressDAO();
+	AddressDTO dto = new AddressDTO();
 
 	@Override
-	public int UpdateAddress(UserDTO dto) {
+	public int UpdateAddress(AddressDTO dto) {
 		int result =0;
 		result = dao.UpdateAddress(dto);
 		
 		return result;
+	}
+
+	@Override
+	public AddressDTO getUpdatedAdd(String userId) {
+		dto = dao.getUpdatedAdd(userId);
+		return dto;
 	}
 }

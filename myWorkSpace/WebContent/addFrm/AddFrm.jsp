@@ -65,8 +65,8 @@
 		<div id="inputContainer">
 			<input style="display:none;" name="userno" value="${ user.userno}">
 			<input style="display:none;" name="productno" value="${ productno}">
-			<input type="text" placeholder="받으실분의 성함" name="user_name">
-			<input type="text" placeholder="휴대폰번호 ( - 제외하고 번호만 입력해주세요)" name="user_call">
+			<input type="text" placeholder="받으실분의 성함" name="receivername">
+			<input type="text" placeholder="휴대폰번호 ( - 제외하고 번호만 입력해주세요)" name="phone">
             <input type="button" class="form-control" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="form-control"
                style="background: #BFF6B6;"><br>
 			<input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control" name="postnum" >
