@@ -1,13 +1,13 @@
 package com.mega;
 import java.io.IOException;
-import java.io.StringReader;
+
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.servlet.http.HttpServlet;
+
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -29,7 +29,7 @@ public class ChatServer extends DBConnPool{
     @OnOpen
     public void onOpen(Session session) {
         clients.add(session);
-        System.out.println("웹 소켓 연결: " + session.getId());
+        System.out.println("웹 소켓 연결: " + session.getId());	
     }
 
 //    @OnMessage

@@ -438,6 +438,7 @@ public ProductDTO getProductlistinfo() {
 			if(rs.next()) {
 				dto.setNickname(rs.getString("nickname"));
 				dto.setGreenscore(rs.getInt("greenscore"));
+				dto.setUserno(rs.getInt("userno"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -447,4 +448,36 @@ public ProductDTO getProductlistinfo() {
 		return dto;
 	}
 
+	
+	//판매자정보 페이지 판매자가 파는 상품
+	public List<ProductDTO> getsellerItemList(int userno){
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		String query = "SELECT * FROM product where userno = ?";
+		
+		try {
+			psmt=con.prepareStatement(query);
+			psmt.setInt(1, userno);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductDTO pdto = new ProductDTO();
+				pdto.setProductno(rs.getInt("productno"));
+				pdto.setTitle(rs.getString("title"));
+				pdto.setPrice(rs.getString("price"));
+				pdto.setLikenum(rs.getInt("likenum"));
+				pdto.setProductStatus(rs.getString("productStatus"));
+				pdto.setTrademethod(rs.getString("trademethod"));
+				pdto.setAdddate(rs.getDate("adddate"));
+				pdto.setPaymethod(rs.getString("paymethod"));
+				pdto.setImage(rs.getString("image"));
+				
+				list.add(pdto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		return list;
+	}
 }
