@@ -31,11 +31,14 @@ public class DetailItemController implements Action {
 		DetailItemService detailItemService = new DetailItemServiceImpl();
 		DoHeartService heartService = new DoHeartServiceImpl();
 		ProductDTO prodto = detailItemService.getProductInfo(productno);
+		UserDTO userdto = detailItemService.getSellerInfo(productno);
 		detailItemService.IncViewcount(productno);
 		HeartDTO heartdto = heartService.getHeartStatus(udto.getUserno(), prodto.getProductno());
 		req.setAttribute("prodetail", prodto);
+		req.setAttribute("sellerInfo", userdto);
 		req.setAttribute("heartstat", heartdto);
-
+		req.setAttribute("user", udto);
+		
 		forward.setRedirect(false);
 		forward.setPath("/detailItem/detailitem.jsp");
 		

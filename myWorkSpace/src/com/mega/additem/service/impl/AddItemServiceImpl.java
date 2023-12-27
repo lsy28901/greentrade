@@ -8,7 +8,6 @@ public class AddItemServiceImpl implements AddItemService{
 	ProductDAO productDAO = new ProductDAO();
 	@Override
 	public int inserItem(ProductDTO dto ) {
-		// TODO Auto-generated method stub
 		int result = productDAO.insertItem(dto);
 		return result;
 	}

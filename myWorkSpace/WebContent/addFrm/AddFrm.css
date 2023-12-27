@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+main {
+	wdith: 960px;
+	margin: 40px auto;
+}
+#AddFrm{
+	display:block;
+}
+#inputContainer{
+	width:100%;
+	margin: 0 auto;	
+}
+#AddFrm input {
+	width:100%;
+	margin: 20px auto;
+	padding: 20px;
+	border-radius:10px;
+	border: 1px solid #ccc;
+}
+#submitBtn{
+	background-color: #BFF6B6;
+	font-weight: bold;
+	font-size:larger;
+}
