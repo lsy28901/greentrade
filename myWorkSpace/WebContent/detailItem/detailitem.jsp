@@ -124,11 +124,13 @@
 			</div>
 			
 			<div id="Seller_info">
-				<span>판매자 정보</span>
+				<p>판매자 정보</p>
+				<div>
 				<p>${sellerInfo.nickname}</p>
 				<span>그린스코어</span>
 				<p>${sellerInfo.greenscore}</p>
 				<a href="/myWorkSpace/sellinfo.do?userno=${sellerInfo.userno}">${sellerInfo.nickname}님의 정보 더보기</a>
+				</div>
 			</div>
 		</div>
 		<hr>

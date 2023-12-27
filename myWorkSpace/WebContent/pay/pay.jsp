@@ -37,12 +37,13 @@
         	    	jQuery.ajax({
         	    		url: "/myWorkSpace/paySuccess.do", //cross-domain error가 발생하지 않도록 주의해주세요
         	    		type: 'POST',
-        	    		dataType: 'json',
         	    		data: {
         		    		imp_uid : rsp.imp_uid,
         		    		productno: "${prodetail.productno}"
         		    		//기타 필요한 데이터가 있으면 추가 전달
-        	    		}
+        	    		},success: function (response) {
+        	    			window.location.href = "/myWorkSpace/main.jsp";
+        		        }
         	    	}).done(function(data) {
         	    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
         	    		if ( everythings_fine ) {
@@ -53,6 +54,7 @@
         	    			msg += '카드 승인번호 : ' + rsp.apply_num;
         	    			
         	    			alert(msg);
+        	    			window.location.href = "/myWorkSpace/index.";
         	    		} else {
         	    			//[3] 아직 제대로 결제가 되지 않았습니다.
         	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
