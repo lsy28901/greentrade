@@ -34,7 +34,7 @@ public class MyPageDAO extends DBConnPool{
 				"  u.address2," + 
 				"  (select count(*) from buylist bl where u.userno = bl.buyuserno) as buylistcount," + 
 				"  (select count(*) from selllist sl where u.userno = sl.selluserno) as selllistcount," + 
-				"  (select count(*) from heart h where u.userno = h.userno) as heartcount" + 
+				"  (select count(*) from review r where u.userno = r.reviewuserno) as reviewcount" + 
 				" from user_table_real u" + 
 				" where u.userno = ?";
 		
@@ -53,7 +53,7 @@ public class MyPageDAO extends DBConnPool{
 				mydto.setAddress2(rs.getString("address2"));
 				mydto.setBuylistcount(rs.getInt("buylistcount"));
 				mydto.setSelllistcount(rs.getInt("selllistcount"));
-				mydto.setReviewcount(rs.getInt("heartcount"));
+				mydto.setReviewcount(rs.getInt("reviewcount"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
