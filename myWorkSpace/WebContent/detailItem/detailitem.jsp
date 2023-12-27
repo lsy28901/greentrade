@@ -22,7 +22,7 @@
 		console.log(productno);
 		console.log(userno);
 		console.log(likestat);
-		
+		//ㅇㅇㅇㅇ
 		//찜한 상태가 아닐때
 		if(likestat == 0) {
 			$.ajax({
@@ -110,6 +110,8 @@
 				</div>
 				
 				<div id="button_Container">
+					<button id="chatBtn" >채팅하기</button> 
+					<button id="tradeBtn"><a href="/myWorkSpace/pay.do?productno=${prodetail.productno}&userno=${user.userno}">거래하기</a></button>
 					<button id="chatBtn"><button id="chatBtn" >
 					<a href="/myWorkSpace/chat.do?productno=${prodetail.productno}">
 					채팅하기</button>
