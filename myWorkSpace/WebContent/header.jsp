@@ -18,6 +18,9 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/myWorkSpace/manager_script.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+
 <style>
 .container {
 	margin: 0;
@@ -48,6 +51,7 @@ a {
 	color: inherit;
 }
 </style>
+
 <body>
 	<%
 		String userStaff = (String) session.getAttribute("UserStaff");
@@ -113,11 +117,11 @@ a {
 					id="collapsibleNavbar">
 					<ul class="navbar-nav ">
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="/myWorkSpace/chatting/chating.jsp?UserNo=<%=session.getAttribute("UserNo")%>">채팅하기</a></li>
+							href="/myWorkSpace/chatting/chatting.jsp?UserNo=<%=session.getAttribute("UserNo")%>">채팅하기</a></li>
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
 							href="/myWorkSpace/additem/additem.jsp">판매하기</a></li>
 							<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="/myWorkSpace/login/logout.jsp">로그아웃</a></li>
+							href="/myWorkSpace/login/logout.jsp" onclick="kakaoLogout()">로그아웃</a></li>
 						<%if("manager".equals(userStaff)) {%>
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
 							href="/myWorkSpace/manager/manager_main.jsp">관리자 페이지</a></li>
@@ -207,4 +211,15 @@ a {
 	        }
 	    });
 	});
+	
+	function kakaoLogout() {
+		   Kakao.Auth.logout(function() {
+		      // 로그아웃 성공 시 추가적인 처리 가능
+		      // 서버 세션을 삭제하는 등의 작업이 필요하다면 이 부분에 추가
+		      alert("카카오 계정에서 로그아웃되었습니다.");
+
+		      // 로그아웃 후 리다이렉트할 페이지 (원하는 페이지로 수정)
+		      window.location.href = '/myWorkSpace/login/logout.jsp';
+		   });
+		}
 	</script>

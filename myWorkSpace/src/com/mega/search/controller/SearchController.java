@@ -16,7 +16,7 @@ import com.mega.search.service.impl.SearchServiceImpl;
 public class SearchController implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("managerProduct액션컨트롤러");
+		System.out.println("search 컨트롤러");
 		
 		int pageNo = request.getParameter("pageNo") != null ? Integer.parseInt(request.getParameter("pageNo")) : 1;
         int pageSize = 12; // 페이지당 게시물 수
@@ -31,9 +31,10 @@ public class SearchController implements Action {
 		ActionForward forward = new ActionForward();
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
 		SearchService searchService = new SearchServiceImpl();
-		int totalRows = searchService.getTotalRowCount(title);
 		
 		list = searchService.getProductsByTitle(title, startRow, endRow);
+		int totalRows = searchService.getTotalRowCount(title);
+		
 		request.setAttribute("search", list);
 		request.setAttribute("totalRows", totalRows);
 		
