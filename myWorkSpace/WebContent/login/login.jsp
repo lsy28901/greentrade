@@ -221,7 +221,7 @@
       </div>
       <div class="select">
          <div>
-            <a href="#">아이디 찾기</a>
+            <a href="/myWorkSpace/login/find_id.jsp">아이디 찾기</a>
          </div>
          <div>
             <a href="/myWorkSpace/login/find_password.jsp">비밀번호 찾기</a>

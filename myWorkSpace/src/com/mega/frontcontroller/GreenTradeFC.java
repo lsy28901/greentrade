@@ -18,6 +18,7 @@ import com.mega.detailitem.controller.DetailItemController;
 import com.mega.faq.controller.FaqContentController;
 import com.mega.faq.controller.FaqListController;
 import com.mega.faq.controller.FaqSaveController;
+import com.mega.findid.controller.FindIdController;
 import com.mega.findpassword.controller.FindPasswordController;
 import com.mega.findpassword.controller.UpdatePasswordController;
 import com.mega.heart.controller.CancleHeartController;
@@ -206,6 +207,9 @@ public class GreenTradeFC extends HttpServlet {
         }
 		else if (requestURI.equals("/myWorkSpace/passwordUpdate.do")) {
 	    	forward = new UpdatePasswordController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/findId.do")) {
+	    	forward = new FindIdController().execute(req, resp);
         }
 		
 		
