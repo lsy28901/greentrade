@@ -110,7 +110,7 @@
 				</div>
 				
 				<div id="button_Container">
-					<button id="chatBtn"><button id="chatBtn" >
+					<button id="chatBtn">
 					<a href="/myWorkSpace/chat.do?productno=${prodetail.productno}">
 					채팅하기</button>
 					<button id="tradeBtn"><a href="/myWorkSpace/pay/pay.jsp?productno=${prodetail.productno}">거래하기</a></button>
