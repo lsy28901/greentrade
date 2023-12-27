@@ -1,8 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.mega.user.UserDAO"%>
+<%@ page import="com.mega.user.UserDTO"%>
+<%
+	String uid = (String) session.getAttribute("UserId");
+	UserDAO udao = new UserDAO();
+	UserDTO udto = udao.getUserDTO(uid);
+	String address1 = udto.getAddress1();
+	String address2 = udto.getAddress2();
+%>
 <%@ include file="../header.jsp"%>
 
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=84f32ca44f8da8a2eb9af26880f2cc4e&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=84f32ca44f8da8a2eb9af26880f2cc4e"></script>
 <script>
+
+	var map; // 전역으로 선언
+	var marker; // 전역으로 선언
 	function handleImageSelection() {
 		var input = document.getElementById('imageInput');
 		var previewImage = document.getElementById('previewImage');
@@ -41,16 +57,132 @@
 		// locationRow와 locationInputRow 변수 정의
 		var locationRow = document.getElementById('locationRow');
 		var locationInputRow = document.getElementById('locationInputRow');
+		var locationInputRowMap = document.getElementById('locationInputRowMap');
 
-		if (imgElement.nextSibling.nodeValue.trim() === '직거래') {
-			if (imgElement.src.endsWith('checkedbox.png')) {
-				locationRow.style.display = ''; // 보이게 설정
-				locationInputRow.style.display = ''; // 보이게 설정
-			} else {
-				locationRow.style.display = 'none'; // 숨김 설정
-				locationInputRow.style.display = 'none'; // 숨김 설정
+		 if (imgElement.nextSibling.nodeValue.trim() === '직거래') {
+	            if (imgElement.src.endsWith('checkedbox.png')) {
+	                locationRow.style.display = ''; // Show locationRow
+	                locationInputRow.style.display = ''; // Show locationInputRow
+	                locationInputRowMap.style.display = ''; // Show locationInputRowMap
+	                initializeKakaoMap(); // Initialize Kakao Map
+	            } else {
+	                locationRow.style.display = 'none'; // Hide locationRow
+	                locationInputRow.style.display = 'none'; // Hide locationInputRow
+	                locationInputRowMap.style.display = 'none'; // Hide locationInputRowMap
+	            }
+	        }
+	}
+	
+	 function initializeKakaoMap() {
+	        var address1 = '<%=address1%>';
+	        var address2 = '<%=address2%>';
+	        var fullAddress = address1 + ' ' + address2;
+	        var geocoder = new kakao.maps.services.Geocoder();
+
+	        geocoder.addressSearch(fullAddress, function(result, status) {
+	            if (status === kakao.maps.services.Status.OK) {
+	                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	                var mapOption = {
+	                    center: coords,
+	                    level: 3
+	                };
+	                var mapContainer = document.getElementById('map');
+	                map = new kakao.maps.Map(mapContainer, mapOption);
+	                marker = new kakao.maps.Marker({
+	                    map: map,
+	                    position: coords
+	                });
+
+	                kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+	                    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+	                        if (status === kakao.maps.services.Status.OK) {
+	                            var detailAddr = result[0].address.address_name;
+	                            
+	                            var tradeLocationInput = document.getElementById('tradeLocationInput')
+								tradeLocationInput.value = detailAddr;
+	                            
+	                            // 마커를 클릭한 위치에 표시합니다 
+	                            marker.setPosition(mouseEvent.latLng);
+	                            marker.setMap(map);
+								
+	                        }   
+	                    });
+	                });
+	            }
+	        });
+	    }
+
+	function updateKakaoMap() {
+		var address1 = document.getElementById('tradeLocationInput').value;
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		geocoder.addressSearch(address1, function(result, status) {
+			if (status === kakao.maps.services.Status.OK) {
+				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+				// 맵의 중심을 새로운 좌표로 이동
+				map.setCenter(coords);
+
+				// 기존 마커 제거
+				marker.setMap(null);
+
+				// 새로운 마커 생성
+				marker = new kakao.maps.Marker({
+					map : map,
+					position : coords
+				});
 			}
-		}
+		});
+	}
+	
+	function performAddressAutocomplete() {
+	    var input = document.getElementById('tradeLocationInput');
+	    var datalist = document.getElementById('addressList');
+
+	    var userInput = input.value.trim();
+
+	    if (userInput === '') {
+	        datalist.innerHTML = '';
+	        return;
+	    }
+
+	    kakao.maps.load(function () {
+	        var placesSearch = new kakao.maps.services.Places();
+
+	        placesSearch.keywordSearch(userInput, function (result, status) {
+	            if (status === kakao.maps.services.Status.OK) {
+	                // 검색 결과를 처리하는 함수 호출
+	                handleAutocompleteResult(result);
+	            }
+	        });
+	    });
+	}
+	function searchDetailAddrFromCoords(coords, callback) {
+	    var geocoder = new kakao.maps.services.Geocoder();
+	    
+	    geocoder.coord2Address(coords.getLng(), coords.getLat(), function(result, status) {
+	        if (status === kakao.maps.services.Status.OK) {
+	            callback(result, status);
+	        } else {
+	            console.error('Geocoder failed or returned empty result.');
+	            // 예외 처리 또는 디버깅을 위한 적절한 조치 수행
+	        }
+	    });
+	}
+
+	function handleAutocompleteResult(result) {
+	    var addresses = result.map(function (place) {
+	        return place.address_name;
+	    });
+
+	    var datalist = document.getElementById('addressList');
+	    datalist.innerHTML = '';
+
+	    addresses.forEach(function (address) {
+	        var option = document.createElement('option');
+	        option.value = address;
+	        datalist.appendChild(option);
+	    });
 	}
 
 	var selectedItemType = ""; // 선택된 상품 상태를 저장할 변수
@@ -72,53 +204,51 @@
 
 	var selectedPayMethod = ""; // 선택된 결제/나눔 값을 저장할 변수
 
-// 	function togglePayMethod(button, method) {
-// 		var buttons = document.querySelectorAll('.paymethod_btn');
-// 		buttons.forEach(function(btn) {
-// 			btn.style.backgroundColor = ''; // 모든 버튼의 배경색 초기화
-// 		});
+	// 	function togglePayMethod(button, method) {
+	// 		var buttons = document.querySelectorAll('.paymethod_btn');
+	// 		buttons.forEach(function(btn) {
+	// 			btn.style.backgroundColor = ''; // 모든 버튼의 배경색 초기화
+	// 		});
 
-// 		if (button.style.backgroundColor !== '#BFF6B6') {
-// 			button.style.backgroundColor = '#BFF6B6'; // 선택된 버튼의 배경색을 초록색으로 변경
-// 			selectedPayMethod = method; // 선택된 결제/나눔 값 업데이트
-// 		} else {
-// 			button.style.backgroundColor = ''; // 선택 해제되면 배경색 초기화
-// 			selectedPayMethod = ""; // 선택된 결제/나눔 값 초기화
-// 		}
-		
+	// 		if (button.style.backgroundColor !== '#BFF6B6') {
+	// 			button.style.backgroundColor = '#BFF6B6'; // 선택된 버튼의 배경색을 초록색으로 변경
+	// 			selectedPayMethod = method; // 선택된 결제/나눔 값 업데이트
+	// 		} else {
+	// 			button.style.backgroundColor = ''; // 선택 해제되면 배경색 초기화
+	// 			selectedPayMethod = ""; // 선택된 결제/나눔 값 초기화
+	// 		}
 
-// 	}
+	// 	}
 	function togglePayMethod(button, method) {
-	    var buttons = document.querySelectorAll('.paymethod_btn');
-	    buttons.forEach(function (btn) {
-	        btn.style.backgroundColor = ''; // 모든 버튼의 배경색 초기화
-	    });
+		var buttons = document.querySelectorAll('.paymethod_btn');
+		buttons.forEach(function(btn) {
+			btn.style.backgroundColor = ''; // 모든 버튼의 배경색 초기화
+		});
 
-	    var itemPriceRow = document.getElementById('itemPriceRow');
-	    var itemPriceInput = document.getElementById('item_price');
+		var itemPriceRow = document.getElementById('itemPriceRow');
+		var itemPriceInput = document.getElementById('item_price');
 
-	    if (button.style.backgroundColor !== '#BFF6B6') {
-	        button.style.backgroundColor = '#BFF6B6'; // 선택된 버튼의 배경색을 초록색으로 변경
-	        selectedPayMethod = method; // 선택된 결제/나눔 값 업데이트
+		if (button.style.backgroundColor !== '#BFF6B6') {
+			button.style.backgroundColor = '#BFF6B6'; // 선택된 버튼의 배경색을 초록색으로 변경
+			selectedPayMethod = method; // 선택된 결제/나눔 값 업데이트
 
-	        if (selectedPayMethod === '나눔') {
-	            // 나눔이 선택되면 itemPriceRow를 숨기고 값을 0으로 설정
-	            itemPriceRow.style.display = 'none';
-	            itemPriceInput.value = '0';
-	        } else {
-	            // 결제가 선택되면 itemPriceRow를 보이게 하고 값을 초기화
-	            itemPriceRow.style.display = '';
-	            itemPriceInput.value = '';
-	        }
-	    } else {
-	        button.style.backgroundColor = ''; // 선택 해제되면 배경색 초기화
-	        selectedPayMethod = ""; // 선택된 결제/나눔 값 초기화
-	        itemPriceRow.style.display = ''; // itemPriceRow를 보이게 설정
-	        itemPriceInput.value = '';
-	    }
+			if (selectedPayMethod === '나눔') {
+				// 나눔이 선택되면 itemPriceRow를 숨기고 값을 0으로 설정
+				itemPriceRow.style.display = 'none';
+				itemPriceInput.value = '0';
+			} else {
+				// 결제가 선택되면 itemPriceRow를 보이게 하고 값을 초기화
+				itemPriceRow.style.display = '';
+				itemPriceInput.value = '';
+			}
+		} else {
+			button.style.backgroundColor = ''; // 선택 해제되면 배경색 초기화
+			selectedPayMethod = ""; // 선택된 결제/나눔 값 초기화
+			itemPriceRow.style.display = ''; // itemPriceRow를 보이게 설정
+			itemPriceInput.value = '';
+		}
 	}
-	
-	
+
 	function submitForm() {
 		// 여기서 선택된 값을 가져와서 사용할 수 있음
 		var selectedValues = document.getElementById('selectedValues');
@@ -142,8 +272,8 @@
 		// 폼을 서버로 제출
 		document.getElementById('additemForm').submit();
 	}
-	
 </script>
+
 
 <main id="additem_main"
 	style="width: 960px; height: 100%; margin: 30px auto;">
@@ -216,28 +346,40 @@
 					onclick="toggleCheckbox(this)">택배거래 <img
 					src="../imgfolder/checkbox.png" style="cursor: pointer;"
 					onclick="toggleCheckbox(this)">직거래</td>
+
 			</tr>
 
 			<tr id="locationRow" style="display: none;">
 				<td class="add_td">거래희망장소</td>
 			</tr>
-			
-<!-- 			<tr id="locationInputRow" style="display: none;"> -->
-<!-- 				<td class="add_td"><input class="additem_input_location" -->
-<!-- 					name="tradeLocation" type="text" value=" "> <img -->
-<!-- 					src="../imgfolder/search.png"></td> -->
-<!-- 			</tr> -->
-			
-			 <tr id="locationInputRow" style="display: none;">
-                <td class="add_td">
-                <input class="additem_input_location"
-                    name="tradeLocation" type="text" value=" "> <img
-                    src="../imgfolder/search.png"  style="cursor: pointer;" >
-                    
-                </td>
-                    
-            </tr>
-            
+
+			<!-- 			<tr id="locationInputRow" st	yle="display: none;"> -->
+			<!-- 				<td class="add_td"><input class="additem_input_location" -->
+			<!-- 					name="tradeLocation" type="text" value=" "> <img -->
+			<!-- 					src="../imgfolder/search.png"></td> -->
+			<!-- 			</tr> -->
+
+			<tr id="locationInputRow" style="display: none;">
+				<td class="add_td"><input class="additem_input_location"
+					name="tradeLocation" type="text" id="tradeLocationInput"
+					oninput="performAddressAutocomplete()" list="addressList"
+					
+					value="<%=udto.getAddress1() + ' ' + udto.getAddress2()%>">
+					<datalist id="addressList"></datalist>
+					<img src="../imgfolder/search.png" style="cursor: pointer;"
+					onclick="updateKakaoMap()"></td>
+
+
+
+			</tr>
+			<tr id="locationInputRowMap" style="display: none;">
+				<td>
+					<div id="map"
+						style="width: 800px; height: 350px; margin: 10px 20px;"></div>
+				</td>
+
+
+			</tr>
 
 			<tr>
 				<td class="add_td"><button class="add_submit" type="button"
