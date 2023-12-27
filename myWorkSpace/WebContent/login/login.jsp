@@ -4,7 +4,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -16,6 +15,7 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <style>
 
@@ -154,6 +154,9 @@
 }
 </style>
 <script>
+   Kakao.init('84f32ca44f8da8a2eb9af26880f2cc4e');
+</script>
+<script>
 
 	function validateForm(form){
 		//밑의 아이디와 비번 접근 방법 1//document.loginFrm.user_id.value;
@@ -175,7 +178,39 @@
 			return false;
 		}
 	}
+	
+	
+	function kakaoLogin() {
+		   Kakao.Auth.login({
+		      success: function(authObj) {
+		         // 로그인 성공 시 사용자 정보 가져오기
+		         Kakao.API.request({
+		            url: '/v2/user/me',
+		            success: function(response) {
+		               // response에 사용자 정보가 포함됩니다.
+		               var email = response.kakao_account.email;
+		               var profileImage = response.properties.profile_image;
+		               var nickname = response.properties.nickname;
+
+		               // Get the session object
+		               var session = '<%= session %>';
+
+		               // Redirect or perform other actions as needed
+		               window.location.href = '/myWorkSpace/index.do';
+		            },
+		            fail: function(error) {
+		               // 사용자 정보 가져오기 실패 시 처리
+		            },
+		         });
+		      },
+		      fail: function(err) {
+		         // 로그인 실패 처리
+		      },
+		   });
+		}
+	
 </script>
+
 <body>
 
 
@@ -201,12 +236,12 @@
          </form>
       </div>
       <div class="anotherlog_box">
-         <div class="kakao_box">
+         <div class="kakao_box"  onclick="kakaoLogin()" style="cursor: pointer;">
             <div>
                <img style="width:100px; height:100px; border-right:1px solid black;" src="../imgfolder/kakaologo.png">
             </div>
             <div>
-               <a class="nav-link text-black" href="#">카카오 로그인</a>
+               <div class="nav-link text-black" >카카오 로그인</div>
             </div>
          </div>
          <div class="naver_box">
