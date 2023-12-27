@@ -65,10 +65,8 @@ int endPage = Math.min(startPage + maxPageLinks - 1, totalPages); // 끝 페이�
 					    %>
 					</div>
 
-					<div class="mb-4" style="position: relative;">
-					    <div style="position: absolute; right: 0; bottom: 0;">
-					        <button class="btn btn-success" id="manager_Home">홈으로</button>
-					    </div>
+					<div class="mb-4" style="display: flex; justify-content: flex-end;">
+					    <button class="btn btn-success" id="manager_Home">홈으로</button>
 					</div>
 					
 	</div>

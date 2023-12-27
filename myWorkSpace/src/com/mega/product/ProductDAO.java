@@ -231,22 +231,28 @@ public ProductDTO getProductlistinfo() {
 
 	//상품 관리에서 상품을 삭제 - 김찬희
 	public void managerProductDelete(int productno) {
-	    String query = "DELETE FROM product WHERE productno = ?";
-	    
 	    try {
-	        // SQL 쿼리 준비
-	        psmt = con.prepareStatement(query);
+	        // 1. 먼저 heart 테이블에서 관련된 레코드 삭제
+	        String deleteHeartQuery = "DELETE FROM heart WHERE productno = ?";
+	        psmt = con.prepareStatement(deleteHeartQuery);
 	        psmt.setInt(1, productno);
-	        
-	        // 쿼리 실행
 	        psmt.executeUpdate();
-	        
+
+	        // 2. 그런 다음 product 테이블에서 해당 레코드 삭제
+	        String deleteProductQuery = "DELETE FROM product WHERE productno = ?";
+	        psmt = con.prepareStatement(deleteProductQuery);
+	        psmt.setInt(1, productno);
+	        psmt.executeUpdate();
+
+	        // 여기에 커밋 등 추가적인 작업이 필요할 수 있습니다.
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } finally {
-	    	close();
+	        close();
 	    }
 	}
+
 	
 	
 
