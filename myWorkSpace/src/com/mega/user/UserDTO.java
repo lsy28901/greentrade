@@ -18,5 +18,6 @@ public class UserDTO {
 	private String address1;//주소
 	private String address2;//상세주소
 	private String postnum;//우편번호
+	private int reviewCount; // 거래후기 갯수
 }
 
