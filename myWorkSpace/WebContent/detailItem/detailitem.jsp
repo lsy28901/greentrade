@@ -111,7 +111,7 @@
 				</div>
 				
 				<div id="button_Container">
-					<button id="chatBtn" >채팅하기</button>
+					<button id="chatBtn">채팅하기</button>
 					<button id="tradeBtn"><a href="/myWorkSpace/pay/pay.jsp?productno=${prodetail.productno}">거래하기</a></button>
 				</div>
 			</div>

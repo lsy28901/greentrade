@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.mega.additem.controller.AddItemController;
 import com.mega.buylist.controller.BuyListController;
 import com.mega.buylist.controller.InsertBuyListsController;
+import com.mega.chat.controller.GetOrCreateChatroomController;
 import com.mega.detailitem.controller.DetailItemController;
 import com.mega.faq.controller.FaqContentController;
 import com.mega.faq.controller.FaqListController;
@@ -175,6 +176,8 @@ public class GreenTradeFC extends HttpServlet {
         }
 		else if (requestURI.equals("/myWorkSpace/productBest.do")) {
 	    	forward = new ProductBestController().execute(req, resp);
+        }else if (requestURI.equals("/myWorkSpace/chat.do")) {
+	    	forward = new GetOrCreateChatroomController().execute(req, resp);
         }
 		
 
