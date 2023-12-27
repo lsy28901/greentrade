@@ -21,7 +21,7 @@
 							<div class="row">
 								<!-- 반복문으로 BuyListDTO 정보를 동적으로 생성 -->
 								<c:forEach var="buyList" items="${buyList}">
-									<div class="col-md-6">
+									<div class="col-md-6 mt-3">
 										<div class="card" style="max-height: 250px;">
 											<div class="row no-gutters">
 												<div class="col-md-6"

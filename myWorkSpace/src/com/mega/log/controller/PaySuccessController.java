@@ -34,7 +34,10 @@ public class PaySuccessController implements Action{
 		
 		buyLogService.updateLogs(pdto, udto.getUserno());
 		req.setAttribute("productno", pdto.getProductno());
-		forward.setPath("/myWorkSpace/index.do");
+		
+		forward.setRedirect(false);
+		forward.setPath("/main.jsp");
+
 		
 		return forward;
 	}
