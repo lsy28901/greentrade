@@ -107,7 +107,7 @@
 <body>
 
 	<div class="title_box">
-		<div class="title_text">나눔</div>
+		<div class="title_text">인기상품</div>
 	</div>
 	<hr style="width: 90%; background: black; margin: 0 auto;">
 	
