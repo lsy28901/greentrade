@@ -378,12 +378,55 @@ public class UserDAO extends DBConnPool {
 					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+          close();
+            
+          return result;// 회원가입 성공유무
+      }
+  
+			public UserDTO findUserIdDTO(String uemail, String ucall) {
+
+				UserDTO dto = new UserDTO();
+
+				String sql = "select * from user_table_real where email=? and user_call=?";
+
+				try {
+					psmt = con.prepareStatement(sql);
+					psmt.setString(1, uemail);
+					psmt.setString(2, ucall);
+					rs = psmt.executeQuery();
+
+					if (rs.next()) {
+						dto.setUserno(rs.getInt("userno"));
+						dto.setUser_name(rs.getString("user_name"));
+						dto.setUser_call(rs.getString("user_call"));
+						dto.setUser_id(rs.getString("user_id"));
+						dto.setUser_password(rs.getString("user_password"));
+						dto.setEmail(rs.getString("email"));
+						dto.setNickname(rs.getString("nickname"));
+						dto.setGreenscore(rs.getInt("greenscore"));
+						dto.setSellcount(rs.getInt("sellcount"));
+						dto.setStaff(rs.getString("staff"));
+						dto.setPostnum(rs.getString("postnum"));
+						dto.setImgurl(rs.getString("imgurl"));
+						dto.setAddress1(rs.getString("address1"));
+						dto.setAddress2(rs.getString("address2"));
+
+					}
+
+				} catch (SQLException e) { // TODO Auto-generated catch block
+
 					e.printStackTrace();
-				}
-
-				close();
-
-				return result;// 회원가입 성공유무
+				}		
+  
+        close();
+  
+        return dto;
 
 			}
+
+
+
+
 }

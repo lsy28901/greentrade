@@ -160,24 +160,44 @@
 <body>
 	<div class="findId_text">아이디 찾기</div>
 	<hr style="width: 90%; background: black; margin: 0 auto;">
+	<%if(request.getAttribute("userId") == null){ %>
 	<section class="body">
 		<div class="container-body">
-			<form action="./" method="POST" class="form_box">
+			<form action="/myWorkSpace/findId.do" method="POST" class="form_box">
 				<div class="form-group">
 					<label for="Email"></label> <input type="text" class="form-control"
-						name="email" placeholder="이메일"> <label for="Code"></label>
-					<input type="password" class="form-control" name="code"
-						placeholder="수신코드">
+						name="email" placeholder="이메일"> 
+					<label for="user_call"></label>
+					<input type="text" class="form-control" name="user_call"
+						placeholder="전화번호">
 				</div>
 				<div>
-					<button type="button" onclick="">취소</button>
-					<button type="button" onclick="">찾기</button>
+					<button type="submit" onclick="" value="아이디 찾기">아이디찾기</button>
 				</div>
 			</form>
 		</div>
 
 
 	</section>
+	<%}else { %>
+	<section class="body">
+		<div class="container-body">
+			<form action="" method="POST" class="form_box">
+				<div class="form-group" style="justify-content:center; align-items:center;
+				text-align: center; font-size: 20px;">
+					가입된 아이디는<input style="width:80px; border:none; text-decoration: underline;
+					font-size: 35px;"
+					type="text" value="${userId}" />입니다.
+				</div>
+				<div>
+					<button type="button" onclick="window.location.href='/myWorkSpace/login/login.jsp'">로그인으로 이동</button>
+				</div>
+			</form>
+		</div>
+
+
+	</section>
+	<%} %>
 
 	<%@ include file="../footer.jsp"%>
 </body>
