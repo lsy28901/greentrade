@@ -130,6 +130,7 @@
 				<p>${sellerInfo.nickname}</p>
 				<span>그린스코어</span>
 				<p>${sellerInfo.greenscore}</p>
+				<a href="/myWorkSpace/sellinfo.do?userno=${sellerInfo.userno}">${sellerInfo.nickname}님의 정보 더보기</a>
 			</div>
 		</div>
 		<hr>

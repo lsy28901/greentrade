@@ -301,4 +301,40 @@ public class UserDAO extends DBConnPool {
 		return result;
 
 	}
+	
+	//판매자정보 페이지
+			public UserDTO sellerInfo(int userno) {
+
+				UserDTO dto = new UserDTO();
+
+				String sql = "SELECT u.userno, u.nickname, u.imgurl, u.greenscore,"
+					       + " COUNT(*) AS reviewCount FROM review r"
+					       + " JOIN user_table_real u ON r.selleruserno = u.userno"
+					       + " WHERE r.selleruserno IN (SELECT userno FROM user_table_real WHERE userno = ?)"
+					       + " GROUP BY u.userno, u.nickname, u.imgurl, u.greenscore";
+
+				try {
+					psmt = con.prepareStatement(sql);
+					psmt.setInt(1, userno);
+					rs = psmt.executeQuery();
+					
+					if (rs.next()) {
+						dto.setUserno(rs.getInt("userno"));
+						dto.setNickname(rs.getString("nickname"));
+						dto.setGreenscore(rs.getInt("greenscore"));
+						dto.setImgurl(rs.getString("imgurl"));
+						dto.setReviewCount(rs.getInt("reviewCount"));
+					}
+
+				} catch (SQLException e) { // TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally {
+					System.out.println(dto.getNickname());
+					System.out.println("판매자정보 조회");
+					closeRsAndPsmt();
+				}
+
+				return dto;
+
+			}
 }
