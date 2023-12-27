@@ -83,6 +83,51 @@ public class ReportDAO extends DBConnPool{
 		return list;
 	}
 	
+	public List<ReportDTO> getReportListByTargetUserNo(int userno, int startRow, int endRow) {
+	    List<ReportDTO> list = new ArrayList<>();
+
+	    String query = "SELECT * FROM (SELECT ROWNUM AS rnum, rr.* FROM ( " +
+	                   "SELECT r.*, u1.nickname AS reporter_nickname, u2.nickname AS target_nickname " +
+	                   "FROM report r " +
+	                   "JOIN user_table_real u1 ON r.reporterid = u1.userno " +
+	                   "JOIN user_table_real u2 ON r.targetid = u2.userno " +
+	                   "WHERE r.targetid = ? " + // targetid가 userno와 일치하는 것만 필터링
+	                   "ORDER BY r.reportid DESC" +
+	                   ") rr) WHERE rnum BETWEEN ? AND ?";
+
+	    try {
+	        psmt = con.prepareStatement(query);
+	        psmt.setInt(1, userno); // 사용자 번호로 필터링
+	        psmt.setInt(2, startRow);
+	        psmt.setInt(3, endRow);
+
+	        rs = psmt.executeQuery();
+
+	        while (rs.next()) {
+	            ReportDTO dto = new ReportDTO();
+
+	            dto.setReportid(rs.getInt("reportid"));
+	            dto.setReporterid(rs.getInt("reporterid"));
+	            dto.setReporterNickname(rs.getString("reporter_nickname"));
+	            dto.setTargetid(rs.getInt("targetid"));
+	            dto.setTargetNickname(rs.getString("target_nickname"));
+	            dto.setReportdate(rs.getDate("reportdate"));
+	            dto.setReportimgurl(rs.getString("reportimgurl"));
+	            dto.setReportcontent(rs.getString("reportcontent"));
+	            dto.setReporttitle(rs.getString("reporttitle"));
+
+	            list.add(dto);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeRsAndPsmt();
+	    }
+
+	    return list;
+	}
+
+	
 	public void saveReport(ReportDTO dto,int reporterid) {
 	    String query = "INSERT INTO report (reportid, reporterid, targetid, reportdate, reportimgurl, reportcontent, reporttitle) " +
 	                   "VALUES (report_seq.NEXTVAL, ?, (SELECT userno FROM user_table_real WHERE nickname = ?),sysdate, ?, ?, ?)";
@@ -109,6 +154,28 @@ public class ReportDAO extends DBConnPool{
 
 	    try {
 	        psmt = con.prepareStatement(query);
+	        rs = psmt.executeQuery();
+
+	        if (rs.next()) {
+	            totalRowCount = rs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close();
+	    }
+
+	    return totalRowCount;
+	}
+	
+	public int getTotalRowCount(int userno) {
+	    int totalRowCount = 0;
+
+	    String query = "SELECT COUNT(*) FROM report where targetid = ?";
+
+	    try {
+	        psmt = con.prepareStatement(query);
+	        psmt.setInt(1,userno);
 	        rs = psmt.executeQuery();
 
 	        if (rs.next()) {

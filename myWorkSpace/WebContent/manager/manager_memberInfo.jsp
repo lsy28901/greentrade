@@ -65,13 +65,17 @@
 				<hr class="mt-3 mb-3">
 				<div class="row d-flex align-items-center mt-3"
 					style="text-align: center;">
-					<div class="col-md-6">
+					<div class="col-md-4">
 					<button type="submit" class="btn btn-success btn-rounded mt-3" id="black_member">
 						블랙하기
 					</button>
 						<!--회원 삭제 기능 추가할것-->
 					</div>
-					<div class="form-outline col-md-6">
+					<div class="form-outline col-md-4">
+						<button type="button" class="btn btn-success btn-rounded mt-3" id="go_reportlist"
+							data-userno="${managerMemberInfo.userno}">신고 당한 내역 확인</button>
+					</div>
+					<div class="form-outline col-md-4">
 						<button type="button" class="btn btn-success btn-rounded mt-3" id="back_manager_memberList"
 							>회원 정보 관리로</button>
 					</div>
@@ -89,7 +93,25 @@
         });
     });
     $(document).ready(function() {
-        $('#black_member').click(function(e) {
+    	$('#go_reportlist').click(function(e) {
+            e.preventDefault(); // 링크 클릭 동작 취소
+
+            var userno = $(this).data('userno'); // 버튼의 data-userno 속성에서 값을 가져옴
+
+            $.ajax({
+                type: 'POST',
+                url: '/myWorkSpace/reportListByTarget.do',
+                data: { userno: userno }, // userno 변수를 전송
+                success: function(response) {
+                    loadPage('/myWorkSpace/reportListByTarget.do?userno=' + userno, 'main-content');
+                },
+                error: function() {
+                    // 삭제에 실패한 경우 처리
+                    alert('회원 정보 삭제 중 오류가 발생했습니다.');
+                }
+            });
+        });
+    	$('#black_member').click(function(e) {
             e.preventDefault(); // 링크 클릭 동작 취소
 
             $.ajax({

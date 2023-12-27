@@ -42,6 +42,7 @@ import com.mega.productlist.controller.ProductListController;
 import com.mega.productlist.controller.ProductShareController;
 import com.mega.report.controller.ReportContentController;
 import com.mega.report.controller.ReportFormController;
+import com.mega.report.controller.ReportListByTargetUserNoController;
 import com.mega.report.controller.ReportListController;
 import com.mega.review.controller.GetReviewListController;
 import com.mega.review.controller.InsertReviewController;
@@ -96,6 +97,9 @@ public class GreenTradeFC extends HttpServlet {
 	    }
 		else if (requestURI.equals("/myWorkSpace/reportForm.do")) {
 	    	forward = new ReportFormController().execute(req, resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/reportListByTarget.do")) {
+	    	forward = new ReportListByTargetUserNoController().execute(req,resp);
         }
 		else if (requestURI.equals("/myWorkSpace/managerMemberList.do")) {
 	    	forward = new ManagerMemberListController().execute(req, resp);
