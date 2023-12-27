@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mega.addfrm.controller.AddFrmController;
 import com.mega.additem.controller.AddItemController;
 import com.mega.buylist.controller.BuyListController;
 import com.mega.buylist.controller.InsertBuyListsController;
@@ -35,6 +36,7 @@ import com.mega.manager.controller.ManagerProductController;
 import com.mega.manager.controller.ManagerProductDeleteController;
 import com.mega.mypage.controller.MyPageController;
 import com.mega.mypage.controller.MyPageEditController;
+import com.mega.pay.controller.PayController;
 import com.mega.productlist.controller.ProductBestController;
 import com.mega.productlist.controller.ProductListController;
 import com.mega.productlist.controller.ProductShareController;
@@ -46,6 +48,7 @@ import com.mega.review.controller.InsertReviewController;
 import com.mega.search.controller.SearchController;
 import com.mega.selllist.controller.InsertSellListController;
 import com.mega.selllist.controller.SellListController;
+import com.mega.updateaddress.controller.UpdateAddressController;
 
 @WebServlet("*.do")
 public class GreenTradeFC extends HttpServlet {
@@ -179,8 +182,16 @@ public class GreenTradeFC extends HttpServlet {
         }else if (requestURI.equals("/myWorkSpace/chat.do")) {
 	    	forward = new GetOrCreateChatroomController().execute(req, resp);
         }
+		else if (requestURI.equals("/myWorkSpace/pay.do")) {
+	    	forward = new PayController().execute(req,resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/AddFrm.do")) {
+	    	forward = new AddFrmController().execute(req,resp);
+        }
+		else if (requestURI.equals("/myWorkSpace/updateAddress.do")) {
+	    	forward = new UpdateAddressController().execute(req,resp);
+        }
 		
-
 		// 페이지 이동 일괄처리
 		if (forward != null) {
 			if (forward.isRedirect()) {

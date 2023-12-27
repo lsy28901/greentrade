@@ -238,5 +238,67 @@ public class UserDAO extends DBConnPool {
 		return dto;
 
 	}
+	
+	//배송지정보 가져오기
+	public UserDTO getUserAdd(int userno) {
 
+		UserDTO dto = new UserDTO();
+
+		String sql = "select * from user_table_real where userno=? ";
+
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setInt(1, userno);
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				dto.setUserno(rs.getInt("userno"));
+				dto.setUser_name(rs.getString("user_name"));
+				dto.setUser_call(rs.getString("user_call"));
+				dto.setEmail(rs.getString("email"));
+				dto.setAddress1(rs.getString("address1"));
+				dto.setAddress2(rs.getString("address2"));
+				dto.setPostnum(rs.getString("postnum"));
+
+			}
+
+		} catch (SQLException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeRsAndPsmt();
+		}
+		
+		return dto;
+
+	}
+	
+	//배송지 수정하기
+	public int UpdateAddress(UserDTO dto) {
+		int result = 0;
+		
+		String sql = "UPDATE user_table_real set user_name = ?, user_call = ?, address1 = ?, address2 = ?, postnum = ?"
+				   + " WHERE userno = ?";
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			
+			psmt.setString(1, dto.getUser_name());
+			psmt.setString(2, dto.getUser_call());
+			psmt.setString(3, dto.getAddress1());
+			psmt.setString(4, dto.getAddress2());
+			psmt.setString(5, dto.getPostnum());
+			psmt.setInt(6, dto.getUserno());
+			
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			System.out.println("배송지 업데이트");
+			close();
+		}
+
+		return result;
+
+	}
 }

@@ -103,7 +103,6 @@
 						<span><a id="go_MarketPrice" href="../marketPrice/MarketPrice.jsp">상품 시세 조회하러 가기</a></span><br><br>
 						<span>상품상태</span><br>
 						<span>${prodetail.productStatus}</span>
-						<span>찜한 상태: ${heartstat.getLikestat() }</span>
 					</div>
 					<div id="info2_img">
 						<img>
@@ -111,7 +110,9 @@
 				</div>
 				
 				<div id="button_Container">
-					<button id="chatBtn">채팅하기</button>
+					<button id="chatBtn"><button id="chatBtn" >
+					<a href="/myWorkSpace/chat.do?productno=${prodetail.productno}">
+					채팅하기</button>
 					<button id="tradeBtn"><a href="/myWorkSpace/pay/pay.jsp?productno=${prodetail.productno}">거래하기</a></button>
 				</div>
 			</div>
@@ -126,7 +127,9 @@
 			
 			<div id="Seller_info">
 				<span>판매자 정보</span>
-				<span>${UserId }</span>
+				<p>${sellerInfo.nickname}</p>
+				<span>그린스코어</span>
+				<p>${sellerInfo.greenscore}</p>
 			</div>
 		</div>
 		<hr>

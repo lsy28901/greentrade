@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mega.log.LogDTO;
+import com.mega.user.UserDTO;
 
 import common.DBConnPool;
 
@@ -77,6 +78,8 @@ public class ProductDAO extends DBConnPool{
 				dto.setImage(rs.getString("image"));
 				dto.setPaymethod(rs.getString("paymethod"));
 				dto.setUserno(rs.getInt("userno"));
+				dto.setProductStatus(rs.getString("productStatus"));
+				dto.setProductDetail(rs.getString("productDetail"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -415,6 +418,33 @@ public ProductDTO getProductlistinfo() {
 			System.out.println("조회수 증가");
 			close();
 		}
+	}
+	
+	
+	//판매자정보
+	public UserDTO getSellerInfo(int productno) {
+		
+		UserDTO dto = new UserDTO();
+		
+		String query = "select * from product p"
+					 + " JOIN user_table_real u ON p.userno = u.userno"
+					 + " where productno = ?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1,productno);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setNickname(rs.getString("nickname"));
+				dto.setGreenscore(rs.getInt("greenscore"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeRsAndPsmt();
+		}
+		return dto;
 	}
 
 }
