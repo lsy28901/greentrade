@@ -233,8 +233,6 @@ function validateForm(form){
 				
 				
 				<div>
-				
-					<button type="submit" onclick="">취소</button>
 					<button type="submit" onclick="">찾기</button>
 				</div>
 				
