@@ -85,7 +85,8 @@
 							<!-- Sale badge-->
 							<div class="badge bg-green text-black position-absolute"
 								style="top: 0.5rem; right: 0.5rem">${product.paymethod}</div>
-							<!-- Product image-->
+							
+							<!-- Product images-->
 							<img class="card-img-top h-100" src="${product.image}" />
 							<!-- Product details-->
 							<div class="card-body p-4">
