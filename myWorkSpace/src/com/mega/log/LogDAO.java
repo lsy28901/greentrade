@@ -48,45 +48,43 @@ public class LogDAO extends DBConnPool {
 		String deleteLogsQuery = "DELETE FROM logs WHERE productno=? and selluserno=?";
 		String deleteProductQuery = "DELETE FROM product WHERE productno=? and userno=?";
 		int result = 0;
-		try {
-			// 트랜잭션 시작
-			con.setAutoCommit(false);
-			// product 테이블에서 해당 상품의 판매 등록 데이터 삭제
-			psmt = con.prepareStatement(deleteProductQuery);
-			psmt.setInt(1, productno);
-			psmt.setInt(2, userno);
-			result = psmt.executeUpdate();
+		 // 1. 먼저 heart 테이블에서 관련된 레코드 삭제
+        String deleteHeartQuery = "DELETE FROM heart WHERE productno = ?";
+        
 
-			if (result > 0) {
-				// logs 테이블에서 해당 상품의 거래중인 상태인 데이터 삭제
-				psmt = con.prepareStatement(deleteLogsQuery);
+			// product 테이블에서 해당 상품의 판매 등록 데이터 삭제
+			try {
+				String deleteChatroomQuery = "DELETE FROM chatroom WHERE sellproduct = ?";
+		        psmt = con.prepareStatement(deleteChatroomQuery);
+		        psmt.setInt(1, productno);
+		        psmt.executeUpdate();
+				
+				
+				
+				psmt = con.prepareStatement(deleteHeartQuery);
+		        psmt.setInt(1, productno);
+		        psmt.executeUpdate();
+				
+				
+				psmt = con.prepareStatement(deleteProductQuery);
 				psmt.setInt(1, productno);
 				psmt.setInt(2, userno);
-				psmt.executeUpdate();
+				result = psmt.executeUpdate();
+				if (result > 0) {
+					// logs 테이블에서 해당 상품의 거래중인 상태인 데이터 삭제
+					psmt = con.prepareStatement(deleteLogsQuery);
+					psmt.setInt(1, productno);
+					psmt.setInt(2, userno);
+					psmt.executeUpdate();
 
-			}
-
-			// 트랜잭션 커밋
-			con.commit();
-		} catch (SQLException e) {
-			// 롤백
-			try {
-				con.rollback();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			e.printStackTrace();
-		} finally {
-			// 트랜잭션 종료 후 자원 해제
-			try {
-				con.setAutoCommit(true);
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}finally {
+				close();
 			}
-			close();
-		}
+				
 
 	}
 
