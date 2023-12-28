@@ -232,6 +232,10 @@ public ProductDTO getProductlistinfo() {
 	//상품 관리에서 상품을 삭제 - 김찬희
 	public void managerProductDelete(int productno) {
 	    try {
+	    	String deleteChatroomQuery = "DELETE FROM chatroom WHERE sellproduct = ?";
+	        psmt = con.prepareStatement(deleteChatroomQuery);
+	        psmt.setInt(1, productno);
+	        psmt.executeUpdate();
 	        // 1. 먼저 heart 테이블에서 관련된 레코드 삭제
 	        String deleteHeartQuery = "DELETE FROM heart WHERE productno = ?";
 	        psmt = con.prepareStatement(deleteHeartQuery);
