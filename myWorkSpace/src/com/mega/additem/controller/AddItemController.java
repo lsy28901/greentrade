@@ -96,20 +96,26 @@ public class AddItemController implements Action {
 				} else {
 					// 파일 데이터인 경우
 					if ("imageFile".equals(item.getFieldName())) {
-						// 업로드된 파일의 이름을 가져옵니다.
-						String fileName = item.getName();
+						// 업로드된 파일의 원래 이름을 가져옵니다.
+						String originalFileName = item.getName();
 
+						// 파일 이름에서 확장자를 추출합니다.
+						String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+						// 새로운 파일 이름을 생성합니다. (현재 시간 기반)
+						String newFileName = System.currentTimeMillis() + fileExtension;
+						
 						// 실제 서버의 경로를 구합니다.
 						String serverPath = request.getServletContext().getRealPath("/");
 
 						// 업로드된 파일의 경로를 포함한 File 객체를 생성합니다.
-						File uploadedFile = new File(serverPath + File.separator + "uploads", fileName);
+						File uploadedFile = new File(serverPath + File.separator + "uploads", newFileName);
 
 						// 업로드된 파일을 서버에 저장합니다.
 						item.write(uploadedFile);
 
 						// 파일 경로를 DTO에 저장합니다. 이 경로가 데이터베이스에 저장됩니다.
-						dto.setImage("uploads" + File.separator + fileName);
+						dto.setImage("uploads" + File.separator + newFileName);
 					}
 				}
 			}

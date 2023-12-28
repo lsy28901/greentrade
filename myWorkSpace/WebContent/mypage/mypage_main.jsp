@@ -19,7 +19,7 @@
 								src="${mydto.imgurl}" 
 								class="col-md-3 img-fluid rounded-circle  justify-content-center"
 								alt="Townhouses and Skyscrapers"
-								style="width: 150px; height: 100px;" />
+								style="width: 150px; height: 100%;" />
 							<h3 class="col-md-3 d-flex align-items-center "
 								style="text-align: center;">
 								${mydto.user_name }
