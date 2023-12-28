@@ -36,7 +36,7 @@
 		<div style="display:grid; grid-template-columns:1fr 1fr; border:1px solid; padding:20px; margin:40px auto;">
 			<div style="display:grid; grid-template-rows:1fr 1fr;">
 				<div style="display:grid; grid-template-columns:1fr 1fr;">
-					<img style="width:80px; height:80px;">
+					<img src="${seller.imgurl }" style="width:80px; height:80px;">
 					<p>${seller.nickname }</p>
 				</div>
 				<div>
