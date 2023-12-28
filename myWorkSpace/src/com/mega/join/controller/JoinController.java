@@ -34,7 +34,8 @@ public class JoinController implements Action{
 		}
 		
 		// 기존 코드에서 필요한 부분을 가져옵니다.
-        String uploadPath = req.getServletContext().getRealPath("/uploads");
+//        String uploadPath = req.getServletContext().getRealPath("/uploads");
+        String uploadPath ="C:\\Users\\tndus\\megaproject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\myWorkSpace\\uploads" ;
         int maxFileSize = 10 * 1024 * 1024; // 업로드 파일의 최대 크기를 10MB로 설정
         String encoding = "UTF-8"; // 인코딩 방식을 UTF-8로 설정
 
