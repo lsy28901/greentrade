@@ -17,7 +17,7 @@
 						<div class="row justify-content-center" style="">
 							<img
 								src="${mydto.imgurl}" 
-								class="col-md-3 img-fluid rounded-circle  "
+								class="col-md-3 img-fluid rounded-circle  justify-content-center"
 								alt="Townhouses and Skyscrapers"
 								style="width: 150px; height: 100px;" />
 							<h3 class="col-md-3 d-flex align-items-center "

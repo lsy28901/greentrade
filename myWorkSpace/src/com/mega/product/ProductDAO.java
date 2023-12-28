@@ -449,6 +449,7 @@ public ProductDTO getProductlistinfo() {
 				dto.setNickname(rs.getString("nickname"));
 				dto.setGreenscore(rs.getInt("greenscore"));
 				dto.setUserno(rs.getInt("userno"));
+				dto.setImgurl(rs.getString("imgurl"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
