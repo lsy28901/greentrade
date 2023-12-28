@@ -104,7 +104,7 @@
             <div id="updateAdd">
                <button>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="css-ypdb8q"><path d="M8 14H14" stroke="#5A616B" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.3882 2.61214L13.3881 2.61214C13.2074 2.43138 12.9928 2.28799 12.7566 2.19017C12.5205 2.09234 12.2673 2.04199 12.0117 2.04199C11.4954 2.04199 11.0003 2.24708 10.6353 2.61214L2.84769 10.3997C2.76759 10.4798 2.71077 10.5802 2.68329 10.6901L2.06029 13.1821C2.00704 13.3951 2.06945 13.6204 2.22468 13.7756C2.37992 13.9308 2.60523 13.9932 2.81821 13.94L5.31023 13.317C5.42013 13.2895 5.52049 13.2327 5.60059 13.1526L13.3881 5.36503C13.5689 5.18428 13.7123 4.96969 13.8101 4.73352C13.9079 4.49734 13.9583 4.24421 13.9583 3.98859C13.9583 3.73296 13.9079 3.47983 13.8101 3.24365C13.7123 3.00748 13.5689 2.79289 13.3882 2.61214Z" stroke="#5A616B" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                  <p><a href="/myWorkSpace/AddFrm.do?userno=${ user.userno}&productno=${prodetail.productno}">배송지 수정</a></p>
+                  <p><a id="updateAddBtn" href="/myWorkSpace/AddFrm.do?userno=${ user.userno}&productno=${prodetail.productno}">배송지 수정</a></p>
                </button>
             </div>
          </div>
