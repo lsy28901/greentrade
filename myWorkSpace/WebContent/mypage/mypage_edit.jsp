@@ -130,9 +130,9 @@
 									</div>
 									<div class="form-outline col-md-6 text-left"
 										data-mdb-input-init>
-										<button type="button"
-											class="btn btn-success btn-secondary btn-rounded w-50 mt-3"
-											data-mdb-ripple-init style="">취소</button>
+										<a href="/myWorkSpace/mypageMain.do">
+  <button type="button" class="btn btn-success btn-secondary btn-rounded w-50 mt-3" data-mdb-ripple-init style="">취소</button>
+</a>
 									</div>
 								</div>
 
