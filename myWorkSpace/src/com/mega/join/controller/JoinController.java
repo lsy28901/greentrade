@@ -50,7 +50,7 @@ public class JoinController implements Action{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        //multi처리
 		String userName = multi.getParameter("user_name");
 		String userCall = multi.getParameter("user_call");
 		String userId = multi.getParameter("user_id");
