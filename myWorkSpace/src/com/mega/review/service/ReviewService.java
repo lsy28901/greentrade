@@ -9,4 +9,5 @@ import com.mega.user.UserDTO;
 public interface ReviewService {
 	int insertReview(ReviewDTO rdto,int userno,UserDTO sellerdto ,ProductDTO pdto);
 	List<ReviewDTO> getReviewList(int userno);
+	List<ReviewDTO> getSellerReview(String userno);
 }

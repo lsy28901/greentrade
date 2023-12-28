@@ -68,8 +68,38 @@ public class ReviewDAO extends DBConnPool{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		close();
 		return reviewList;
+	}
+	
+	//판매자정보 페이지 리뷰 리스트 불러오는 메소드 (sellInfoReview.jsp)
+	public List<ReviewDTO> getSellerReview(String userno){
+		List<ReviewDTO> sellerreviewList = new ArrayList<ReviewDTO>();
+		
+		String query = "SELECT reviewcontent, COUNT(*) AS content_count"
+					 + " FROM review"
+					 + " WHERE selleruserno = ?"
+					 + " GROUP BY reviewcontent";
+		
+		try {
+			psmt= con.prepareStatement(query);
+			psmt.setString(1, userno);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ReviewDTO srdto = new ReviewDTO();
+				srdto.setReviewcontent(rs.getString("reviewcontent"));
+				srdto.setReviewuserno(rs.getInt("reviewuserno"));
+				srdto.setSellername(rs.getString("sellername"));
+				srdto.setContent_count(rs.getInt("content_count"));
+				sellerreviewList.add(srdto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		closeRsAndPsmt();
+		return sellerreviewList;
 	}
 
 }

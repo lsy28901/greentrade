@@ -13,4 +13,5 @@ public class ReviewDTO {
 	private int selleruserno;
 	private String sellername;
 	private String paymethod;
+	private int content_count;
 }
