@@ -66,7 +66,8 @@
 				<div class="row d-flex align-items-center mt-3"
 					style="text-align: center;">
 					<div class="col-md-4">
-					<button type="submit" class="btn btn-success btn-rounded mt-3" id="black_member">
+					<button type="submit" class="btn btn-success btn-rounded mt-3" id="black_member"
+					data-userno="${managerMemberInfo.userno}">
 						블랙하기
 					</button>
 						<!--회원 삭제 기능 추가할것-->
@@ -113,11 +114,13 @@
         });
     	$('#black_member').click(function(e) {
             e.preventDefault(); // 링크 클릭 동작 취소
-
+            var userno = $(this).data('userno');
+            
             $.ajax({
                 type: 'POST',
                 url: '/myWorkSpace/managerMemberDelete.do',
-                data: { user_id: user_id }, // user_id 변수를 전송
+                data: { user_id: user_id,
+                		userno: userno}, // user_id 변수를 전송
                 success: function(response) {
                     alert('회원 정보가 삭제되었습니다.');
                     loadPage('/myWorkSpace/managerMemberList.do','main-content');
