@@ -35,25 +35,33 @@
 		<div style="display:grid; grid-template-columns:1fr 1fr; border:1px solid; padding:20px; margin:40px auto;">
 			<div style="display:grid; grid-template-rows:1fr 1fr;">
 				<div style="display:grid; grid-template-columns:1fr 1fr;">
-					<img style="width:80px; height:80px;">
-					<p>가방팔이</p>
+					<img src="${seller.imgurl }" style="width:80px; height:80px;">
+					<p>${seller.nickname }</p>
 				</div>
 				<div>
 					<P>그린스코어</P>
-					<div style="background-color:green; height:10px; width:80%"></div>
+					<div style="background-color:green; height:10px; width:80%">${seller.greenscore }</div>
 				</div>
 			</div>
 			
 			<div style="display:grid; grid-template-columns:1fr 1fr;">
 				<div style="padding:10px;">
-					<p>거래후기</p>
+					<div style="display:flex; justify-content:center;">
+						<p>거래후기</p>
+					</div>
 					<hr>
-					<p>0</p>
+					<div style="display:flex; justify-content:center;">
+						<a href="/myWorkSpace/review.do?userno=${ seller.userno}">${seller.reviewCount }</a>
+					</div>
 				</div>
 				<div style="padding:10px;">
-					<p>단골</p>
+					<div style="display:flex; justify-content:center;">
+						<p>단골</p>
+					</div>
 					<hr>
-					<p>0</p>
+					<div style="display:flex; justify-content:center;">
+						<p>0</p>
+					</div>
 				</div>
 			</div>
 		</div>

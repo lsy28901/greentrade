@@ -47,14 +47,22 @@
 			
 			<div style="display:grid; grid-template-columns:1fr 1fr;">
 				<div style="padding:10px;">
-					<p>거래후기</p>
+					<div style="display:flex; justify-content:center;">
+						<p>거래후기</p>
+					</div>
 					<hr>
-					<p>${seller.reviewCount }</p>
+					<div style="display:flex; justify-content:center;">
+						<a href="/myWorkSpace/review.do?userno=${ seller.userno}">${seller.reviewCount }</a>
+					</div>
 				</div>
 				<div style="padding:10px;">
-					<p>단골</p>
+					<div style="display:flex; justify-content:center;">
+						<p>단골</p>
+					</div>
 					<hr>
-					<p>0</p>
+					<div style="display:flex; justify-content:center;">
+						<p>0</p>
+					</div>
 				</div>
 			</div>
 		</div>
