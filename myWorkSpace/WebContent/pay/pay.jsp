@@ -39,8 +39,15 @@
         	    		type: 'POST',
         	    		data: {
         		    		imp_uid : rsp.imp_uid,
-        		    		productno: "${prodetail.productno}"
+        		    		productno: "${prodetail.productno}",
         		    		//기타 필요한 데이터가 있으면 추가 전달
+        		    			 name: "${prodetail.title}",
+        		    	            amount: "${prodetail.price}",
+        		    	            buyer_email: "${user.email}",
+        		    	            buyer_name: "${user.user_name}",
+        		    	            buyer_tel: "${user.user_call}",
+        		    	            buyer_addr: "{user.address1}" + "{user.address2}",
+        		    	            buyer_postcode: "${user.postnum}",
         	    		},success: function (response) {
         	    			window.location.href = "/myWorkSpace/main.jsp";
         		        }

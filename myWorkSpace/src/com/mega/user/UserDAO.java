@@ -6,9 +6,6 @@ import common.DBConnPool;
 
 public class UserDAO extends DBConnPool {
 
-	public UserDAO() {
-		super();
-	}
 
 	public UserDTO getUserDTO(String uid, String upass) {
 
