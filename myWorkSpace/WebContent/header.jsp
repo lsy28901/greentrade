@@ -57,10 +57,10 @@ a {
 		String userStaff = (String) session.getAttribute("UserStaff");
 		if(session.getAttribute("UserId") == null){
 	%>
-	<header>
-		<nav class="navbar navbar-expand-sm bg-green navbar-dark">
+	<header style="border-bottom: 1px solid rgb(102,204,102);">
+		<nav class="navbar navbar-expand-sm navbar-dark">
 			<div class="container-fluid ">
-				<a class="navbar-brand col-md-4 text-black" href="/myWorkSpace/index.do">Green
+				<a class="navbar-brand col-md-4 text-success" href="/myWorkSpace/index.do">Green
 					Trade</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -73,12 +73,13 @@ a {
 				<div class="collapse navbar-collapse col-md-4 justify-content-end "
 					id="collapsibleNavbar">
 					<ul class="navbar-nav ">
-						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="#">채팅하기</a></li>
-						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="/myWorkSpace/additem/additem.jsp">판매하기</a></li>
-							<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="/myWorkSpace/login/login.jsp">로그인</a></li>
+						
+<!-- 						<li class="nav-item "><a class="nav-link mr-3 text-black" -->
+<!-- 							href="/myWorkSpace/additem/additem.jsp">판매하기</a></li> -->
+							<li class="nav-item "><a class="nav-link mr-3 text-black d-flex justify-content-center"
+							href="/myWorkSpace/login/login.jsp">
+							<img src="/myWorkSpace/imgfolder/box-arrow-in-left.svg" alt="SVG Image" style="margin:2px; width:25px; height:20px">
+							로그인</a></li>
 					</ul>
 				</div>
 
@@ -86,7 +87,7 @@ a {
 
 		</nav>
 
-		<nav class="navbar navbar-expand-sm bg-green navbar-dark">
+		<nav class="navbar navbar-expand-sm navbar-dark">
 			<div class="container-fluid">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link text-black"
@@ -100,10 +101,10 @@ a {
 		</nav>
 	</header>
 	 <%} else{ %>
-	 <header>
-		<nav class="navbar navbar-expand-sm bg-green navbar-dark">
+	 <header style="border-bottom: 1px solid rgb(102,204,102);">
+		<nav class="navbar navbar-expand-sm  navbar-dark">
 			<div class="container-fluid ">
-				<a class="navbar-brand col-md-4 text-black" href="/myWorkSpace/index.do">Green
+				<a class="navbar-brand col-md-4 text-success" href="/myWorkSpace/index.do" style="text-shadow: 1px 0px 4px rgba(0,0,0,0.5);">Green
 					Trade</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -116,18 +117,26 @@ a {
 				<div class="collapse navbar-collapse col-md-4 justify-content-end "
 					id="collapsibleNavbar">
 					<ul class="navbar-nav ">
-						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="/myWorkSpace/chatting/chatting.jsp?UserNo=<%=session.getAttribute("UserNo")%>">채팅하기</a></li>
-						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="/myWorkSpace/additem/additem.jsp">판매하기</a></li>
-							<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="/myWorkSpace/login/logout.jsp" onclick="kakaoLogout()">로그아웃</a></li>
+							<li class="nav-item "><a class="nav-link mr-3 text-black d-flex justify-content-center"
+							href="/myWorkSpace/chatting/chatting.jsp?UserNo=<%=session.getAttribute("UserNo")%>">
+							<img src="/myWorkSpace/imgfolder/chat-dots-fill.svg" alt="SVG Image" style="margin:2px; width:25px; height:20px">
+							채팅하기</a></li>
+							<li class="nav-item "><a class="nav-link  text-black d-flex justify-content-center " 
+							href="/myWorkSpace/additem/additem.jsp">
+							<img src="/myWorkSpace/imgfolder/currency-dollar.svg" alt="SVG Image" style="margin:2px; width:25px; height:20px">
+							판매하기</a></li>
+							<li class="nav-item "><a class="nav-link mr-3 text-black  d-flex justify-content-center"
+							href="/myWorkSpace/login/logout.jsp" onclick="kakaoLogout()">
+							<img src="/myWorkSpace/imgfolder/box-arrow-left.svg" alt="SVG Image" style="margin:2px; width:25px; height:20px">
+							로그아웃</a></li>
 						<%if("manager".equals(userStaff)) {%>
 						<li class="nav-item "><a class="nav-link mr-3 text-black"
 							href="/myWorkSpace/manager/manager_main.jsp">관리자 페이지</a></li>
 						<%}else{ %>
-						<li class="nav-item "><a class="nav-link mr-3 text-black"
-							href="/myWorkSpace/mypageMain.do">마이페이지</a></li>
+						<li class="nav-item "><a class="nav-link mr-3 text-black d-flex justify-content-center"
+							href="/myWorkSpace/mypageMain.do">
+							<img src="/myWorkSpace/imgfolder/person-vcard.svg" alt="SVG Image" style="margin:2px; width:25px; height:20px">
+							마이페이지</a></li>
 						<%} %>
 					</ul>
 				</div>
@@ -136,7 +145,7 @@ a {
 
 		</nav>
 
-		<nav class="navbar navbar-expand-sm bg-green navbar-dark">
+		<nav class="navbar navbar-expand-sm  navbar-dark">
 			<div class="container-fluid">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link text-black"
