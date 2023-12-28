@@ -11,10 +11,11 @@ main {
 	grid-template-columns:1fr 1fr;
 	grid-gap:10px;
 	margin-bottom:20px;
+	border-radius: 10px;
+	border:1px solid;
 }
 
 #Product_info1_container {
-	border:1px solid;
 	width:100%;
 	height:350px;
 	padding:10px;
@@ -25,20 +26,29 @@ main {
 	height:100%;
 }
 #Product_info2_container {
-	border:1px solid;
 	width:100%;
 	height:350px;
-	padding:10px;"
+	padding:10px;
 }
-
+#prodetailBox{
+	height: 80%;
+	margin: 10px 0;
+	display : flex;
+	align-items : center;
+}
 #info2_detail{
-	display:grid;
 	height:30%;
-	grid-template-columns:auto auto;
+}
+#info2_detail2 {
+	position: relative;
+}
+#likeBox{
+	height: 60px;
 }
 #likeBtn{
 	background-color:white;
 	border:0;
+	padding:10px 0;
 }
 #info2_img{
 	border:1px solid;
@@ -52,13 +62,26 @@ main {
 }
 #chatBtn {
 	width:100%;
+	border:0;
+	border-radius: 10px;
+	background-color:#BFF6B6;
+}
+#chatBtn a{
+	text-decoration:none;
+	color:black;
+	font-weight:bold;
 }
 #tradeBtn{
 	width:100%;
+	border:0;
+	border-radius: 10px;
+	background-color:#BFF6B6;
+	
 }
 #tradeBtn a{
 	text-decoration:none;
 	color:black;
+	font-weight:bold;
 }
 
 #seller_container {
@@ -73,12 +96,14 @@ main {
 	width:100%;
 	height:300px;
 	padding:10px;
+	border-radius: 10px;
 }
 #Seller_info {
 	border:1px solid;
 	width:100%;
 	height:300px;
-	padding:10px;"
+	padding:10px;
+	border-radius: 10px;
 }
 #map {
 	border:1px solid;
@@ -89,6 +114,10 @@ main {
 	font-size: 13px;
 	text-decoration:none;
 	color: gray;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 10px;
 }
 #go_MarketPrice:hover{
 	text-decoration:none;
@@ -98,8 +127,30 @@ main {
 #redheart{
 	fill: red;
 }
+#info_detail1 {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 20px;
+}
 
-
+#moreinfo{
+	font-size: 13px;
+	text-decoration:none;
+	color: gray;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+#moreinfo:hover{
+	text-decoration:none;
+	color: black;
+	font-weight: bold;
+}
+#info_box {
+	position: relative;
+	height: 80%;
+}
 
 
 

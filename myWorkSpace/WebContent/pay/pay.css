@@ -13,6 +13,10 @@ main {
 #Address{
    font-weight:bold;
 }
+#updateAddBtn {
+	text-decoration: none;
+	color:gray;
+}
 #updateAddContainer{
    display:flex;
    justify-content: flex-end;
