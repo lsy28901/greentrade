@@ -1,5 +1,6 @@
 package com.mega.join.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import com.mega.login.service.LoginService;
 import com.mega.login.service.impl.LoginServiceImpl;
 import com.mega.user.JoinDTO;
 import com.mega.user.UserDTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class JoinController implements Action{
 
@@ -29,17 +32,36 @@ public class JoinController implements Action{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String userName = req.getParameter("user_name");
-		String userCall = req.getParameter("user_call");
-		String userId = req.getParameter("user_id");
-		String userPwd = req.getParameter("user_password");
-		String userEmail = req.getParameter("email");
-		String userNickname = req.getParameter("nickname");
-		String userImgurl = req.getParameter("imgurl");
-		String userStaff = req.getParameter("staff");
-		String userAddress1 = req.getParameter("address1");
-		String userAddress2 = req.getParameter("address2");
-		String userPostnum = req.getParameter("postnum");
+		
+		// 기존 코드에서 필요한 부분을 가져옵니다.
+        String uploadPath = req.getServletContext().getRealPath("/uploads");
+        int maxFileSize = 10 * 1024 * 1024; // 업로드 파일의 최대 크기를 10MB로 설정
+        String encoding = "UTF-8"; // 인코딩 방식을 UTF-8로 설정
+
+        MultipartRequest multi = null;
+        try {
+            multi = new MultipartRequest(
+                    req,
+                    uploadPath,
+                    maxFileSize, // 첨부파일 최대 용량 설정(bite) / 10KB / 용량 초과 시 예외 발생
+                    encoding, // 인코딩 방식 지정
+                    new DefaultFileRenamePolicy() // 중복 파일 처리(동일한 파일명이 업로드되면 뒤에 숫자 등을 붙여 중복 회피)
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+		String userName = multi.getParameter("user_name");
+		String userCall = multi.getParameter("user_call");
+		String userId = multi.getParameter("user_id");
+		String userPwd = multi.getParameter("user_password");
+		String userEmail = multi.getParameter("email");
+		String userNickname = multi.getParameter("nickname");
+		String userImgurl = "uploads\\" + multi.getParameter("imgurl");
+		String userStaff = multi.getParameter("staff");
+		String userAddress1 = multi.getParameter("address1");
+		String userAddress2 = multi.getParameter("address2");
+		String userPostnum = multi.getParameter("postnum");
 		
 		JoinService joinservice = new JoinServiceImpl();//insert부분 객체
 		JoinService dupliservice= new JoinServiceImpl();//중복확인 객체

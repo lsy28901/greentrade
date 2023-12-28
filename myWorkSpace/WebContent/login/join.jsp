@@ -269,7 +269,7 @@
 	<hr style="width: 90%; background: black; margin: 0 auto;">
 	<section class="body">
 		<div class="container-body">
-			<form action="/myWorkSpace/join.do" method="POST" class="form_box" onsubmit="return validateForm(this)">
+			<form action="/myWorkSpace/join.do" method="POST" class="form_box" onsubmit="return validateForm(this)" enctype="multipart/form-data">
 
 				
 					<div class="photo_box" style="width:405px;justify-content:center; align-items: center; margin: 0 auto;">
@@ -279,7 +279,6 @@
 				 				<div id="image-show" style="display:flex; justify-content:right;
 				 				align-items:end;
 				 				width:230px;">
-				 				
 				 				</div>
 				 		</div>
 				 		<div class="photo_regist" id="photo_regist">
