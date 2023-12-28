@@ -77,9 +77,70 @@
 						<div class="mt-3 mb-2">최근본 상품</div>
 						<div class="row border " >
 							
-							<div class="col-md-4 " style="height: 150px"></div>
-							<div class="col-md-4 " style="height: 150px"></div>
-							<div class="col-md-4 " style="height: 150px"></div>
+							<div class="col-md-6"
+									style="transition: box-shadow 0.3s, cursor 0.3s; cursor: pointer; height: 200px;" onmouseover="this.style.boxShadow='0 0 10px rgba(0, 0, 0, 0.3)'" onmouseout="this.style.boxShadow='none'"
+				onclick="location.href='/myWorkSpace/detaiIitem.do?productno=${likeList.productno}';"
+									>
+										<div class="card mt-3" style="max-height: 250px;">
+											<div class="row no-gutters">
+												<div class="col-md-6"
+													style="display: flex; align-items: center;">
+													<img src="/myWorkSpace/imgfolder/clothes1.png" class="card-img"
+														style="max-height: 150px; height: 100%; margin-left: 10px;">
+												</div>
+												<div class="col-md-6">
+													<div class="card-body">
+														<h6 class="card-title">옷 상품</h6>
+														<p class="card-text" style="font-size: 12px;">
+															<strong>상품상태:</strong>새상품
+														</p>
+														<p class="card-text" style="font-size: 12px;">
+															<strong>판매자:</strong>홍길동
+														</p>
+														<p class="card-text" style="font-size: 12px;">
+															<strong>가격:</strong>20000원
+														</p>
+														<p class="card-text">
+															
+														</p>
+												
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+							<div class="col-md-6"
+									style="transition: box-shadow 0.3s, cursor 0.3s; cursor: pointer; height: 200px;" onmouseover="this.style.boxShadow='0 0 10px rgba(0, 0, 0, 0.3)'" onmouseout="this.style.boxShadow='none'"
+				onclick="location.href='/myWorkSpace/detaiIitem.do?productno=${likeList.productno}';"
+									>
+										<div class="card mt-3" style="max-height: 250px;">
+											<div class="row no-gutters">
+												<div class="col-md-6"
+													style="display: flex; align-items: center;">
+													<img src="/myWorkSpace/imgfolder/clothes2.png" class="card-img"
+														style="max-height: 150px; height: 100%; margin-left: 10px;">
+												</div>
+												<div class="col-md-6">
+													<div class="card-body">
+														<h6 class="card-title">옷 상품2</h6>
+														<p class="card-text" style="font-size: 12px;">
+															<strong>상품상태:</strong>새상품
+														</p>
+														<p class="card-text" style="font-size: 12px;">
+															<strong>판매자:</strong>홍길동
+														</p>
+														<p class="card-text" style="font-size: 12px;">
+															<strong>가격:</strong>20000원
+														</p>
+														<p class="card-text">
+															
+														</p>
+												
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 						</div>
 					</div><!-- 마이페이지  끝 -->
 			</section>

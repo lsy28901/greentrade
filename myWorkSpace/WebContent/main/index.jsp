@@ -122,7 +122,7 @@
 	</header>
 	
 
-	<div class="m-3"
-		style="font-weight: bold; font-family: 'Arial', sans-serif; font-size: 24px;">인기 상품</div>
+<!-- 	<div class="m-3" -->
+<!-- 		style="font-weight: bold; font-family: 'Arial', sans-serif; font-size: 24px;">인기 상품</div> -->
 </main>
 <%@ include file="../footer.jsp"%>
