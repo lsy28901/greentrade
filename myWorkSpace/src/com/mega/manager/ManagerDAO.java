@@ -85,10 +85,16 @@ public class ManagerDAO extends DBConnPool{
 		return dto;
 	}
 	
-	public void deleteMemberInfo(String user_id) {
-	    String query = "DELETE FROM user_table_real WHERE user_id = ?";
-	    
+	public void deleteMemberInfo(String user_id,int userno) {
 	    try {
+	    	String likequery = "DELETE FROM heart WHERE userno =?";
+	    	psmt = con.prepareStatement(likequery);
+	        psmt.setInt(1, userno);
+	        
+	        // 쿼리 실행
+	        psmt.executeUpdate();
+	    	
+	    	String query = "DELETE FROM user_table_real WHERE user_id = ?";
 	        // SQL 쿼리 준비
 	        psmt = con.prepareStatement(query);
 	        psmt.setString(1, user_id);

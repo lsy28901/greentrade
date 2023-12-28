@@ -9,8 +9,8 @@ public class ManagerMemberDeleteServiceImpl implements ManagerMemberDeleteServic
 	private ManagerDAO dao = new ManagerDAO();
 	
 	@Override
-	public void deleteMemberInfo(String user_id) {
-		dao.deleteMemberInfo(user_id);
+	public void deleteMemberInfo(String user_id,int userno) {
+		dao.deleteMemberInfo(user_id,userno);
 	}
 
 }
